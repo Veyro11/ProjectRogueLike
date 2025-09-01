@@ -43,6 +43,10 @@ public class EnemyBaseState : IState
         //stateMachine.Enemy.EnemyData.HP -= 1; //죽음 테스트
     }
 
+    public void OntriggerEnter2D()
+    {
+    }
+
     public virtual void LookPlayer()
     {
         lookDirection = stateMachine.targetTransform.position - stateMachine.Enemy.transform.position;
