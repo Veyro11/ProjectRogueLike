@@ -32,9 +32,9 @@ public class PlayerWalkState : PlayerGroundedState
     //    }
     //}
 
-    protected override void OnDashStarted(InputAction.CallbackContext context)
-    {
-        base.OnDashStarted(context);
-        stateMachine.ChangeState(stateMachine.RunState);
-    }
+    //protected override void OnDashStarted(InputAction.CallbackContext context)
+    //{
+    //    base.OnDashStarted(context);
+    //    stateMachine.ChangeState(stateMachine.RunState);
+    //}
 }

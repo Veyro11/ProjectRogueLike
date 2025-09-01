@@ -35,7 +35,6 @@ public class PlayerJumpState : PlayerAirState
         }
     }
 
-    // 이 부분을 추가!
     public override void PhysicsUpdate()
     {
     }

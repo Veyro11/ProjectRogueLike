@@ -20,19 +20,20 @@ public class PlayerRunState : PlayerGroundedState
     {
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.RunParameterHash);
+
     }
 
-    protected override void OnDashCanceled(InputAction.CallbackContext context)
-    {
-        base.OnDashCanceled(context);
+    //protected override void OnDashCanceled(InputAction.CallbackContext context)
+    //{
+    //    base.OnDashCanceled(context);
         
-        if (stateMachine.MovementInput != Vector2.zero)
-        {
-            stateMachine.ChangeState(stateMachine.WalkState);
-        }
-        else
-        {
-            stateMachine.ChangeState(stateMachine.IdleState);
-        }
-    }
+    //    if (stateMachine.MovementInput != Vector2.zero)
+    //    {
+    //        stateMachine.ChangeState(stateMachine.WalkState);
+    //    }
+    //    else
+    //    {
+    //        stateMachine.ChangeState(stateMachine.IdleState);
+    //    }
+    //}
 }

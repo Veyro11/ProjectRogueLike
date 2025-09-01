@@ -35,13 +35,32 @@ public class PlayerAirState : PlayerBaseState
     {
         base.PhysicsUpdate();
 
+        if (stateMachine.MovementInput.x != 0)
+        {
+            if (IsWallInFront(out RaycastHit2D hit))
+            {
+                if (CanClimbLedge(hit, out Vector2 ledgePosition))
+                {
+                    stateMachine.LedgePosition = ledgePosition;
+                    stateMachine.ChangeState(stateMachine.ClimbingState);
+                }
+            }
+        }
+
         if (stateMachine.Player.Rb.velocity.y <= 0 && stateMachine.Player.IsGrounded())
         {
-            stateMachine.ChangeState(
-                stateMachine.MovementInput == Vector2.zero
-                ? stateMachine.IdleState
-                : stateMachine.WalkState
-            );
+            if (stateMachine.MovementInput == Vector2.zero)
+            {
+                stateMachine.ChangeState(stateMachine.IdleState);
+            }
+            else
+            {
+                stateMachine.ChangeState(
+                    stateMachine.IsRunning
+                    ? stateMachine.RunState
+                    : stateMachine.WalkState
+                );
+            }
         }
     }
 
