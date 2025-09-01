@@ -184,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 872737512}
   - component: {fileID: 872737514}
   - component: {fileID: 872737513}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 1301862996}
   - component: {fileID: 1301862997}
   - component: {fileID: 1301862998}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1857707438}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
