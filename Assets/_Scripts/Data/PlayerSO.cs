@@ -56,3 +56,12 @@ public class PlayerSO : ScriptableObject
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
 }
+
+[CreateAssetMenu(fileName = "Stat", menuName = "Characters/Player")]
+public class PlayerStatus : ScriptableObject
+{
+    public int curHP;
+    public int maxHP;
+    public float ATK;
+    public float jumpForce;
+}
