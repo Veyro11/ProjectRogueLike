@@ -216,4 +216,9 @@ public class PlayerBaseState : IState
 
         return false;
     }
+
+    public void OntriggerEnter2D(Collider2D collision)  //TODO : 나중에 수정해야함
+    {
+        
+    }
 }
