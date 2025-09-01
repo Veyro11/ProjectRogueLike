@@ -92,6 +92,68 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768126141246228988}
   m_Enabled: 1
+--- !u!1 &1683656682378924331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2376978743661249302}
+  m_Layer: 7
+  m_Name: ray_down
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2376978743661249302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683656682378924331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4860288826150936596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1987524121533240018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8536487078536326576}
+  m_Layer: 7
+  m_Name: ray_right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8536487078536326576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987524121533240018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.184, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4860288826150936596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2495317173531433710
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1986654030484537602}
   m_Layer: 7
-  m_Name: ray_down
+  m_Name: ray_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 3184188058286075881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -0.159, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -190,7 +252,9 @@ Transform:
   m_Children:
   - {fileID: 3094109949882002564}
   - {fileID: 7366683457601655723}
+  - {fileID: 2376978743661249302}
   - {fileID: 1986654030484537602}
+  - {fileID: 8536487078536326576}
   - {fileID: 6102194817220799324}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,12 +367,13 @@ MonoBehaviour:
     comboAttackParameterName: ComboAttack
     dashParameterName: Dash
     climbingParameterName: Climb
-  groundCheck: {fileID: 1986654030484537602}
+  groundCheckLeft: {fileID: 1986654030484537602}
+  groundCheckRight: {fileID: 8536487078536326576}
   groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  <WallCheck>k__BackingField: {fileID: 1986654030484537602}
+  <WallCheck>k__BackingField: {fileID: 2376978743661249302}
   <WallCheckUpper>k__BackingField: {fileID: 7366683457601655723}
   <WallCheckDistance>k__BackingField: 0.3
   <WallClimbHeight>k__BackingField: 1.5

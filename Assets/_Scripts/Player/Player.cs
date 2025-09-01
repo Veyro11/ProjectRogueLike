@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     public ForceReceiver ForceReceiver { get; private set; }
 
     [Header("Ground Check")]
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform groundCheckLeft;
+    [SerializeField] private Transform groundCheckRight;
     [SerializeField] private float groundCheckDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
 
@@ -63,12 +64,21 @@ public class Player : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.position, Vector2.down, groundCheckDistance, groundLayer);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.position, Vector2.down, groundCheckDistance, groundLayer);
+
+        return isGroundedLeft || isGroundedRight;
     }
 
     private void DrawGroundCheckRay()
     {
-        Color rayColor = IsGrounded() ? Color.green : Color.red;
-        Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, rayColor);
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.position, Vector2.down, groundCheckDistance, groundLayer);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.position, Vector2.down, groundCheckDistance, groundLayer);
+
+        Color leftRayColor = isGroundedLeft ? Color.green : Color.red;
+        Color rightRayColor = isGroundedRight ? Color.green : Color.red;
+
+        Debug.DrawRay(groundCheckLeft.position, Vector2.down * groundCheckDistance, leftRayColor);
+        Debug.DrawRay(groundCheckRight.position, Vector2.down * groundCheckDistance, rightRayColor);
     }
 }
