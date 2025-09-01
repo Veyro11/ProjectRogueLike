@@ -867,6 +867,67 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &115969448
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1598007179435160207, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f1b0018cf8cfe8c43b24f388b9986094, type: 2}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063903082454943605, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
 --- !u!1 &271799553
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +941,7 @@ GameObject:
   - component: {fileID: 271799555}
   - component: {fileID: 271799558}
   - component: {fileID: 271799557}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8723,7 +8784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 552647341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VillageMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8835,7 +8896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1234786278}
   - component: {fileID: 1234786279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Potal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9086,7 +9147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563241522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Potal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9119,7 +9180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813463849}
   - component: {fileID: 1813463848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundGird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9458,3 +9519,4 @@ SceneRoots:
   - {fileID: 1161714895}
   - {fileID: 1419169506}
   - {fileID: 289935726}
+  - {fileID: 115969448}
