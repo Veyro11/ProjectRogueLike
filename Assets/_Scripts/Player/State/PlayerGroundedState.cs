@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerGroundedState : PlayerBaseState
 {
+
+    private float groundTime = 0.1f;
+    private float timeSet;
+
     public PlayerGroundedState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
     }
@@ -20,6 +24,8 @@ public class PlayerGroundedState : PlayerBaseState
         StartAnimation(stateMachine.Player.AnimationData.GroundParameterHash);
 
         base.AddInputActionsCallbacks();
+
+        timeSet = groundTime;
     }
 
     public override void Exit()
@@ -36,7 +42,16 @@ public class PlayerGroundedState : PlayerBaseState
     {
         base.Update();
 
-        if (!stateMachine.Player.IsGrounded())
+        if (stateMachine.Player.IsGrounded())
+        {
+            timeSet = groundTime;
+        }
+        else
+        {
+            timeSet -= Time.deltaTime;
+        }
+
+        if (timeSet <= 0f)
         {
             stateMachine.ChangeState(stateMachine.AirState);
         }

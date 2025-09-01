@@ -106,6 +106,7 @@ public class PlayerBaseState : IState
         float movementSpeed = GetMovementSpeed();
 
         stateMachine.Player.Rb.velocity = new Vector2(inputX * movementSpeed, stateMachine.Player.Rb.velocity.y);
+        //Debug.Log(movementSpeed + " , "+inputX);
 
         Rotate(inputX);
     }
