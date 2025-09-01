@@ -30,4 +30,9 @@ public class Enemy : MonoBehaviour
     {
         stateMachine.Update();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        stateMachine.OnTriggerEnter2D(collision);
+    }
 }

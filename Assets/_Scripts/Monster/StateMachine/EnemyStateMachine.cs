@@ -34,4 +34,8 @@ public class EnemyStateMachine : StateMachine
         spawnPosition = ownerTransform.position;
         attackRenderer = enemy.attackRenderer;
     }
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        currentState?.OntriggerEnter2D(collider);
+    }
 }

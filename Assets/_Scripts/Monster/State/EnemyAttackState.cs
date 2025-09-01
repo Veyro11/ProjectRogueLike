@@ -36,7 +36,7 @@ public class EnemyAttackState : EnemyBaseState
         Attacking();
     }
 
-    public override void Ontrigger2D(Collider2D collision)
+    public override void OntriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
 
