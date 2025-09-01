@@ -56,7 +56,7 @@ public class EnemyReturnState : EnemyBaseState
             stateMachine.spawnPosition,
             2 * Time.deltaTime
         );
-
+        Debug.Log($"{stateMachine.ownerTransform.position}, {stateMachine.spawnPosition}");
         // 목표 지점에 도착했는지 체크
         if (stateMachine.ownerTransform.position == stateMachine.spawnPosition)
         {

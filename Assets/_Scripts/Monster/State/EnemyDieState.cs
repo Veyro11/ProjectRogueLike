@@ -35,7 +35,7 @@ public class EnemyDieState : EnemyBaseState
 
     public void Dying()
     {
-        //TODO : 죽었을 때 로직 작성
+        //TODO : 죽었을 때 애니메이션 / 보상드랍 구현 필요
         Object.Destroy(stateMachine.Enemy.gameObject);
         Debug.Log("보스사망");
     }

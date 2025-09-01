@@ -10,6 +10,7 @@ public interface IState
     public void HandleInput();
     public void Update();
     public void PhysicsUpdate();
+    public void OntriggerEnter2D();
 }
 
 public abstract class StateMachine

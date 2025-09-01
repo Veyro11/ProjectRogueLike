@@ -9,7 +9,8 @@ public class EnemyBaseState : IState
 
     public float timer;
     public int attackTime = 2;
-    public int attackDIstance = 2;
+    public int attackDIstance_2m = 2;
+    public int attackDIstance_4m = 4;
     public int trackingDistance = 5;
     public int missingDistance = 8;
     private Vector3 lookDirection;
@@ -39,8 +40,7 @@ public class EnemyBaseState : IState
     {
         LookPlayer();
         DieCheck();
-        Debug.Log(stateMachine.Enemy.EnemyData.HP);
-        stateMachine.Enemy.EnemyData.HP -= 1;
+        //stateMachine.Enemy.EnemyData.HP -= 1; //죽음 테스트
     }
 
     public virtual void LookPlayer()
