@@ -15,8 +15,8 @@ MonoBehaviour:
   <GroundData>k__BackingField:
     <BaseSpeed>k__BackingField: 6
     <BaseRotationDamping>k__BackingField: 1
-    <WalkSpeedModifier>k__BackingField: 0.225
-    <RunSpeedModifier>k__BackingField: 0.8
+    <WalkSpeedModifier>k__BackingField: 0.8
+    <RunSpeedModifier>k__BackingField: 1
   <AirData>k__BackingField:
     <JumpForce>k__BackingField: 5
   <AttakData>k__BackingField:
@@ -45,3 +45,6 @@ MonoBehaviour:
       Damage: 10
       <Dealing_Start_TransitionTime>k__BackingField: 0
       <Dealing_End_TransitionTime>k__BackingField: 0
+  <DashData>k__BackingField:
+    <DashForce>k__BackingField: 20
+    <DashDuration>k__BackingField: 0.2

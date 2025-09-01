@@ -17,9 +17,14 @@ public class PlayerStateMachine : StateMachine
     public PlayerRunState RunState { get; private set; }
     public PlayerJumpState JumpState { get; }
     public PlayerAirState AirState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
+    public PlayerClimbingState ClimbingState { get; private set; }
+    public Vector2 LedgePosition { get; set; }
+
     public float JumpForce { get; set; }
     public bool IsRunning { get; set; }
     public int ComboIndex { get; set; }
+
 
     public bool WantsToContinueCombo { get; set; }
 
@@ -41,6 +46,10 @@ public class PlayerStateMachine : StateMachine
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;
+
+        DashState = new PlayerDashState(this);
+
+        ClimbingState = new PlayerClimbingState(this);
 
         ComboAttackState = new PlayerComboAttackState(this);
     }
