@@ -47,6 +47,13 @@ public class PlayerAttackData
     public AttackInfoData GetAttackInfo(int index) { return AttackInfoDatas[index]; }
 }
 
+[Serializable]
+public class PlayerDashData
+{
+    [field: SerializeField][field: Range(0f, 50f)] public float DashForce { get; private set; } = 20f;
+    [field: SerializeField][field: Range(0f, 1f)] public float DashDuration { get; private set; } = 0.2f;
+}
+
 
 [CreateAssetMenu(fileName = "Player", menuName = "Characters/Player")]
 
@@ -55,4 +62,6 @@ public class PlayerSO : ScriptableObject
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
+
+    [field: SerializeField] public PlayerDashData DashData { get; private set; }
 }

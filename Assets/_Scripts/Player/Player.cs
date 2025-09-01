@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [field: SerializeField] public PlayerSO Data { get; private set; }
+    public Transform SpriteTransform { get; private set; }
 
     [field: Header("Animations")]
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
-
     public Animator Animator { get; private set; }
     public PlayerController Input { get; private set; }
     public Rigidbody2D Rb { get; private set; }
@@ -22,7 +22,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
 
-
+    [field: Header("Wall Check")]
+    [field: SerializeField] public Transform WallCheck { get; private set; }
+    [field: SerializeField] public Transform WallCheckUpper { get; private set; }
+    [field: SerializeField] public float WallCheckDistance { get; private set; } = 0.6f;
+    [field: SerializeField] public float WallClimbHeight { get; private set; } = 1.5f;
     private void Awake()
     {
         AnimationData.Initialize();
@@ -32,6 +36,8 @@ public class Player : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
 
         stateMachine = new PlayerStateMachine(this);
+
+        SpriteTransform = transform.Find("Sprite");
 
         ForceReceiver = GetComponent<ForceReceiver>();
     }
