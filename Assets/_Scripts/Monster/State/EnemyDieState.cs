@@ -10,7 +10,7 @@ public class EnemyDieState : EnemyBaseState
 
     public override void Enter()
     {
-
+        Dying();
     }
 
     public override void Exit()
@@ -30,7 +30,7 @@ public class EnemyDieState : EnemyBaseState
 
     public override void Update()
     {
-        base.Update();
+        
     }
 
     public void Dying()

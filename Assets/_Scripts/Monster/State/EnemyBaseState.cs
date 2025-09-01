@@ -7,6 +7,9 @@ public class EnemyBaseState : IState
 {
     protected EnemyStateMachine stateMachine;
 
+    public float timer;
+    public int attackTime = 2;
+    public int attackDIstance = 2;
     public int trackingDistance = 5;
     public int missingDistance = 8;
     private Vector3 lookDirection;
@@ -35,21 +38,22 @@ public class EnemyBaseState : IState
     public virtual void Update()
     {
         LookPlayer();
+        DieCheck();
+        Debug.Log(stateMachine.Enemy.EnemyData.HP);
+        stateMachine.Enemy.EnemyData.HP -= 1;
     }
 
-    protected void LookPlayer()
+    public virtual void LookPlayer()
     {
         lookDirection = stateMachine.targetTransform.position - stateMachine.Enemy.transform.position;
 
         if (lookDirection.x > 0)
         {
-            Debug.Log("오른쪽");
             // 오른쪽을 바라보게
             stateMachine.Enemy.transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            Debug.Log("왼쪽");
             // 왼쪽을 바라보게
             stateMachine.Enemy.transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -63,5 +67,12 @@ public class EnemyBaseState : IState
     protected void StopAnimation(int animationHash)
     {
         stateMachine.Enemy.Animator.SetBool(animationHash, false);
+    }
+
+    protected void DieCheck()
+    {
+        if (stateMachine.Enemy.EnemyData.HP != 0) return;
+
+        stateMachine.ChangeState(stateMachine.DieState);
     }
 }

@@ -40,6 +40,6 @@ public class EnemyIdleState : EnemyBaseState
         // TODO : IDLE 애니메이션 필요
         if (Vector2.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) > trackingDistance) return;
 
-        stateMachine.ChangeState(stateMachine.ChaseState);
+            stateMachine.ChangeState(stateMachine.ChaseState);
     }
 }

@@ -7,8 +7,10 @@ public class EnemyStateMachine : StateMachine
 {
     public Enemy Enemy { get; }
 
+    public SpriteRenderer attackRenderer;
     public Transform targetTransform;
     public Transform ownerTransform;
+    public Vector3 spawnPosition;
 
     public EnemyIdleState IdleState { get; private set; }
     public EnemyChaseState ChaseState { get; private set; }
@@ -29,6 +31,7 @@ public class EnemyStateMachine : StateMachine
         
         targetTransform = enemy.target;
         ownerTransform = enemy.transform;
+        spawnPosition = ownerTransform.position;
+        attackRenderer = enemy.attackRenderer;
     }
-
 }

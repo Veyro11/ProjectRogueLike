@@ -34,6 +34,7 @@ public class EnemyChaseState : EnemyBaseState
     {
         base.Update();
         StartChasing();
+        StartAttack();
     }
 
     public void StartChasing()
@@ -46,5 +47,12 @@ public class EnemyChaseState : EnemyBaseState
         if (Vector2.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < missingDistance) return;
 
         stateMachine.ChangeState(stateMachine.ReturnState);
+    }
+
+    public void StartAttack()
+    {
+        if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) > attackDIstance) return;
+
+        stateMachine.ChangeState(stateMachine.AttackState);
     }
 }
