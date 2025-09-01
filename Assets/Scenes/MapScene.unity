@@ -879,6 +879,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: f1b0018cf8cfe8c43b24f388b9986094, type: 2}
+    - target: {fileID: 2691097865983619455, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      propertyPath: groundCheckDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4860288826150936596, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 157.08

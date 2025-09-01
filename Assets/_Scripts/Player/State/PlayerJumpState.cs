@@ -32,6 +32,7 @@ public class PlayerJumpState : PlayerAirState
         if (stateMachine.Player.Rb.velocity.y <= 0)
         {
             stateMachine.ChangeState(stateMachine.AirState);
+            Debug.Log("지상");
         }
     }
 
