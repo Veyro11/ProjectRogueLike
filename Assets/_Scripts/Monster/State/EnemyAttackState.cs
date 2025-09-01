@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyAttackState : EnemyBaseState
 {
+    private Action currentAttackPattern;
+    //private bool animationStarted = false;
 
     public EnemyAttackState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -11,13 +15,17 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Enter()
     {
-        timer = attackTime;
-        stateMachine.attackRenderer.GetComponent<BoxCollider2D>();
+        Debug.Log("?");
+        timer = stateMachine.Enemy.EnemyData.AttackCoolTime;
+        ChooseRandomAttack();
+        //animationStarted = false;
+        stateMachine.Enemy.attackCollider2D.enabled = true;
     }
 
     public override void Exit()
     {
-
+        currentAttackPattern = null;
+        stateMachine.Enemy.attackCollider2D.enabled = false;
     }
 
     public override void HandleInput()
@@ -33,29 +41,63 @@ public class EnemyAttackState : EnemyBaseState
     public override void Update()
     {
         //base.Update();
-        Attacking();
+        currentAttackPattern?.Invoke();
     }
 
     public override void OntriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
 
-        //플레이어 HP까는 로직 아직 플레이어 HP가 없음 Test용
-        collision.gameObject.SetActive(false); 
+        Debug.Log("트리거");
+        stateMachine.Enemy.attackCollider2D.enabled = false;
+        //이제 트리거 안에 랜덤으로 공격 하는 메서드 하나 넣어주면 끝
+
     }
 
-    public  void Attacking()
+    private void AttackPattern_2M()
     {
-        //TODO : 공격로직 작성 및 랜덤으로 공격 로직 작성
+        //if (!animationStarted)
+        //{
+        //    //애니메이션 한번 실행
+        //}
+
         timer -= Time.deltaTime;
 
-        stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
+        if (timer <= 0f)
+        {
+            stateMachine.ChangeState(stateMachine.CoolTimeState);
+        }
+    }
 
-        if (timer > 0) return;
+    private void AttackPattern_4M()
+    {
+        //if (!animationStarted)
+        //{
+        //    //애니메이션 한번 실행
+        //}
 
-        Debug.Log("공격시작");
-        stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);
-        stateMachine.ChangeState(stateMachine.CoolTimeState);
+        timer -= Time.deltaTime;
 
+        if (timer <= 0f)
+        {
+            stateMachine.ChangeState(stateMachine.CoolTimeState);
+        }
+    }
+
+    private void ChooseRandomAttack()
+    {
+        int random = Random.Range(0, 2);
+        Debug.Log(random);
+        switch (random)
+        {
+            case 0:
+                currentAttackPattern = AttackPattern_2M;
+                Debug.Log("2M");
+                break;
+            case 1:
+                currentAttackPattern = AttackPattern_4M;
+                Debug.Log("4M");
+                break;
+        }
     }
 }

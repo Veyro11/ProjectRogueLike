@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private EnemyStateMachine stateMachine;
 
     public SpriteRenderer attackRenderer;
+    public Collider2D attackCollider2D;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        attackCollider2D.enabled = false;
         stateMachine.ChangeState(stateMachine.IdleState);
     }
 

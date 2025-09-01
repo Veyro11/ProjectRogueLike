@@ -47,10 +47,11 @@ public class EnemyCoolTimeState : EnemyBaseState
     public void StartCoolTime() //TODO : 기획 의도 물어보기 구분해야 할지 안해야 할지 물어보고 합치라면 합치기 한곳에서 가능
     {
         timer -= Time.deltaTime;
+        Debug.Log(timer);
         if (timer <= 0f)
         {
-            stateMachine.ChangeState(stateMachine.ChaseState);
             Debug.Log("다시 시작");
+            stateMachine.ChangeState(stateMachine.ChaseState);
         }
     }
 }
