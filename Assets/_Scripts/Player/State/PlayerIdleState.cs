@@ -12,7 +12,9 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         stateMachine.MovementSpeedModifier = 0f;
+        stateMachine.IsRunning = false;
         base.Enter();
+        StopAnimation(stateMachine.Player.AnimationData.RunParameterHash);
         StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
     }
 

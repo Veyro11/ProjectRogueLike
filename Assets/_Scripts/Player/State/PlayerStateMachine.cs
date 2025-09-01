@@ -16,13 +16,15 @@ public class PlayerStateMachine : StateMachine
     public PlayerWalkState WalkState { get; private set; }
     public PlayerRunState RunState { get; private set; }
     public PlayerJumpState JumpState { get; }
-
     public PlayerAirState AirState { get; private set; }
-
-
     public float JumpForce { get; set; }
+    public bool IsRunning { get; set; }
+    public int ComboIndex { get; set; }
+
+    public bool WantsToContinueCombo { get; set; }
 
     public Transform MainCameraTransform { get; set; }
+    public PlayerComboAttackState ComboAttackState { get; }
 
     public PlayerStateMachine(Player player)
     {
@@ -39,5 +41,7 @@ public class PlayerStateMachine : StateMachine
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;
+
+        ComboAttackState = new PlayerComboAttackState(this);
     }
 }

@@ -37,11 +37,18 @@ public class PlayerAirState : PlayerBaseState
 
         if (stateMachine.Player.Rb.velocity.y <= 0 && stateMachine.Player.IsGrounded())
         {
-            stateMachine.ChangeState(
-                stateMachine.MovementInput == Vector2.zero
-                ? stateMachine.IdleState
-                : stateMachine.WalkState
-            );
+            if (stateMachine.MovementInput == Vector2.zero)
+            {
+                stateMachine.ChangeState(stateMachine.IdleState);
+            }
+            else
+            {
+                stateMachine.ChangeState(
+                    stateMachine.IsRunning
+                    ? stateMachine.RunState
+                    : stateMachine.WalkState
+                );
+            }
         }
     }
 

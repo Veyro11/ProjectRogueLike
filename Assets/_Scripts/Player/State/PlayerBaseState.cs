@@ -26,17 +26,31 @@ public class PlayerBaseState : IState
     {
         PlayerController input = stateMachine.Player.Input;
         input.playerActions.Movement.canceled += OnMovementCanceled;
+
         input.playerActions.Dash.started += OnDashStarted;
         input.playerActions.Dash.canceled += OnDashCanceled;
+
+        stateMachine.Player.Input.playerActions.Attack.performed += OnAttackPerformed;
+        stateMachine.Player.Input.playerActions.Attack.canceled += OnAttackCanceled;
+
+        stateMachine.Player.Input.playerActions.Jump.started += OnJumpStarted;
     }
+    
 
     protected virtual void RemoveInputActionsCallbacks()
     {
         PlayerController input = stateMachine.Player.Input;
         input.playerActions.Movement.canceled -= OnMovementCanceled;
+
         input.playerActions.Dash.started -= OnDashStarted;
         input.playerActions.Dash.canceled -= OnDashCanceled;
+
+        stateMachine.Player.Input.playerActions.Attack.performed -= OnAttackPerformed;
+        stateMachine.Player.Input.playerActions.Attack.canceled -= OnAttackCanceled;
+
+        stateMachine.Player.Input.playerActions.Jump.started -= OnJumpStarted;
     }
+    
 
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {
@@ -45,17 +59,15 @@ public class PlayerBaseState : IState
 
     protected virtual void OnDashStarted(InputAction.CallbackContext context)
     {
-
+        stateMachine.IsRunning = true;
     }
 
     protected virtual void OnDashCanceled(InputAction.CallbackContext context)
     {
-
     }
 
     protected virtual void OnJumpStarted(InputAction.CallbackContext context)
     {
-
     }
 
     public virtual void HandleInput()
@@ -114,6 +126,37 @@ public class PlayerBaseState : IState
             {
                 stateMachine.Player.transform.localScale = new Vector3(Mathf.Sign(directionX), 1, 1);
             }
+        }
+    }
+
+
+
+    protected virtual void OnAttackPerformed(InputAction.CallbackContext obj)
+    {
+        stateMachine.ChangeState(stateMachine.ComboAttackState);
+        Debug.Log("Attack!");
+    }
+
+    protected virtual void OnAttackCanceled(InputAction.CallbackContext obj)
+    {
+    }
+
+    protected float GetNormalizedTime(Animator animator, string tag)
+    {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
+
+        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
+        {
+            return nextInfo.normalizedTime;
+        }
+        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
+        {
+            return currentInfo.normalizedTime;
+        }
+        else
+        {
+            return 0f;
         }
     }
 }

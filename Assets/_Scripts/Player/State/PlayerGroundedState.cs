@@ -19,7 +19,7 @@ public class PlayerGroundedState : PlayerBaseState
 
         StartAnimation(stateMachine.Player.AnimationData.GroundParameterHash);
 
-        AddInputActionsCallbacks();
+        base.AddInputActionsCallbacks();
     }
 
     public override void Exit()
@@ -27,20 +27,10 @@ public class PlayerGroundedState : PlayerBaseState
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.GroundParameterHash);
 
-        RemoveInputActionsCallbacks();
-    }
-
-    protected override void AddInputActionsCallbacks()
-    {
-        base.AddInputActionsCallbacks();
-        stateMachine.Player.Input.playerActions.Jump.started += OnJumpStarted;
-    }
-
-    protected override void RemoveInputActionsCallbacks()
-    {
         base.RemoveInputActionsCallbacks();
-        stateMachine.Player.Input.playerActions.Jump.started -= OnJumpStarted;
     }
+
+
 
     public override void Update()
     {
@@ -50,6 +40,12 @@ public class PlayerGroundedState : PlayerBaseState
         {
             stateMachine.ChangeState(stateMachine.AirState);
         }
+    }
+
+
+    protected virtual void OnAttack()
+    {
+        
     }
 
     public override void PhysicsUpdate()
