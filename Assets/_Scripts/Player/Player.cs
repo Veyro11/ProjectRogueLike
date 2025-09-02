@@ -37,6 +37,10 @@ public class Player : MonoBehaviour
     [field: SerializeField] public Vector2 AttackSize { get; private set; } = new Vector2(1.5f, 1f);
     [field: SerializeField] public LayerMask MonsterLayer { get; private set; }
 
+    public GameObject slashPrefab;
+
+    public GameObject dashPrefab;
+
     private float currentHealth;
 
     private void Awake()
@@ -146,12 +150,4 @@ public class Player : MonoBehaviour
         emission.enabled = a;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (AttackRange != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(AttackRange.position, AttackSize);
-        }
-    }
 }
