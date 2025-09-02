@@ -86,7 +86,23 @@ public class Reinforcement : MonoBehaviour
         switch (category)
             {
             case ReinforcementCategory.HP:
-
+                _player.FixMaxHealth(curReinforcableCount[category]);
+                break;
+            case ReinforcementCategory.Potion:
+                _player.SetMaxPotions(curReinforcableCount[category]);
+                break;
+            case ReinforcementCategory.ATK:
+                _player.FixAttackPower(curReinforcableCount[category]);
+                break;
+            case ReinforcementCategory.SP:
+                _player.FixSPEfficiency(curReinforcableCount[category]);
+                break;
+            case ReinforcementCategory.Special:
+                _player.SpecialUnlocked = curReinforcableCount[category] == 1;
+                break;
+            default:
+                Debug.Log("알 수 없는 타입 입력됨.");
+                break;
         }
     }
     private void UpdateReinforcementTMP()
