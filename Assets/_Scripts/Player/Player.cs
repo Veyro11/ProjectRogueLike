@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
         //초기화
         AnimationData.Initialize();
 
+        Instance = this;
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerController>();
         Rb = GetComponent<Rigidbody2D>();

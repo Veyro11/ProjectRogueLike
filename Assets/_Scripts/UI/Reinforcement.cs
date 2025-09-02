@@ -89,4 +89,8 @@ public class Reinforcement : MonoBehaviour
 
         }
     }
+    private void UpdateReinforcementTMP()
+    {
+
+    }
 }

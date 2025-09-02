@@ -72,11 +72,34 @@ public class PlayerSO : ScriptableObject
     [Tooltip("공격속도")]
     public float AttackSpeed { get; private set; } = 1f;
 
+<<<<<<< Updated upstream
     [HideInInspector] public int MaxSouls;
 
+=======
+>>>>>>> Stashed changes
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
     [field: SerializeField] public PlayerDashData DashData { get; private set; }
 
+<<<<<<< Updated upstream
+=======
+    public void FixMaxHealth(int amount)
+    { MaxHealth = 100f + amount*30f; }
+
+    public void FixAttackPower(int amount)
+    { AttackPower += 10f + amount*5f; }
+
+    public void FixAttackSpeed(int amount)
+    { AttackSpeed += 1 - amount*0.1f; }
+
+    public void SetMaxSouls(int amount)
+    { MaxSouls = amount; }
+
+    public void SetMaxPotions(int amount)
+    { MaxPotions = amount; }
+
+    public void FixSPEfficiency(int amount)
+    { SPEfficiency = 1 + amount; }
+>>>>>>> Stashed changes
 }
