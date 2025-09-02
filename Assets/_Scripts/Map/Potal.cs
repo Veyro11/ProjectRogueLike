@@ -8,6 +8,7 @@ public class Potal : MonoBehaviour
     public string targetMapName;
     public Transform destination;
     public GameObject upKey;
+    public GameObject Cam;
     private bool canTransport = false;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -25,6 +26,7 @@ public class Potal : MonoBehaviour
         {
             upKey.SetActive(false);
             canTransport = false;
+            Cam.SetActive(false);
         }
     }
 
