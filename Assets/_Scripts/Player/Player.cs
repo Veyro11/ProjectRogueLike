@@ -46,6 +46,15 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         //초기화
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         AnimationData.Initialize();
 
         Animator = GetComponentInChildren<Animator>();
