@@ -57,7 +57,7 @@ public class PlayerSO : ScriptableObject
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
 }
 
-[CreateAssetMenu(fileName = "Stat", menuName = "Characters/Player")]
+[CreateAssetMenu(fileName = "Stat", menuName = "Stat")]
 public class PlayerStatus : ScriptableObject
 {
     public int curHP;

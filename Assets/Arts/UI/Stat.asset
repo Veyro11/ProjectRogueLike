@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Stat
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
-  curHP: 190
+  curHP: 200
   maxHP: 200
   ATK: 10
   jumpForce: 10
