@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 [Serializable]
@@ -62,6 +63,9 @@ public class PlayerSO : ScriptableObject
     [Tooltip("체력")]
     public float MaxHealth { get; private set; } = 100f;
 
+    [Tooltip("현재 체력")]
+    public float CurHealth = 100f;
+
     [Tooltip("공격력")]
     public float AttackPower { get; private set; } = 10f;
 
@@ -80,6 +84,8 @@ public class PlayerSO : ScriptableObject
     [HideInInspector] public int SPEfficiency { get; private set; } = 1;
 
     [HideInInspector] public bool SpecialUnlocked = false;
+
+    [HideInInspector] public int MaxSouls;
 
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
