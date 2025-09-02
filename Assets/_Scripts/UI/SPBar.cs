@@ -3,9 +3,9 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Timeline;
 
-public class HPBar : MonoBehaviour
+public class SPBar : MonoBehaviour
 {
-    int _maxLength = 840;
+    float _curLength;
     [SerializeField] RectTransform _Stretcher;
     [SerializeField] PlayerSO _Player;
     [SerializeField] float Test;
@@ -14,22 +14,27 @@ public class HPBar : MonoBehaviour
     {
         int count = 1;
         Debug.Log(_Player.MaxHealth);
-        float lengthCoefficient = 840f / _Player.MaxHealth;
+        float lengthCoefficient = 620f / _Player.MaxHealth;
         while (count <= 2.5f/Time.deltaTime)
         {
             float length = targetHP*lengthCoefficient + 10f / (0.5f*count+10f) * (currentHP-targetHP)*lengthCoefficient;
             Debug.Log(length + "," + _Player.CurHealth);
-            _Stretcher.sizeDelta = new Vector2(length, 83.3333f);
+            _Stretcher.sizeDelta = new Vector2(length, 54f);
+            _curLength = length;
             count++;
             yield return null;
         }
-        _Stretcher.sizeDelta = new Vector2(targetHP*lengthCoefficient, 83.3333f);
+        _Stretcher.sizeDelta = new Vector2(targetHP*lengthCoefficient, 54f);
+        _coroutineController = null;
     }
 
     public void Change()
     {
         if (_coroutineController != null) 
-        { StopCoroutine(_coroutineController); }
+        { 
+            StopCoroutine(_coroutineController);
+            _coroutineController = StartCoroutine(AdjustHPBar(_curLength, Test));
+        }
         _coroutineController = StartCoroutine(AdjustHPBar(_Player.CurHealth, Test));
     }
 }

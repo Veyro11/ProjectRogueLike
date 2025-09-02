@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Stretcher: {fileID: 1699322619}
-  _Player: {fileID: 11400000, guid: 8d57c8db679cff9418dc5805d3dd04f0, type: 2}
+  _Player: {fileID: 11400000, guid: 44920c9746c297c4ea63b27fb53cbff6, type: 2}
   Test: 100
 --- !u!1 &1301862989
 GameObject:
@@ -1000,11 +1000,20 @@ MonoBehaviour:
     airParameterName: '@Air'
     jumpParameterName: Jump
     fallParameterName: Fall
-  groundCheck: {fileID: 1857707438}
+    attackParameterName: '@Attack'
+    comboAttackParameterName: ComboAttack
+    dashParameterName: Dash
+    climbingParameterName: Climb
+  groundCheckLeft: {fileID: 1301862991}
+  groundCheckRight: {fileID: 1301862991}
   groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  <WallCheck>k__BackingField: {fileID: 1301862991}
+  <WallCheckUpper>k__BackingField: {fileID: 1301862991}
+  <WallCheckDistance>k__BackingField: 0.6
+  <WallClimbHeight>k__BackingField: 1.5
 --- !u!114 &1301862998
 MonoBehaviour:
   m_ObjectHideFlags: 0
