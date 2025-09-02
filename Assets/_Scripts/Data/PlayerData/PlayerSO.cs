@@ -85,7 +85,6 @@ public class PlayerSO : ScriptableObject
 
     [HideInInspector] public bool SpecialUnlocked = false;
 
-    [HideInInspector] public int MaxSouls;
 
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
