@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,8 @@ public class PlayerComboAttackState : PlayerAttackState
 {
     private bool alreadyApplyForce;
     private AttackInfoData attackInfoData;
+
+    private List<Collider2D> HitEnemi;
 
     public PlayerComboAttackState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
@@ -21,6 +24,8 @@ public class PlayerComboAttackState : PlayerAttackState
         int comboIndex = stateMachine.ComboIndex;
         attackInfoData = stateMachine.Player.Data.AttakData.GetAttackInfo(comboIndex);
         stateMachine.Player.Animator.SetInteger("Combo", comboIndex);
+
+        HitEnemi = new List<Collider2D>();
     }
 
     public override void Exit()
@@ -41,6 +46,12 @@ public class PlayerComboAttackState : PlayerAttackState
             {
                 TryApplyForce();
             }
+
+            if (normalizedTime >= attackInfoData.Dealing_Start_TransitionTime &&
+                normalizedTime <= attackInfoData.Dealing_End_TransitionTime)
+            {
+                TryDealDamage();
+            }
         }
         else
         {
@@ -53,6 +64,28 @@ public class PlayerComboAttackState : PlayerAttackState
             {
                 stateMachine.ComboIndex = 0;
                 stateMachine.ChangeState(stateMachine.IdleState);
+            }
+        }
+    }
+
+    private void TryDealDamage()
+    {
+        Transform attackRange = stateMachine.Player.AttackRange;
+        Vector2 attackSize = stateMachine.Player.AttackSize;
+        LayerMask monsterLayer = stateMachine.Player.MonsterLayer;
+
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackRange.position, attackSize, 0f, monsterLayer);
+
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            if (!HitEnemi.Contains(enemyCollider))
+            {
+                //if (몬스터체크)
+                //{
+                //    monster.TakeDamage(attackInfoData.Damage);
+                //}
+
+                HitEnemi.Add(enemyCollider);
             }
         }
     }
