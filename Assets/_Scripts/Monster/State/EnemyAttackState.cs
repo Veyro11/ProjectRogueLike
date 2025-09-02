@@ -61,7 +61,7 @@ public class EnemyAttackState : EnemyBaseState
     {
         if (!collision.CompareTag("Player")) return;
 
-        Debug.Log(Player.Instance.currentHealth);
+        //Debug.Log(Player.Instance.currentHealth);
         stateMachine.Enemy.attackCollider2D.enabled = false;
         Player.Instance.TakeDamage(stateMachine.Enemy.EnemyData.Attack);
         //collision.gameObject.SetActive(false);
