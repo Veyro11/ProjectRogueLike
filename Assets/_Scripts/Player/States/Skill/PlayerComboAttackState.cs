@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 public class PlayerComboAttackState : PlayerAttackState
 {
     private bool alreadyApplyForce;
+    private bool endForce;
     private AttackInfoData attackInfoData;
 
-    private List<Collider2D> HitEnemi;
+    private List<Collider2D> HitEnemy;
 
     public PlayerComboAttackState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
@@ -20,12 +21,13 @@ public class PlayerComboAttackState : PlayerAttackState
 
         stateMachine.WantsToContinueCombo = false;
         alreadyApplyForce = false;
+        endForce = false;
 
         int comboIndex = stateMachine.ComboIndex;
         attackInfoData = stateMachine.Player.Data.AttakData.GetAttackInfo(comboIndex);
         stateMachine.Player.Animator.SetInteger("Combo", comboIndex);
 
-        HitEnemi = new List<Collider2D>();
+        HitEnemy = new List<Collider2D>();
     }
 
     public override void Exit()
@@ -42,9 +44,12 @@ public class PlayerComboAttackState : PlayerAttackState
 
         if (normalizedTime < 1f)
         {
-            if (normalizedTime >= attackInfoData.ForceTransitionTime)
+            TryApplyForce();
+
+            if (normalizedTime >= 0.2f && !endForce)
             {
-                TryApplyForce();
+                stateMachine.Player.ForceReceiver.Reset();
+                endForce = true;
             }
 
             if (normalizedTime >= attackInfoData.Dealing_Start_TransitionTime &&
@@ -73,22 +78,28 @@ public class PlayerComboAttackState : PlayerAttackState
         Transform attackRange = stateMachine.Player.AttackRange;
         Vector2 attackSize = stateMachine.Player.AttackSize;
         LayerMask monsterLayer = stateMachine.Player.MonsterLayer;
-
+        int damage = 1;
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackRange.position, attackSize, 0f, monsterLayer);
 
         foreach (Collider2D enemyCollider in hitEnemies)
         {
-            if (!HitEnemi.Contains(enemyCollider))
+            if (!HitEnemy.Contains(enemyCollider))
             {
-                //if (몬스터체크)
-                //{
-                //    monster.TakeDamage(attackInfoData.Damage);
-                //}
+                MonsterHealth monster = enemyCollider.GetComponent<MonsterHealth>();
+                Debug.Log("데미지");
+                monster.TakeDamage(damage);
 
-                HitEnemi.Add(enemyCollider);
+                Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
+
+                float randomAngle = Random.Range(0f, 360f);
+                Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
+
+                ObjectPoolManager.Instance.GetFromPool(Player.Instance.slashPrefab, enemyPosition, randomRotation);
+                HitEnemy.Add(enemyCollider);
             }
         }
     }
+
 
     protected override void OnAttackPerformed(InputAction.CallbackContext context)
     {

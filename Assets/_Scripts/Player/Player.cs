@@ -29,6 +29,16 @@ public class Player : MonoBehaviour
     [field: SerializeField] public float WallCheckDistance { get; private set; } = 0.6f;
     [field: SerializeField] public float WallClimbHeight { get; private set; } = 1.5f;
 
+
+    [field: Header("Attack")]
+    [field: SerializeField] public Transform AttackRange { get; private set; }
+    [field: SerializeField] public Vector2 AttackSize { get; private set; } = new Vector2(1.5f, 1f);
+    [field: SerializeField] public LayerMask MonsterLayer { get; private set; }
+
+    public GameObject slashPrefab;
+
+    public GameObject dashPrefab;
+
     private float currentHealth;
 
     private void Awake()
@@ -122,4 +132,12 @@ public class Player : MonoBehaviour
         Debug.DrawRay(groundCheckLeft.position, Vector2.down * groundCheckDistance, leftRayColor);
         Debug.DrawRay(groundCheckRight.position, Vector2.down * groundCheckDistance, rightRayColor);
     }
+
+
+    public void SetEmission(bool a)
+    {
+        var emission = particle.emission;
+        emission.enabled = a;
+    }
+
 }
