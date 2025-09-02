@@ -5162,13 +5162,13 @@ MonoBehaviour:
     comboAttackParameterName: ComboAttack
     dashParameterName: Dash
     climbingParameterName: Climb
-  particle: {fileID: 4087026002624346579}
   groundCheckLeft: {fileID: 1986654030484537602}
   groundCheckRight: {fileID: 8536487078536326576}
   groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  particle: {fileID: 4087026002624346579}
   <WallCheck>k__BackingField: {fileID: 2376978743661249302}
   <WallCheckUpper>k__BackingField: {fileID: 7366683457601655723}
   <WallCheckDistance>k__BackingField: 0.3
@@ -5272,7 +5272,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.909091, y: 2.909091}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
