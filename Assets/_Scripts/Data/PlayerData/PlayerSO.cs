@@ -70,20 +70,27 @@ public class PlayerSO : ScriptableObject
     public float AttackPower { get; private set; } = 10f;
 
     [Tooltip("공격속도")]
-    public float AttackSpeed { get; private set; } = 1f;
+    public float AttackSpeed { get; private set; } = 0f;
 
-<<<<<<< Updated upstream
-    [HideInInspector] public int MaxSouls;
+    [HideInInspector] public int MaxSouls { get; private set; }
 
-=======
->>>>>>> Stashed changes
+    [HideInInspector] public int MaxPotions { get; private set; }
+
+    [Tooltip("스킬 포인트")]
+    public int MaxSP { get; private set; } = 20;
+    [Tooltip("현재 스킬 포인트")]
+    public int curSP = 0;
+
+    [HideInInspector] public int SPEfficiency { get; private set; } = 1;
+
+    [HideInInspector] public bool SpecialUnlocked = false;
+
+
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
     [field: SerializeField] public PlayerDashData DashData { get; private set; }
 
-<<<<<<< Updated upstream
-=======
     public void FixMaxHealth(int amount)
     { MaxHealth = 100f + amount*30f; }
 
@@ -101,5 +108,5 @@ public class PlayerSO : ScriptableObject
 
     public void FixSPEfficiency(int amount)
     { SPEfficiency = 1 + amount; }
->>>>>>> Stashed changes
+
 }
