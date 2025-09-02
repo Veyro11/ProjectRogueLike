@@ -8,6 +8,7 @@ public class EnemyStateMachine : StateMachine
     public Enemy Enemy { get; }
 
     public SpriteRenderer attackRenderer;
+    public BoxCollider2D attackCollider;
     public Transform targetTransform;
     public Transform ownerTransform;
     public Vector3 spawnPosition;
@@ -33,6 +34,8 @@ public class EnemyStateMachine : StateMachine
         ownerTransform = enemy.transform;
         spawnPosition = ownerTransform.position;
         attackRenderer = enemy.attackRenderer;
+
+        attackCollider = enemy.transform.Find("AttackRange").GetComponent<BoxCollider2D>();
     }
     public void OnTriggerEnter2D(Collider2D collider)
     {

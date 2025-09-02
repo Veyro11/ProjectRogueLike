@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5593363799379961329}
   - component: {fileID: 9050701508469344090}
   - component: {fileID: 951187631721680294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 5167827705134650247}
   - {fileID: 4920765683630984470}
+  - {fileID: 1136723454237584285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5879096668750059166
@@ -182,6 +183,55 @@ MonoBehaviour:
     AttackReadyParameterName: AttackReady
   attackRenderer: {fileID: 1059993152624837722}
   attackCollider2D: {fileID: 7656287868960395363}
+--- !u!1 &1875340313001215046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136723454237584285}
+  - component: {fileID: 3451993243549096542}
+  m_Layer: 8
+  m_Name: GroundChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1136723454237584285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875340313001215046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.983, y: -1.153, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1897510419376085828}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3451993243549096542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875340313001215046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9002aee48fb011b4d82359f8b9b2c96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundCheck: {fileID: 1136723454237584285}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckDistance: 0.3
 --- !u!1 &3341647019079055940
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +243,7 @@ GameObject:
   - component: {fileID: 5167827705134650247}
   - component: {fileID: 3577538297356735818}
   - component: {fileID: 107115757056414645}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +349,7 @@ GameObject:
   - component: {fileID: 4920765683630984470}
   - component: {fileID: 1059993152624837722}
   - component: {fileID: 7656287868960395363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -49,40 +49,44 @@ public class EnemyChaseState : EnemyBaseState
 
     public void StartChasing()
     {
-        //TODO : 플레이어 트렌스폼을 통해 방향 설정 후 정해진 속도로 추적 OR NAV MESH 2D 구현 방법 찾기
-
         //기본적인 추적 로직, 공격 준비 중일 땐 추적을 멈추기 위해 bool값을 사용했습니다.
-        if (!isReady && EnemyGroundChecker.Instance.IsGroundAhead())
+        if (!isReady && EnemyGroundChecker.Instance.IsGroundChecker())
         {
             Vector3 dir = (stateMachine.targetTransform.position - stateMachine.ownerTransform.position).normalized;
 
             stateMachine.ownerTransform.position += dir * stateMachine.Enemy.EnemyData.MoveSpeed * Time.deltaTime;
         }
 
-        //공격 거리 탐색 후 조건 충족 시 추적 멈춤 및 공격준비
+        //공격 거리 탐색 후 2M터 일 경우 bool값으로 트리거 해줍니다.
         if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_2m && !isReady)
         {
             Debug.Log("공격준비");
+           
             isReady = true;
             is_2M_Attack = true;
+           
             StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
             StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
         }
-
-        if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_4m && !isReady)
+        //공격 거리 탐색 후 4M터 일 경우 bool값으로 트리거 해줍니다.
+        else if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_4m && !isReady)
         {
             Debug.Log("공격준비");
+           
             isReady = true;
             is_4M_Attack = true;
+           
             StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
             StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
         }
 
+        //8M이상 멀어지면 Return상태(제자리로 돌아가기)로 변환 시켜줍니다.
         if (Vector2.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < missingDistance) return;
 
         stateMachine.ChangeState(stateMachine.ReturnState);
     }
 
+    // 공격전 모션 실행하는 메서드 입니다.
     public void ReadyToAttack()
     {
         if (!isReady) return;
