@@ -59,9 +59,17 @@ public class PlayerDashData
 
 public class PlayerSO : ScriptableObject
 {
+    [Tooltip("체력")]
+    public float MaxHealth { get; private set; } = 100f;
+
+    [Tooltip("공격력")]
+    public float AttackPower { get; private set; } = 10f;
+
+    [Tooltip("공격속도")]
+    public float AttackSpeed { get; private set; } = 1f;
+
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
-
     [field: SerializeField] public PlayerDashData DashData { get; private set; }
 }

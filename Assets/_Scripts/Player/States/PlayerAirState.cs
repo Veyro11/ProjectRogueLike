@@ -11,6 +11,9 @@ public class PlayerAirState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+
+        stateMachine.MovementSpeedModifier = 1f;
+
         StartAnimation(stateMachine.Player.AnimationData.AirParameterHash);
 
         if (stateMachine.Player.Rb.velocity.y > 0)
@@ -26,6 +29,7 @@ public class PlayerAirState : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
+
         StopAnimation(stateMachine.Player.AnimationData.AirParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.JumpParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.FallParameterHash);

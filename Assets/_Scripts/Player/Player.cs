@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     public ForceReceiver ForceReceiver { get; private set; }
 
     [Header("Ground Check")]
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform groundCheckLeft;
+    [SerializeField] private Transform groundCheckRight;
     [SerializeField] private float groundCheckDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
 
@@ -27,8 +28,12 @@ public class Player : MonoBehaviour
     [field: SerializeField] public Transform WallCheckUpper { get; private set; }
     [field: SerializeField] public float WallCheckDistance { get; private set; } = 0.6f;
     [field: SerializeField] public float WallClimbHeight { get; private set; } = 1.5f;
+
+    private float currentHealth;
+
     private void Awake()
     {
+        //초기화
         AnimationData.Initialize();
 
         Animator = GetComponentInChildren<Animator>();
@@ -45,6 +50,9 @@ public class Player : MonoBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.IdleState);
+
+        currentHealth = Data.MaxHealth;
+        //마우스 커서 숨기기 일단 꺼둠
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -61,14 +69,56 @@ public class Player : MonoBehaviour
         DrawGroundCheckRay();
     }
 
+
+    public float GetAttackDamage()
+    {
+        return Data.AttackPower;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, Data.MaxHealth);
+
+        Debug.Log($"피해량체크- {damage} 남은체력- {currentHealth}");
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, Data.MaxHealth);
+
+        Debug.Log($"체력회복");
+    }
+
+    private void Die()
+    {
+        Debug.Log("YOU DIE");
+        // 게임오버 함수 추가
+    }
+
     public bool IsGrounded()
     {
-        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.position, Vector2.down, groundCheckDistance, groundLayer);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.position, Vector2.down, groundCheckDistance, groundLayer);
+
+        return isGroundedLeft || isGroundedRight;
     }
 
     private void DrawGroundCheckRay()
     {
-        Color rayColor = IsGrounded() ? Color.green : Color.red;
-        Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, rayColor);
+        bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.position, Vector2.down, groundCheckDistance, groundLayer);
+        bool isGroundedRight = Physics2D.Raycast(groundCheckRight.position, Vector2.down, groundCheckDistance, groundLayer);
+
+        Color leftRayColor = isGroundedLeft ? Color.green : Color.red;
+        Color rightRayColor = isGroundedRight ? Color.green : Color.red;
+
+        Debug.DrawRay(groundCheckLeft.position, Vector2.down * groundCheckDistance, leftRayColor);
+        Debug.DrawRay(groundCheckRight.position, Vector2.down * groundCheckDistance, rightRayColor);
     }
 }
