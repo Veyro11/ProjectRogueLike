@@ -17,9 +17,20 @@ public class EnemyAttackState : EnemyBaseState
     {
         Debug.Log("공격시작");
         timer = stateMachine.Enemy.EnemyData.AttackCoolTime;
-        ChooseRandomAttack();
         animationStarted = false;
         stateMachine.Enemy.attackCollider2D.enabled = true;
+
+        if (stateMachine.ChaseState.is_2M_Attack)
+        {
+            ChooseRandomAttack();
+        }
+        else if (stateMachine.ChaseState.is_4M_Attack)
+        {
+            currentAttackPattern = AttackPattern_4M;
+        }
+
+
+        Debug.Log(stateMachine.ChaseState.is_2M_Attack.ToString() + stateMachine.ChaseState.is_4M_Attack.ToString());
     }
 
     public override void Exit()
@@ -50,8 +61,9 @@ public class EnemyAttackState : EnemyBaseState
     {
         if (!collision.CompareTag("Player")) return;
 
-        Debug.Log("트리거");
+        Debug.Log(Player.Instance.currentHealth);
         stateMachine.Enemy.attackCollider2D.enabled = false;
+        Player.Instance.TakeDamage(stateMachine.Enemy.EnemyData.Attack);
         //collision.gameObject.SetActive(false);
         //이제 트리거 안에 랜덤으로 공격 하는 메서드 하나 넣어주면 끝
 

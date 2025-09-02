@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyChaseState : EnemyBaseState
 {
     private bool isReady = false;
+    public bool is_2M_Attack = false;
+    public bool is_4M_Attack = false;
 
     public EnemyChaseState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -13,6 +15,8 @@ public class EnemyChaseState : EnemyBaseState
     public override void Enter()
     {
         timer = 0.7f;
+        is_2M_Attack = false;
+        is_4M_Attack = false;
         StartAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
     }
 
@@ -48,7 +52,7 @@ public class EnemyChaseState : EnemyBaseState
         //TODO : 플레이어 트렌스폼을 통해 방향 설정 후 정해진 속도로 추적 OR NAV MESH 2D 구현 방법 찾기
 
         //기본적인 추적 로직, 공격 준비 중일 땐 추적을 멈추기 위해 bool값을 사용했습니다.
-        if (!isReady) 
+        if (!isReady && EnemyGroundChecker.Instance.IsGroundAhead())
         {
             Vector3 dir = (stateMachine.targetTransform.position - stateMachine.ownerTransform.position).normalized;
 
@@ -60,6 +64,16 @@ public class EnemyChaseState : EnemyBaseState
         {
             Debug.Log("공격준비");
             isReady = true;
+            is_2M_Attack = true;
+            StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
+            StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
+        }
+
+        if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_4m && !isReady)
+        {
+            Debug.Log("공격준비");
+            isReady = true;
+            is_4M_Attack = true;
             StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
             StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
         }

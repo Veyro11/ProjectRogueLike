@@ -19,7 +19,6 @@ public abstract class StateMachine
 
     public void ChangeState(IState state)
     {
-        Debug.Log($"ChangeState 호출: {state.GetType().Name}");
         currentState?.Exit();
         currentState = state;
         currentState?.Enter();

@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        target = Player.Instance.transform;
+
         AnimationData.Initialize();
 
         EnemyData = new EnemyData();
