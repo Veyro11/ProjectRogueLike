@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class EnemyAttackState : EnemyBaseState
 {
     private Action currentAttackPattern;
-    //private bool animationStarted = false;
+    private bool animationStarted = false;
 
     public EnemyAttackState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -18,7 +18,7 @@ public class EnemyAttackState : EnemyBaseState
         Debug.Log("공격시작");
         timer = stateMachine.Enemy.EnemyData.AttackCoolTime;
         ChooseRandomAttack();
-        //animationStarted = false;
+        animationStarted = false;
         stateMachine.Enemy.attackCollider2D.enabled = true;
     }
 
@@ -26,6 +26,8 @@ public class EnemyAttackState : EnemyBaseState
     {
         currentAttackPattern = null;
         stateMachine.Enemy.attackCollider2D.enabled = false;
+        StopAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
+        StopAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
     }
 
     public override void HandleInput()
@@ -50,17 +52,17 @@ public class EnemyAttackState : EnemyBaseState
 
         Debug.Log("트리거");
         stateMachine.Enemy.attackCollider2D.enabled = false;
-        collision.gameObject.SetActive(false);
+        //collision.gameObject.SetActive(false);
         //이제 트리거 안에 랜덤으로 공격 하는 메서드 하나 넣어주면 끝
 
     }
 
     private void AttackPattern_2M()
     {
-        //if (!animationStarted)
-        //{
-        //    //애니메이션 한번 실행
-        //}
+        if (!animationStarted)
+        {
+            StartAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
+        }
 
         timer -= Time.deltaTime;
 
@@ -72,10 +74,10 @@ public class EnemyAttackState : EnemyBaseState
 
     private void AttackPattern_4M()
     {
-        //if (!animationStarted)
-        //{
-        //    //애니메이션 한번 실행
-        //}
+        if (!animationStarted)
+        {
+            StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
+        }
 
         timer -= Time.deltaTime;
 

@@ -12,13 +12,14 @@ public class EnemyCoolTimeState : EnemyBaseState
 
     public override void Enter()
     {
+        StartAnimation(stateMachine.Enemy.AnimationData.IdleParameterHash); //약화 애니메이션 추가 필요
         Debug.Log("대기중");
         timer = coolTime;
     }
 
     public override void Exit()
     {
-
+        StopAnimation(stateMachine.Enemy.AnimationData.IdleParameterHash); //약화 애니메이션 추가 필요
     }
 
     public override void HandleInput()

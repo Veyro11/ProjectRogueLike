@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
     public EnemyData EnemyData {  get;  set; }
 
     public Transform target;
+
+    [field: Header("Animations")]
+    [field: SerializeField] public EnemyAnimaitionData AnimationData { get; private set; }
     public Animator Animator { get; private set; }
 
     private EnemyStateMachine stateMachine;
@@ -16,10 +19,12 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        AnimationData.Initialize();
+
         EnemyData = new EnemyData();
         stateMachine = new EnemyStateMachine(this);
 
-        Animator = GetComponent<Animator>();
+        Animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()

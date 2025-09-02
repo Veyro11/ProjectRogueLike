@@ -13,11 +13,13 @@ public class EnemyChaseState : EnemyBaseState
     public override void Enter()
     {
         timer = 0.7f;
+        StartAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
     }
 
     public override void Exit()
     {
         isReady = false;
+        StopAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
     }
 
     public override void HandleInput()
@@ -54,13 +56,13 @@ public class EnemyChaseState : EnemyBaseState
         }
 
         //공격 거리 탐색 후 조건 충족 시 추적 멈춤 및 공격준비
-        if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_2m)
+        if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_2m && !isReady)
         {
             Debug.Log("공격준비");
             isReady = true;
+            StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
+            StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
         }
-
-
 
         if (Vector2.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < missingDistance) return;
 
