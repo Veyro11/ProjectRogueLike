@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
     [field: SerializeField] public PlayerSO Data { get; private set; }
     public Transform SpriteTransform { get; private set; }
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheckRight;
     [SerializeField] private float groundCheckDistance = 1f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private ParticleSystem particle;
 
     [field: Header("Wall Check")]
     [field: SerializeField] public Transform WallCheck { get; private set; }
