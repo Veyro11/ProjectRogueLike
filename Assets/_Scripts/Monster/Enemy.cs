@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [field: SerializeField] public EnemyAnimaitionData AnimationData { get; private set; }
     public Animator Animator { get; private set; }
 
-    private EnemyStateMachine stateMachine;
+    public EnemyStateMachine stateMachine;
 
     public SpriteRenderer attackRenderer;
     public Collider2D attackCollider2D;

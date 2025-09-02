@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5593363799379961329}
   - component: {fileID: 9050701508469344090}
   - component: {fileID: 951187631721680294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136723454237584285}
   - component: {fileID: 3451993243549096542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 5167827705134650247}
   - component: {fileID: 3577538297356735818}
   - component: {fileID: 107115757056414645}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 4920765683630984470}
   - component: {fileID: 1059993152624837722}
   - component: {fileID: 7656287868960395363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

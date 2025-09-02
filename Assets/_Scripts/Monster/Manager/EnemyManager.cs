@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
 
     public List<Enemy> enemies;
     public GameObject enemyPrefab;
+    public Enemy currentEnemy;
 
     private void Awake()
     {
@@ -32,5 +33,6 @@ public class EnemyManager : MonoBehaviour
     {
         Vector3 spawnPos = Player.Instance.transform.position + new Vector3(-5.1f, 0.3f, 0f);
         enemies.Add(Instantiate(enemyPrefab, spawnPos, Quaternion.identity).GetComponent<Enemy>());
+        currentEnemy = enemies[0];
     }
 }
