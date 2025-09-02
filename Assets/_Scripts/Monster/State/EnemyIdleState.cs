@@ -11,12 +11,12 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Enter()
     {
-
+        StartAnimation(stateMachine.Enemy.AnimationData.IdleParameterHash);
     }
 
     public override void Exit()
     {
-
+        StopAnimation(stateMachine.Enemy.AnimationData.IdleParameterHash);
     }
 
     public override void HandleInput()
@@ -37,7 +37,6 @@ public class EnemyIdleState : EnemyBaseState
 
     public void TargetSearching()
     {
-        // TODO : IDLE 애니메이션 필요
         if (Vector2.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) > trackingDistance) return;
 
             stateMachine.ChangeState(stateMachine.ChaseState);

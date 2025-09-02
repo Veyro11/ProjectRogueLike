@@ -13,12 +13,12 @@ public class EnemyReturnState : EnemyBaseState
 
     public override void Enter()
     {
-
+        StartAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
     }
 
     public override void Exit()
     {
-
+        StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
     }
 
     public override void HandleInput()
@@ -56,7 +56,7 @@ public class EnemyReturnState : EnemyBaseState
             stateMachine.spawnPosition,
             2 * Time.deltaTime
         );
-        Debug.Log($"{stateMachine.ownerTransform.position}, {stateMachine.spawnPosition}");
+
         // 목표 지점에 도착했는지 체크
         if (stateMachine.ownerTransform.position == stateMachine.spawnPosition)
         {

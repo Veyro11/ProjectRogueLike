@@ -73,6 +73,13 @@ public class EnemyBaseState : IState
         stateMachine.Enemy.Animator.SetBool(animationHash, false);
     }
 
+    public void TakeDamage(int Damage)
+    {
+        //TODO : 피격 애니메이션 추가
+        //플레이어 공격시 가져다 쓰시면 될 것 같습니다.
+        stateMachine.Enemy.EnemyData.HP -= Damage;
+    }
+
     protected void DieCheck()
     {
         if (stateMachine.Enemy.EnemyData.HP != 0) return;
