@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 [Serializable]
@@ -62,14 +63,50 @@ public class PlayerSO : ScriptableObject
     [Tooltip("체력")]
     public float MaxHealth { get; private set; } = 100f;
 
+    [Tooltip("현재 체력")]
+    public float CurHealth = 100f;
+
     [Tooltip("공격력")]
     public float AttackPower { get; private set; } = 10f;
 
     [Tooltip("공격속도")]
-    public float AttackSpeed { get; private set; } = 1f;
+    public float AttackSpeed { get; private set; } = 0f;
+
+    [HideInInspector] public int MaxSouls { get; private set; }
+
+    [HideInInspector] public int MaxPotions { get; private set; }
+
+    [Tooltip("스킬 포인트")]
+    public int MaxSP { get; private set; } = 20;
+    [Tooltip("현재 스킬 포인트")]
+    public int curSP = 0;
+
+    [HideInInspector] public int SPEfficiency { get; private set; } = 1;
+
+    [HideInInspector] public bool SpecialUnlocked = false;
+
 
     [field: SerializeField] public PlayerGroundData GroundData { get; private set; }
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
     [field: SerializeField] public PlayerDashData DashData { get; private set; }
+
+    public void FixMaxHealth(int amount)
+    { MaxHealth = 100f + amount*30f; }
+
+    public void FixAttackPower(int amount)
+    { AttackPower += 10f + amount*5f; }
+
+    public void FixAttackSpeed(int amount)
+    { AttackSpeed += 1 - amount*0.1f; }
+
+    public void SetMaxSouls(int amount)
+    { MaxSouls = amount; }
+
+    public void SetMaxPotions(int amount)
+    { MaxPotions = amount; }
+
+    public void FixSPEfficiency(int amount)
+    { SPEfficiency = 1 + amount; }
+
 }
