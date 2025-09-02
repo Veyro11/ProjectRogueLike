@@ -49,7 +49,7 @@ public class EnemyReturnState : EnemyBaseState
 
     public void MissingTarget()
     {
-        // 현재 위치에서 spawnPosition으로 이동
+        // 현재 위치에서 spawnPosition으로 이동합니다.
         stateMachine.ownerTransform.position = Vector3.MoveTowards
         (
             stateMachine.ownerTransform.position,
@@ -57,16 +57,16 @@ public class EnemyReturnState : EnemyBaseState
             2 * Time.deltaTime
         );
 
-        // 목표 지점에 도착했는지 체크
+        // 목표 지점에 도착했는지 체크 후 Idle 상태로 돌아갑니다.
         if (stateMachine.ownerTransform.position == stateMachine.spawnPosition)
         {
             Debug.Log("원래 자리 도착!");
-
-            // TODO: 상태 전환 로직 실행
             stateMachine.ChangeState(stateMachine.IdleState);
         }
     }
 
+
+    //플레이어를 바라보게 하는 메서드 입니다.
     public override void LookPlayer()
     {
         lookDirection = stateMachine.spawnPosition - stateMachine.Enemy.transform.position;

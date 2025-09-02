@@ -35,6 +35,7 @@ public class EnemyIdleState : EnemyBaseState
         TargetSearching();
     }
 
+    //주위의 적이 있는지 서칭하는 메서드 입니다.
     public void TargetSearching()
     {
         if (Vector2.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) > trackingDistance) return;

@@ -27,6 +27,7 @@ public class EnemyManager : MonoBehaviour
         SpawnEnemy();
     }
 
+    // 보스 생성 메서드, 맵에따라 위치 고정값으로 넣어줄까 생각 중 입니다.
     public void SpawnEnemy()
     {
         Vector3 spawnPos = Player.Instance.transform.position + new Vector3(-5.1f, 0.3f, 0f);
