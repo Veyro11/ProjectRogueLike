@@ -73,6 +73,11 @@ public class EnemyBaseState : IState
         stateMachine.Enemy.Animator.SetBool(animationHash, false);
     }
 
+    protected void TakeDamage()
+    {
+        //TODO : 피격 애니메이션 추가
+    }
+
     protected void DieCheck()
     {
         if (stateMachine.Enemy.EnemyData.HP != 0) return;

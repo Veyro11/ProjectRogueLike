@@ -15,7 +15,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("?");
+        Debug.Log("공격시작");
         timer = stateMachine.Enemy.EnemyData.AttackCoolTime;
         ChooseRandomAttack();
         //animationStarted = false;
@@ -50,6 +50,7 @@ public class EnemyAttackState : EnemyBaseState
 
         Debug.Log("트리거");
         stateMachine.Enemy.attackCollider2D.enabled = false;
+        collision.gameObject.SetActive(false);
         //이제 트리거 안에 랜덤으로 공격 하는 메서드 하나 넣어주면 끝
 
     }
@@ -87,7 +88,7 @@ public class EnemyAttackState : EnemyBaseState
     private void ChooseRandomAttack()
     {
         int random = Random.Range(0, 2);
-        Debug.Log(random);
+ 
         switch (random)
         {
             case 0:
