@@ -56,7 +56,10 @@ public class PlayerStatus : MonoBehaviour
     public void FixSPEfficiency(int amount)
     { SPEfficiency = 1 + amount; }
 
-
+    public void SetUnlockTrigger(bool trigger)
+    {
+        SpecialUnlocked = trigger;
+    }
     public void Load()
     {
 
