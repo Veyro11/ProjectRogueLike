@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D Rb { get; private set; }
 
     private PlayerStateMachine stateMachine;
+    [field: SerializeField] public SpriteRenderer PlayerSpriteRenderer { get; private set; }
 
     public ForceReceiver ForceReceiver { get; private set; }
 
@@ -43,6 +44,9 @@ public class Player : MonoBehaviour
 
     private float currentHealth;
 
+    private int playerLayer;
+    private int playerDashLayer;
+
     private void Awake()
     {
         //초기화
@@ -57,15 +61,18 @@ public class Player : MonoBehaviour
 
         AnimationData.Initialize();
 
-        Animator = GetComponentInChildren<Animator>();
+        stateMachine = new PlayerStateMachine(this);
+        
         Input = GetComponent<PlayerController>();
         Rb = GetComponent<Rigidbody2D>();
+        ForceReceiver = GetComponent<ForceReceiver>();
 
-        stateMachine = new PlayerStateMachine(this);
-
+        Animator = GetComponentInChildren<Animator>();
+        PlayerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         SpriteTransform = transform.Find("Sprite");
 
-        ForceReceiver = GetComponent<ForceReceiver>();
+        playerLayer = LayerMask.NameToLayer("Player");
+        playerDashLayer = LayerMask.NameToLayer("PlayerDash");
     }
 
     private void Start()
@@ -107,6 +114,34 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+        else
+        {
+            StartCoroutine(HitColor());
+        }
+    }
+
+    private IEnumerator HitColor()
+    {
+        float a = 1f;
+        float b = 0.1f;
+
+        Color color = PlayerSpriteRenderer.color;
+
+        SetLayer(true);
+        float time = 0f;
+        while (time < a)
+        {
+            PlayerSpriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+            yield return new WaitForSeconds(b);
+            time += b;
+
+            PlayerSpriteRenderer.color = color;
+            yield return new WaitForSeconds(b);
+            time += b;
+        }
+
+        SetLayer(false);
+        PlayerSpriteRenderer.color = color;
     }
 
     public void Heal(float amount)
@@ -149,6 +184,18 @@ public class Player : MonoBehaviour
     {
         var emission = particle.emission;
         emission.enabled = a;
+    }
+
+    public void SetLayer(bool isDashing)
+    {
+        if (isDashing)
+        {
+            gameObject.layer = playerDashLayer;
+        }
+        else
+        {
+            gameObject.layer = playerLayer;
+        }
     }
 
 }
