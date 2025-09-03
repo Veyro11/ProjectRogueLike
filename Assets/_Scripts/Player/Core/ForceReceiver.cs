@@ -16,8 +16,7 @@ public class ForceReceiver : MonoBehaviour
 
     public void AddForce(Vector2 force)
     {
-        rb.velocity = new Vector2(0, rb.velocity.y);
-
+        rb.velocity = new Vector2(0, rb.velocity.y + 1f);
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 

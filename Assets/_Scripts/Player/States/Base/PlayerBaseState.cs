@@ -195,32 +195,24 @@ public class PlayerBaseState : IState
     {
         ledgePosition = Vector2.zero;
         Transform playerTransform = stateMachine.Player.transform;
-        LayerMask groundLayer = LayerMask.GetMask("Ground");
 
-        float searchStep = 0.1f;
-        float maxSearchHeight = 1f;
+        float ledgeSearchDistance = 2f;
 
-        float directionX = Mathf.Sign(playerTransform.localScale.x);
-        Vector2 forwardDir = new Vector2(directionX, 0f);
+        Vector2 ledgeCheckStart = new Vector2(wallHit.point.x + 0.1f * playerTransform.localScale.x, playerTransform.position.y + 1f);
+        Debug.DrawRay(ledgeCheckStart, Vector2.down * ledgeSearchDistance, Color.blue);
+        RaycastHit2D ledgeHit = Physics2D.Raycast(ledgeCheckStart, Vector2.down, ledgeSearchDistance, LayerMask.GetMask("Ground"));
 
-        Vector2 startPos = wallHit.point + forwardDir * 0.1f;
-
-        RaycastHit2D ledgeHit = Physics2D.Raycast(startPos, Vector2.up, maxSearchHeight, groundLayer);
-        Debug.DrawRay(startPos, Vector2.up * maxSearchHeight, Color.green);
-
-        if (ledgeHit.collider == null)
+        if (ledgeHit.collider != null)
         {
-            return false;
-        }
+            float ledgeHeight = ledgeHit.point.y;
+            float playerRefHeight = stateMachine.Player.WallCheck.position.y;
+            float heightDifference = ledgeHeight - playerRefHeight;
 
-        float ledgeHeight = ledgeHit.point.y;
-        float playerHeight = stateMachine.Player.WallCheck.position.y;
-        float heightDiff = ledgeHeight - playerHeight;
-
-        if (heightDiff > 0 && heightDiff <= stateMachine.Player.WallClimbHeight)
-        {
-            ledgePosition = ledgeHit.point + Vector2.up * 1f;
-            return true;
+            if (heightDifference > 0 && heightDifference <= stateMachine.Player.WallClimbHeight)
+            {
+                ledgePosition = ledgeHit.point + new Vector2(0, 1f);
+                return true;
+            }
         }
 
         return false;
