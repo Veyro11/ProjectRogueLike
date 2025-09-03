@@ -198,7 +198,7 @@ public class PlayerBaseState : IState
         LayerMask groundLayer = LayerMask.GetMask("Ground");
 
         float searchStep = 0.1f;
-        float maxSearchHeight = 3f;
+        float maxSearchHeight = 1f;
 
         float directionX = Mathf.Sign(playerTransform.localScale.x);
         Vector2 forwardDir = new Vector2(directionX, 0f);
