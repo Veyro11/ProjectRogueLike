@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+
 public enum ReinforcementCategory
 {
     Error,
@@ -35,6 +36,7 @@ public class Reinforcement : MonoBehaviour
             {ReinforcementCategory.SP, 0 },
             {ReinforcementCategory.Special, 0 }
         };
+
 
         if (MaxReinforcableCount == null || MaxReinforcableCount.Count < 5)
         {
@@ -75,7 +77,7 @@ public class Reinforcement : MonoBehaviour
                 return;
             }
             curReinforcableCount[category]++;
-            
+
         }
     }
 
@@ -105,7 +107,6 @@ public class Reinforcement : MonoBehaviour
             default:
                 Debug.Log("알 수 없는 타입 입력됨.");
                 break;
-
         }
     }
 }
