@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     private int playerLayer;
     private int playerDashLayer;
 
+    public PlayerStatus playerstat;
+
     private void Awake()
     {
         //초기화
@@ -98,15 +100,10 @@ public class Player : MonoBehaviour
     }
 
 
-    public float GetAttackDamage()
-    {
-        return Data.AttackPower;
-    }
-
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, Data.MaxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, playerstat.MaxHealth);
 
         Debug.Log($"피해량체크- {damage} 남은체력- {currentHealth}");
 
