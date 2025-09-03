@@ -63,12 +63,17 @@ public class Reinforcement : MonoBehaviour
         }
     }
 
-    public bool PlusReinforce(ReinforcementCategory category)
+    public void PlusReinforce(int value)
     {
+        ReinforcementCategory category = ConvertInttoEnum(value);
+        if (category == ReinforcementCategory.Error)
+        {
+            return;
+        }
         if (MaxReinforcableCount == null)
-            return false;
+            return;
         if (ReinforcementCost == null)
-            return false;
+            return;
 
         if (MaxReinforcableCount.ContainsKey(category))
         {
@@ -76,12 +81,12 @@ public class Reinforcement : MonoBehaviour
             {
                 editor.ChangePlusButtons(category, false);
                 Debug.Log($"이미 최대 강화상태입니다: type:{category}");
-                return false;
+                return;
             }
             if (curSoul < ReinforcementCost[category])
             {
                 Debug.Log("영혼 양이 부족합니다.");
-                return false;
+                return;
             }
             curReinforcableCount[category]++;
             UpdatePlayerReinforcement(category);
@@ -92,16 +97,21 @@ public class Reinforcement : MonoBehaviour
         else
         {
             Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
-            return false;
+            return;
         }
-        return true;
+        return;
     }
-    public bool MinusReinforce(ReinforcementCategory category)
+    public void MinusReinforce(int value)
     {
+        ReinforcementCategory category = ConvertInttoEnum(value);
+        if (category == ReinforcementCategory.Error)
+        {
+            return;
+        }
         if (MaxReinforcableCount == null)
-            return false;
+            return;
         if (ReinforcementCost == null)
-            return false;
+            return;
 
         if (MaxReinforcableCount.ContainsKey(category))
         {
@@ -109,7 +119,7 @@ public class Reinforcement : MonoBehaviour
             {
                 editor.ChangeMinusButtons(category, false);
                 Debug.Log($"강화가 되어있지 않습니다: type:{category}");
-                return false;
+                return;
             }
             curReinforcableCount[category]--;
             UpdatePlayerReinforcement(category);
@@ -120,9 +130,9 @@ public class Reinforcement : MonoBehaviour
         else
         {
             Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
-            return false;
+            return;
         }
-        return true;
+        return;
     }
 
 
@@ -179,5 +189,10 @@ public class Reinforcement : MonoBehaviour
                 Debug.Log("유효하지 않은 값 감지됨");
                 return ReinforcementCategory.Error;
         }
+    }
+
+    public void Quit()
+    {
+        transform.GetComponent<GameObject>().SetActive(false);
     }
 }
