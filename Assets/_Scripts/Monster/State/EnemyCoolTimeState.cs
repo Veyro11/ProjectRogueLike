@@ -24,7 +24,7 @@ public class EnemyCoolTimeState : EnemyBaseState
 
     public override void HandleInput()
     {
-
+        
     }
 
     public override void PhysicsUpdate()

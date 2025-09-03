@@ -92,6 +92,15 @@ public class EnemyChaseState : EnemyBaseState
         if (!isReady) return;
 
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
+        
+        if (is_2M_Attack)
+        {
+            stateMachine.attackRenderer.size = new Vector2(2, stateMachine.attackRenderer.size.y);
+        }
+        else if (is_4M_Attack)
+        {
+            stateMachine.attackRenderer.size = new Vector2(4, stateMachine.attackRenderer.size.y);
+        }
 
         if (timer > 0) return;
 

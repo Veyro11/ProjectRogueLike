@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 public class Enemy : MonoBehaviour
 {
     public EnemyData EnemyData {  get;  set; }
 
     public Transform target;
+    public SpriteRenderer enemyRenderer;
+    private MaterialPropertyBlock block;
 
     [field: Header("Animations")]
     [field: SerializeField] public EnemyAnimaitionData AnimationData { get; private set; }
@@ -27,6 +31,8 @@ public class Enemy : MonoBehaviour
         stateMachine = new EnemyStateMachine(this);
 
         Animator = GetComponentInChildren<Animator>();
+
+        block = new MaterialPropertyBlock();
     }
 
     private void Start()
@@ -43,5 +49,25 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         stateMachine.OnTriggerEnter2D(collision);
+    }
+
+    public void TakeDamage(int Damage)
+    {
+        StartCoroutine(ChangeColor());
+        stateMachine.Enemy.EnemyData.HP -= Damage;
+    }
+
+    public IEnumerator ChangeColor()
+    {
+        enemyRenderer.GetPropertyBlock(block);
+        block.SetColor("_Color", new Color(2,2,2,1));
+        enemyRenderer.SetPropertyBlock(block);
+
+        yield return new WaitForSeconds(0.3f);
+
+        // 원래 색으로 복구
+        enemyRenderer.GetPropertyBlock(block);
+        block.SetColor("_Color", Color.white);
+        enemyRenderer.SetPropertyBlock(block);
     }
 }
