@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,8 +33,7 @@ public class Potal : MonoBehaviour
     {
         if (canTransport && Input.GetKeyDown(KeyCode.W))
         {
-            MapManager.Instance.TransitionToMap(targetMapName, destination.position);
-            canTransport = false;
+            FadeManager.Instance.RequestTeleport(targetMapName, destination.position);
         }
     }
 }
