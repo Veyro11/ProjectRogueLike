@@ -3805,6 +3805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   enemyPrefab: {fileID: 1189268820654175975, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
+  currentEnemy: {fileID: 0}
 --- !u!4 &579070712
 Transform:
   m_ObjectHideFlags: 0
@@ -8918,6 +8919,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1059993152624837722, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059993152624837722, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059993152624837722, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059993152624837722, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1189268820654175975, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -8965,6 +8982,10 @@ PrefabInstance:
     - target: {fileID: 1897510419376085828, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920765683630984470, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7656287868960395363, guid: 7700c5388fe92094381e6854f191eb9f, type: 3}
       propertyPath: m_Size.x
