@@ -35,6 +35,7 @@ public class EnemyCoolTimeState : EnemyBaseState
     public override void Update()
     {
         //base.Update();
+        DieCheck();
         StartCoolTime();
     }
 

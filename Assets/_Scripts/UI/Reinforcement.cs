@@ -193,6 +193,6 @@ public class Reinforcement : MonoBehaviour
 
     public void Quit()
     {
-        transform.GetComponent<GameObject>().SetActive(false);
+        gameObject.SetActive(false);
     }
 }
