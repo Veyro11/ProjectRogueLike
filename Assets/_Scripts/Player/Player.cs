@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(HitColor());
         }
+
     }
 
     private IEnumerator HitColor()
