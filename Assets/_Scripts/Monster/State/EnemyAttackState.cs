@@ -8,6 +8,8 @@ public class EnemyAttackState : EnemyBaseState
 {
     private Action currentAttackPattern;
     private bool animationStarted = false;
+    private float triggerStart;
+    private bool isTrigger;
 
     public EnemyAttackState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -17,8 +19,11 @@ public class EnemyAttackState : EnemyBaseState
     {
         Debug.Log("공격시작");
         animationStarted = false;
-        stateMachine.Enemy.attackCollider2D.enabled = true;
-        timer = stateMachine.Enemy.EnemyData.AttackCoolTime;
+        isTrigger = false;
+
+        timer = 0.75f;
+
+        triggerStart = 0.5f;
 
         // 2M에서 공격 했을 경우 랜덤 공격 4M에서 봤을 경우 4M공격 고정하는 조건문 입니다.
         if (stateMachine.ChaseState.is_2M_Attack)
@@ -55,11 +60,14 @@ public class EnemyAttackState : EnemyBaseState
     {
         //base.Update();
         currentAttackPattern?.Invoke();
+        triggerStart -= Time.deltaTime;
     }
 
     public override void OntriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player")) return;
+        int layer = collision.gameObject.layer;
+
+        if (layer != LayerMask.NameToLayer("Player")) return;
 
         //Debug.Log(Player.Instance.currentHealth);
         stateMachine.Enemy.attackCollider2D.enabled = false;
@@ -69,6 +77,13 @@ public class EnemyAttackState : EnemyBaseState
     private void AttackPattern_2M()
     {
         timer -= Time.deltaTime;
+
+
+        if (triggerStart <= 0 && !isTrigger)
+        {
+            stateMachine.Enemy.attackCollider2D.enabled = true;
+            isTrigger = true;
+        }
 
         if (!animationStarted)
         {
@@ -88,6 +103,13 @@ public class EnemyAttackState : EnemyBaseState
     private void AttackPattern_4M()
     {
         timer -= Time.deltaTime;
+
+
+        if (triggerStart <= 0 && !isTrigger)
+        {
+            stateMachine.Enemy.attackCollider2D.enabled = true;
+            isTrigger = true;
+        }
 
         if (!animationStarted)
         {
