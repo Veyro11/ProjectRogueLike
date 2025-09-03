@@ -7,8 +7,7 @@ public class HPBar : MonoBehaviour
 {
     int _maxLength = 840;
     [SerializeField] RectTransform _Stretcher;
-    [SerializeField] PlayerSO _Player;
-    [SerializeField] float Test;
+    [SerializeField] PlayerStatus _Player;
     Coroutine _coroutineController;
     IEnumerator AdjustHPBar(float currentHP, float targetHP)
     {
@@ -26,10 +25,11 @@ public class HPBar : MonoBehaviour
         _Stretcher.sizeDelta = new Vector2(targetHP*lengthCoefficient, 83.3333f);
     }
 
-    public void Change()
+    // 데미지 받았을 때 마다 호출
+    public void Change(float target)
     {
         if (_coroutineController != null) 
         { StopCoroutine(_coroutineController); }
-        _coroutineController = StartCoroutine(AdjustHPBar(_Player.CurHealth, Test));
+        _coroutineController = StartCoroutine(AdjustHPBar(_Player.CurHealth, target));
     }
 }
