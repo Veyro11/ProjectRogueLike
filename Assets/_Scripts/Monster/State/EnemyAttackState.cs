@@ -51,6 +51,7 @@ public class EnemyAttackState : EnemyBaseState
     public override void Update()
     {
         //base.Update();
+        DieCheck();
         currentAttackPattern?.Invoke();
         triggerStart -= Time.deltaTime;
     }
@@ -62,6 +63,7 @@ public class EnemyAttackState : EnemyBaseState
         if (layer != LayerMask.NameToLayer("Player")) return;
 
         //Debug.Log(Player.Instance.currentHealth);
+        stateMachine.attackRenderer.transform.localPosition = stateMachine.ChaseState.currentPosition;
         stateMachine.Enemy.attackCollider2D.enabled = false;
         Player.Instance.TakeDamage(stateMachine.Enemy.EnemyData.Attack);
     }
@@ -79,7 +81,7 @@ public class EnemyAttackState : EnemyBaseState
         if (!animationStarted)
         {
             //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
-            stateMachine.attackCollider.size = new Vector2(2, stateMachine.attackCollider.size.y);
+            //stateMachine.attackCollider.size = new Vector2(1.5f, stateMachine.attackCollider.size.y);
             
             //Debug.Log(stateMachine.attackCollider.size);
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
@@ -87,6 +89,7 @@ public class EnemyAttackState : EnemyBaseState
 
         if (timer <= 0f)
         {
+            stateMachine.attackRenderer.transform.localPosition = stateMachine.ChaseState.currentPosition;
             stateMachine.ChangeState(stateMachine.CoolTimeState);
         }
     }
@@ -105,7 +108,7 @@ public class EnemyAttackState : EnemyBaseState
         if (!animationStarted)
         {
             //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
-            stateMachine.attackCollider.size = new Vector2(4, stateMachine.attackCollider.size.y);
+            //stateMachine.attackCollider.size = new Vector2(2.5f, stateMachine.attackCollider.size.y);
            
             //Debug.Log(stateMachine.attackCollider.size);
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
@@ -113,6 +116,7 @@ public class EnemyAttackState : EnemyBaseState
 
         if (timer <= 0f)
         {
+            stateMachine.attackRenderer.transform.localPosition = stateMachine.ChaseState.currentPosition;
             stateMachine.ChangeState(stateMachine.CoolTimeState);
         }
     }

@@ -58,7 +58,7 @@ public class EnemyReturnState : EnemyBaseState
         );
 
         // 목표 지점에 도착했는지 체크 후 Idle 상태로 돌아갑니다.
-        if (stateMachine.ownerTransform.position == stateMachine.spawnPosition)
+        if (stateMachine.ownerTransform.position.x == stateMachine.spawnPosition.x)
         {
             Debug.Log("원래 자리 도착!");
             stateMachine.ChangeState(stateMachine.IdleState);
