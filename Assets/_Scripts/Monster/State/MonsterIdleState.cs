@@ -11,6 +11,7 @@ public class MonsterIdleState : MonsterBaseState
 
     public override void Enter()
     {
+        Debug.Log("아이들");
         StartAnimation(stateMachine.Monster.AnimationData.IdleParameterHash);
     }
 
