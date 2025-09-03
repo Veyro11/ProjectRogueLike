@@ -43,8 +43,11 @@ public class PlayerClimbingState : PlayerBaseState
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.ClimbingParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.AirParameterHash);
+        
 
         spriteTransform.position = stateMachine.LedgePosition;
+
+        stateMachine.Player.ForceReceiver.Reset();
 
         stateMachine.Player.Rb.isKinematic = false;
     }
@@ -56,7 +59,6 @@ public class PlayerClimbingState : PlayerBaseState
         float progress = (Time.time - climbStartTime) / climbDuration;
 
         stateMachine.Player.transform.position = Vector2.Lerp(startPosition, targetPosition, progress);
-
         spriteTransform.position = setPosition;
 
         if (progress >= 1f)
