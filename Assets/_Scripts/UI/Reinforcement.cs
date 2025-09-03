@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 
 public enum ReinforcementCategory
 {
-    Error,
     HP,
     ATK,
     Potion,
@@ -15,17 +15,15 @@ public enum ReinforcementCategory
 public class Reinforcement : MonoBehaviour
 {
     [SerializeField] PlayerSO _player;
-    public int curSoul { get; set; }
+    int curSoul;
     [Header("Reinforcement Config")]
+    [SerializeField] Dictionary<ReinforcementCategory, int> MaxReinforcableCount;
     [SerializeField] Dictionary<ReinforcementCategory, int> ReinforcementCost;
-    [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
-    [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
+    Dictionary<ReinforcementCategory, int> curReinforcableCount;
 
-    ReinforcementTextEditor editor;
     private void Start()
     {
         curSoul = _player.MaxSouls;
-        editor = GetComponent<ReinforcementTextEditor>();
         // 세이브/로드 필요 시 해당 코드 수정요망
         curReinforcableCount = new Dictionary<ReinforcementCategory, int>()
         {
@@ -58,63 +56,25 @@ public class Reinforcement : MonoBehaviour
                 { ReinforcementCategory.Special, 5 }
             };
         }
-
     }
 
-    public bool PlusReinforce(int value)
+    private void PlusReinforce(ReinforcementCategory category)
     {
         if (MaxReinforcableCount == null)
-            return false;
+            return;
         if (ReinforcementCost == null)
-            return false;
-        ReinforcementCategory category = convertInttoEnum(value);
+            return;
+
         if (MaxReinforcableCount.ContainsKey(category))
         {
             if (MaxReinforcableCount[category] <= curReinforcableCount[category])
             {
                 Debug.Log($"이미 최대 강화상태입니다: type:{category}");
-                return false;
-            }
-            if (curSoul < ReinforcementCost[category])
-            {
-                Debug.Log("영혼 양이 부족합니다.");
-                return false;
+                return;
             }
             curReinforcableCount[category]++;
-            UpdatePlayerReinforcement(category);
-            curSoul -= ReinforcementCost[category];
-            updateUI(category);
+            
         }
-        else
-        {
-            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
-            return false;
-        }
-            return true;
-    }
-    public bool MinusReinforce(ReinforcementCategory category)
-    {
-        if (MaxReinforcableCount == null)
-            return false;
-        if (ReinforcementCost == null)
-            return false;
-
-        if (MaxReinforcableCount.ContainsKey(category))
-        {
-            if (0 >= curReinforcableCount[category])
-            {
-                Debug.Log($"강화가 되어있지 않습니다: type:{category}");
-                return false;
-            }
-            curReinforcableCount[category]--;
-            UpdatePlayerReinforcement(category);
-        }
-        else
-        {
-            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
-            return false;
-        }
-        return true;
     }
 
     private void UpdatePlayerReinforcement(ReinforcementCategory category)
@@ -143,32 +103,7 @@ public class Reinforcement : MonoBehaviour
             default:
                 Debug.Log("알 수 없는 타입 입력됨.");
                 break;
-        }
-    }
 
-    void updateUI(ReinforcementCategory category)
-    {
-        editor.ChangeSouls();
-        editor.ChangeNowStatus(category);
-    }
-
-    ReinforcementCategory convertInttoEnum(int value)
-    {
-        switch (value)
-        {
-            case 0:
-                return ReinforcementCategory.HP;
-            case 1:
-                return ReinforcementCategory.Potion;
-            case 2:
-                return ReinforcementCategory.ATK;
-            case 3:
-                return ReinforcementCategory.SP;
-            case 4:
-                return ReinforcementCategory.Special;
-            default:
-                Debug.Log("알 수 없는 타입");
-                return ReinforcementCategory.Error;
         }
     }
 }

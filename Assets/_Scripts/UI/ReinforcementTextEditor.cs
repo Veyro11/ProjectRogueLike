@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public class ReinforcementTextEditor : MonoBehaviour
 {
-    [SerializeField] Transform motherTransform;
-    [SerializeField] PlayerSO _player;
-    Reinforcement reinforcement;
+   [SerializeField] Transform motherTransform;
+   [SerializeField] PlayerSO _player;
+   Reinforcement reinforcement;
 
     private void Start()
     {
@@ -116,3 +116,4 @@ public class ReinforcementTextEditor : MonoBehaviour
     }
 
 }
+

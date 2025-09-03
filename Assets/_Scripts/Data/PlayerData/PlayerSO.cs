@@ -56,6 +56,7 @@ public class PlayerDashData
 }
 
 
+
 [CreateAssetMenu(fileName = "Player", menuName = "Characters/Player")]
 
 public class PlayerSO : ScriptableObject
@@ -90,23 +91,4 @@ public class PlayerSO : ScriptableObject
     [field: SerializeField] public PlayerAirData AirData { get; private set; }
     [field: SerializeField] public PlayerAttackData AttakData { get; private set; }
     [field: SerializeField] public PlayerDashData DashData { get; private set; }
-
-    public void FixMaxHealth(int amount)
-    { MaxHealth = 100f + amount*30f; }
-
-    public void FixAttackPower(int amount)
-    { AttackPower += 10f + amount*5f; }
-
-    public void FixAttackSpeed(int amount)
-    { AttackSpeed += amount*0.1f; }
-
-    public void SetMaxSouls(int amount)
-    { MaxSouls = amount; }
-
-    public void SetMaxPotions(int amount)
-    { MaxPotions = amount; }
-
-    public void FixSPEfficiency(int amount)
-    { SPEfficiency = 1 + amount; }
-
 }

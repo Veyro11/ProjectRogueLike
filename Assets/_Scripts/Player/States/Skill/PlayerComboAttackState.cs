@@ -90,8 +90,11 @@ public class PlayerComboAttackState : PlayerAttackState
 
                 Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
 
-                enemy.TakeDamage(damage);
-                Debug.Log(enemy.EnemyData.HP);
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                    Debug.Log(enemy.EnemyData.HP);
+                }
 
                 float randomAngle = Random.Range(0f, 360f);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);

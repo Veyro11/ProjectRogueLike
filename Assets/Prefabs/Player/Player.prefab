@@ -5026,6 +5026,7 @@ GameObject:
   - component: {fileID: 800265316036088630}
   - component: {fileID: 2691097865983619455}
   - component: {fileID: 1613299438197099155}
+  - component: {fileID: 4614178279511200927}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -5162,6 +5163,7 @@ MonoBehaviour:
     comboAttackParameterName: ComboAttack
     dashParameterName: Dash
     climbingParameterName: Climb
+  <PlayerSpriteRenderer>k__BackingField: {fileID: 0}
   groundCheckLeft: {fileID: 1986654030484537602}
   groundCheckRight: {fileID: 8536487078536326576}
   groundCheckDistance: 0.1
@@ -5180,6 +5182,7 @@ MonoBehaviour:
     m_Bits: 256
   slashPrefab: {fileID: 931455042845487865, guid: 54a8100732d5e554d9af72677fcc51bb, type: 3}
   dashPrefab: {fileID: 2988028533833415011, guid: 9a791c8795dfffb48969cea47b7d55f2, type: 3}
+  playerstat: {fileID: 0}
 --- !u!114 &1613299438197099155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5193,6 +5196,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1598007179435160207}
+--- !u!114 &4614178279511200927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063903082454943605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64101b6a5e1f19c4aa19493d6f20b0b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8804862873519220242
 GameObject:
   m_ObjectHideFlags: 0
