@@ -75,14 +75,12 @@ public class EnemyBaseState : IState
 
     public void TakeDamage(int Damage)
     {
-        //TODO : 피격 애니메이션 추가
-        //플레이어 공격시 가져다 쓰시면 될 것 같습니다.  EnemyManager.Instance.currentEnemy.stateMachine.DieState.TakeDamage(Damage매개변수); 이렇게 사용하면 됩니다.
-        stateMachine.Enemy.EnemyData.HP -= Damage;
+        
     }
 
     protected void DieCheck()
     {
-        if (stateMachine.Enemy.EnemyData.HP != 0) return;
+        if (stateMachine.Enemy.EnemyData.HP > 0) return;
 
         stateMachine.ChangeState(stateMachine.DieState);
     }

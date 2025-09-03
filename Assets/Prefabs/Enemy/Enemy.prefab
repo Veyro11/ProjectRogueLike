@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  enemyRenderer: {fileID: 3577538297356735818}
   <AnimationData>k__BackingField:
     idleParameterName: Idle
     walkParameterName: Walk
