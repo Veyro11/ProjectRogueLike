@@ -85,14 +85,13 @@ public class PlayerComboAttackState : PlayerAttackState
         {
             if (!HitEnemy.Contains(enemyCollider))
             {
-                MonsterHealth monster = enemyCollider.GetComponent<MonsterHealth>();
+                //EnemyStateMachine enemyStateMachine = enemyCollider.GetComponent<EnemyStateMachine>();
                 Debug.Log("데미지");
-                monster.TakeDamage(damage);
 
                 Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
 
-                //EnemyManager.Instance.currentEnemy.stateMachine.DieState.TakeDamage(damage);
-                //Debug.Log(EnemyManager.Instance.currentEnemy.EnemyData.HP);
+                EnemyManager.Instance.currentEnemy.stateMachine.DieState.TakeDamage(damage);
+                Debug.Log(EnemyManager.Instance.currentEnemy.EnemyData.HP);
 
                 float randomAngle = Random.Range(0f, 360f);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
