@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEditor;
 
 
 public enum ReinforcementCategory
@@ -62,24 +63,68 @@ public class Reinforcement : MonoBehaviour
         }
     }
 
-    private void PlusReinforce(ReinforcementCategory category)
+    public bool PlusReinforce(ReinforcementCategory category)
     {
         if (MaxReinforcableCount == null)
-            return;
+            return false;
         if (ReinforcementCost == null)
-            return;
+            return false;
 
         if (MaxReinforcableCount.ContainsKey(category))
         {
             if (MaxReinforcableCount[category] <= curReinforcableCount[category])
             {
+                editor.ChangePlusButtons(category, false);
                 Debug.Log($"이미 최대 강화상태입니다: type:{category}");
-                return;
+                return false;
+            }
+            if (curSoul < ReinforcementCost[category])
+            {
+                Debug.Log("영혼 양이 부족합니다.");
+                return false;
             }
             curReinforcableCount[category]++;
-
+            UpdatePlayerReinforcement(category);
+            curSoul -= ReinforcementCost[category];
+            editor.ChangeMinusButtons(category, true);
+            updateUI(category);
         }
+        else
+        {
+            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
+            return false;
+        }
+        return true;
     }
+    public bool MinusReinforce(ReinforcementCategory category)
+    {
+        if (MaxReinforcableCount == null)
+            return false;
+        if (ReinforcementCost == null)
+            return false;
+
+        if (MaxReinforcableCount.ContainsKey(category))
+        {
+            if (0 >= curReinforcableCount[category])
+            {
+                editor.ChangeMinusButtons(category, false);
+                Debug.Log($"강화가 되어있지 않습니다: type:{category}");
+                return false;
+            }
+            curReinforcableCount[category]--;
+            UpdatePlayerReinforcement(category);
+            curSoul += ReinforcementCost[category];
+            editor.ChangePlusButtons(category, true);
+            updateUI(category);
+        }
+        else
+        {
+            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
+            return false;
+        }
+        return true;
+    }
+
 
     private void UpdatePlayerReinforcement(ReinforcementCategory category)
     {
@@ -107,6 +152,32 @@ public class Reinforcement : MonoBehaviour
             default:
                 Debug.Log("알 수 없는 타입 입력됨.");
                 break;
+        }
+    }
+
+    private void updateUI(ReinforcementCategory category)
+    {
+        editor.ChangeSouls();
+        editor.ChangeNowStatus(category);
+    }
+
+    private ReinforcementCategory ConvertInttoEnum(int value)
+    {
+        switch(value)
+        {
+            case 0:
+                return ReinforcementCategory.HP;
+            case 1:
+                return ReinforcementCategory.Potion;
+            case 2:
+                return ReinforcementCategory.ATK;
+            case 3:
+                return ReinforcementCategory.SP;
+            case 4:
+                return ReinforcementCategory.Special;
+            default:
+                Debug.Log("유효하지 않은 값 감지됨");
+                return ReinforcementCategory.Error;
         }
     }
 }

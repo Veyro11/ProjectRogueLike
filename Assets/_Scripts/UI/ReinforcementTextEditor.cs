@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class ReinforcementTextEditor : MonoBehaviour
 {
     [SerializeField] Transform motherTransform;
-    [SerializeField] PlayerSO _player;
+    [SerializeField] PlayerStatus _player;
     Reinforcement reinforcement;
 
     private void Start()
