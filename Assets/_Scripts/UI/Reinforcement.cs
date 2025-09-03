@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public enum ReinforcementCategory
 {
+    Error,
     HP,
     ATK,
     Potion,
@@ -20,9 +21,11 @@ public class Reinforcement : MonoBehaviour
     [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
     [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
 
+    ReinforcementTextEditor editor;
     private void Start()
     {
         curSoul = _player.MaxSouls;
+        editor = GetComponent<ReinforcementTextEditor>();
         // 세이브/로드 필요 시 해당 코드 수정요망
         curReinforcableCount = new Dictionary<ReinforcementCategory, int>()
         {
@@ -58,13 +61,13 @@ public class Reinforcement : MonoBehaviour
 
     }
 
-    public bool PlusReinforce(ReinforcementCategory category)
+    public bool PlusReinforce(int value)
     {
         if (MaxReinforcableCount == null)
             return false;
         if (ReinforcementCost == null)
             return false;
-
+        ReinforcementCategory category = convertInttoEnum(value);
         if (MaxReinforcableCount.ContainsKey(category))
         {
             if (MaxReinforcableCount[category] <= curReinforcableCount[category])
@@ -80,6 +83,7 @@ public class Reinforcement : MonoBehaviour
             curReinforcableCount[category]++;
             UpdatePlayerReinforcement(category);
             curSoul -= ReinforcementCost[category];
+            updateUI(category);
         }
         else
         {
@@ -139,6 +143,32 @@ public class Reinforcement : MonoBehaviour
             default:
                 Debug.Log("알 수 없는 타입 입력됨.");
                 break;
+        }
+    }
+
+    void updateUI(ReinforcementCategory category)
+    {
+        editor.ChangeSouls();
+        editor.ChangeNowStatus(category);
+    }
+
+    ReinforcementCategory convertInttoEnum(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                return ReinforcementCategory.HP;
+            case 1:
+                return ReinforcementCategory.Potion;
+            case 2:
+                return ReinforcementCategory.ATK;
+            case 3:
+                return ReinforcementCategory.SP;
+            case 4:
+                return ReinforcementCategory.Special;
+            default:
+                Debug.Log("알 수 없는 타입");
+                return ReinforcementCategory.Error;
         }
     }
 }
