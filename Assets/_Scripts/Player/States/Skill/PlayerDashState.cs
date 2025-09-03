@@ -11,9 +11,14 @@ public class PlayerDashState : PlayerBaseState
 
     private float effectDelay = 0.1f;
 
+    private int playerLayer;
+    private int playerDashLayer;
+
     public PlayerDashState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
         dashData = stateMachine.Player.Data.DashData;
+        playerLayer = LayerMask.NameToLayer("Player");
+        playerDashLayer = LayerMask.NameToLayer("PlayerDash");
     }
 
     public override void Enter()
@@ -25,12 +30,16 @@ public class PlayerDashState : PlayerBaseState
 
         Vector2 forceDirection = stateMachine.Player.transform.right * stateMachine.Player.transform.localScale.x;
         stateMachine.Player.ForceReceiver.AddForce(forceDirection * dashData.DashForce);
+
+        stateMachine.Player.gameObject.layer = playerDashLayer;
     }
 
     public override void Exit()
     {
         base.Exit();
         stateMachine.Player.Animator.SetBool(stateMachine.Player.AnimationData.DashParameterHash, false);
+
+        stateMachine.Player.gameObject.layer = playerLayer;
     }
 
     public override void Update()
