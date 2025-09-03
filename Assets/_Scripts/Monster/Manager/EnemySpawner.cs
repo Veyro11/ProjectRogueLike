@@ -4,24 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public static EnemySpawner Instance;
-
-    public List<Enemy> enemies;
     public GameObject enemyPrefab;
-    public Enemy currentEnemy;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
@@ -31,8 +14,7 @@ public class EnemySpawner : MonoBehaviour
     // 보스 생성 메서드, 맵에따라 위치 고정값으로 넣어줄까 생각 중 입니다.
     public void SpawnEnemy()
     {
-        Vector3 spawnPos = Player.Instance.transform.position + new Vector3(-5.1f, 0.3f, 0f);
-        enemies.Add(Instantiate(enemyPrefab, spawnPos, Quaternion.identity).GetComponent<Enemy>());
-        currentEnemy = enemies[0];
+        Vector3 spawnPos = transform.position + new Vector3(0f, 1.3f, 0f);
+        Instantiate(enemyPrefab, spawnPos, Quaternion.identity).GetComponent<Enemy>();
     }
 }

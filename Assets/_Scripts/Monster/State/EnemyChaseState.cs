@@ -36,7 +36,7 @@ public class EnemyChaseState : EnemyBaseState
                                stateMachine.attackRenderer.transform.localPosition.y,
                                stateMachine.attackRenderer.transform.localPosition.z);
 
-        Attack4m = new Vector3(stateMachine.attackRenderer.transform.localPosition.x + 1.5f,
+        Attack4m = new Vector3(stateMachine.attackRenderer.transform.localPosition.x + 1f,
                                stateMachine.attackRenderer.transform.localPosition.y,
                                stateMachine.attackRenderer.transform.localPosition.z);
     }
@@ -119,7 +119,6 @@ public class EnemyChaseState : EnemyBaseState
 
         if (timer > 0) return;
 
-        stateMachine.attackRenderer.transform.localPosition = currentPosition;
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);
         is_2M_AttackReady = true;
         stateMachine.ChangeState(stateMachine.AttackState);
@@ -131,12 +130,11 @@ public class EnemyChaseState : EnemyBaseState
 
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
 
-        stateMachine.attackRenderer.transform.localScale = new Vector3(4f, 1f, 1f);
+        stateMachine.attackRenderer.transform.localScale = new Vector3(3f, 1f, 1f);
         stateMachine.attackRenderer.transform.localPosition = Attack4m;
 
         if (timer > 0) return;
 
-        stateMachine.attackRenderer.transform.localPosition = currentPosition;
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);
         is_4M_AttackReady = true;
         stateMachine.ChangeState(stateMachine.AttackState);
