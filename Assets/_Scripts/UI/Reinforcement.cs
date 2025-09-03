@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public enum ReinforcementCategory
 {
+    Error,
     HP,
     ATK,
     Potion,
@@ -14,16 +15,17 @@ public enum ReinforcementCategory
 
 public class Reinforcement : MonoBehaviour
 {
-    [SerializeField] PlayerSO _player;
-    int curSoul;
+    [SerializeField] PlayerStatus _player;
+    public int curSoul;
     [Header("Reinforcement Config")]
-    [SerializeField] Dictionary<ReinforcementCategory, int> MaxReinforcableCount;
     [SerializeField] Dictionary<ReinforcementCategory, int> ReinforcementCost;
-    Dictionary<ReinforcementCategory, int> curReinforcableCount;
-
+    [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
+    [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
+    ReinforcementTextEditor editor;
     private void Start()
     {
         curSoul = _player.MaxSouls;
+        editor = GetComponent<ReinforcementTextEditor>();
         // 세이브/로드 필요 시 해당 코드 수정요망
         curReinforcableCount = new Dictionary<ReinforcementCategory, int>()
         {
@@ -98,7 +100,7 @@ public class Reinforcement : MonoBehaviour
                 _player.FixSPEfficiency(curReinforcableCount[category]);
                 break;
             case ReinforcementCategory.Special:
-                _player.SpecialUnlocked = curReinforcableCount[category] == 1;
+                _player.SetUnlockTrigger(curReinforcableCount[category] == 1);
                 break;
             default:
                 Debug.Log("알 수 없는 타입 입력됨.");
