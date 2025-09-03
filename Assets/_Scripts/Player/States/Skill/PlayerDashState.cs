@@ -25,12 +25,20 @@ public class PlayerDashState : PlayerBaseState
 
         Vector2 forceDirection = stateMachine.Player.transform.right * stateMachine.Player.transform.localScale.x;
         stateMachine.Player.ForceReceiver.AddForce(forceDirection * dashData.DashForce);
+
+        stateMachine.Player.SetLayer(true);
+
+        stateMachine.Player.PlayerSpriteRenderer.color = new Color(1.5f, 1.5f, 1.5f, 1);
     }
 
     public override void Exit()
     {
         base.Exit();
         stateMachine.Player.Animator.SetBool(stateMachine.Player.AnimationData.DashParameterHash, false);
+
+        stateMachine.Player.SetLayer(false);
+
+        stateMachine.Player.PlayerSpriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     public override void Update()

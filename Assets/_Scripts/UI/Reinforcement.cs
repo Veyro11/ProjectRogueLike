@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections.Generic;
 
 public enum ReinforcementCategory
@@ -15,11 +14,11 @@ public enum ReinforcementCategory
 public class Reinforcement : MonoBehaviour
 {
     [SerializeField] PlayerSO _player;
-    int curSoul;
+    public int curSoul { get; set; }
     [Header("Reinforcement Config")]
-    [SerializeField] Dictionary<ReinforcementCategory, int> MaxReinforcableCount;
     [SerializeField] Dictionary<ReinforcementCategory, int> ReinforcementCost;
-    Dictionary<ReinforcementCategory, int> curReinforcableCount;
+    [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
+    [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
 
     private void Start()
     {
@@ -56,25 +55,62 @@ public class Reinforcement : MonoBehaviour
                 { ReinforcementCategory.Special, 5 }
             };
         }
+
     }
 
-    private void PlusReinforce(ReinforcementCategory category)
+    public bool PlusReinforce(ReinforcementCategory category)
     {
         if (MaxReinforcableCount == null)
-            return;
+            return false;
         if (ReinforcementCost == null)
-            return;
+            return false;
 
         if (MaxReinforcableCount.ContainsKey(category))
         {
             if (MaxReinforcableCount[category] <= curReinforcableCount[category])
             {
                 Debug.Log($"이미 최대 강화상태입니다: type:{category}");
-                return;
+                return false;
+            }
+            if (curSoul < ReinforcementCost[category])
+            {
+                Debug.Log("영혼 양이 부족합니다.");
+                return false;
             }
             curReinforcableCount[category]++;
-            
+            UpdatePlayerReinforcement(category);
+            curSoul -= ReinforcementCost[category];
         }
+        else
+        {
+            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
+            return false;
+        }
+            return true;
+    }
+    public bool MinusReinforce(ReinforcementCategory category)
+    {
+        if (MaxReinforcableCount == null)
+            return false;
+        if (ReinforcementCost == null)
+            return false;
+
+        if (MaxReinforcableCount.ContainsKey(category))
+        {
+            if (0 >= curReinforcableCount[category])
+            {
+                Debug.Log($"강화가 되어있지 않습니다: type:{category}");
+                return false;
+            }
+            curReinforcableCount[category]--;
+            UpdatePlayerReinforcement(category);
+        }
+        else
+        {
+            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
+            return false;
+        }
+        return true;
     }
 
     private void UpdatePlayerReinforcement(ReinforcementCategory category)
