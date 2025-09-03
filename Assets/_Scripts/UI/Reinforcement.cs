@@ -1,7 +1,7 @@
-//using System.Collections.Generic;
 //using UnityEngine;
 //using UnityEngine.UI;
-//using static UnityEditor.Experimental.GraphView.GraphView;
+//using TMPro;
+//using System.Collections.Generic;
 
 //public enum ReinforcementCategory
 //{
@@ -14,17 +14,15 @@
 
 //public class Reinforcement : MonoBehaviour
 //{
-//    PlayerStatus _player;
-//    public int curSoul { get; set; }
+//    [SerializeField] PlayerSO _player;
+//    int curSoul;
 //    [Header("Reinforcement Config")]
+//    [SerializeField] Dictionary<ReinforcementCategory, int> MaxReinforcableCount;
 //    [SerializeField] Dictionary<ReinforcementCategory, int> ReinforcementCost;
-//    [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
-//    [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
+//    Dictionary<ReinforcementCategory, int> curReinforcableCount;
 
 //    private void Start()
 //    {
-//        _player = Player.Instance.playerstat;
-
 //        curSoul = _player.MaxSouls;
 //        // 세이브/로드 필요 시 해당 코드 수정요망
 //        curReinforcableCount = new Dictionary<ReinforcementCategory, int>()
@@ -58,62 +56,25 @@
 //                { ReinforcementCategory.Special, 5 }
 //            };
 //        }
-
 //    }
 
-//    public bool PlusReinforce(ReinforcementCategory category)
+//    private void PlusReinforce(ReinforcementCategory category)
 //    {
 //        if (MaxReinforcableCount == null)
-//            return false;
+//            return;
 //        if (ReinforcementCost == null)
-//            return false;
+//            return;
 
 //        if (MaxReinforcableCount.ContainsKey(category))
 //        {
 //            if (MaxReinforcableCount[category] <= curReinforcableCount[category])
 //            {
 //                Debug.Log($"이미 최대 강화상태입니다: type:{category}");
-//                return false;
-//            }
-//            if (curSoul < ReinforcementCost[category])
-//            {
-//                Debug.Log("영혼 양이 부족합니다.");
-//                return false;
+//                return;
 //            }
 //            curReinforcableCount[category]++;
-//            UpdatePlayerReinforcement(category);
-//            curSoul -= ReinforcementCost[category];
+            
 //        }
-//        else
-//        {
-//            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
-//            return false;
-//        }
-//            return true;
-//    }
-//    public bool MinusReinforce(ReinforcementCategory category)
-//    {
-//        if (MaxReinforcableCount == null)
-//            return false;
-//        if (ReinforcementCost == null)
-//            return false;
-
-//        if (MaxReinforcableCount.ContainsKey(category))
-//        {
-//            if (0 >= curReinforcableCount[category])
-//            {
-//                Debug.Log($"강화가 되어있지 않습니다: type:{category}");
-//                return false;
-//            }
-//            curReinforcableCount[category]--;
-//            UpdatePlayerReinforcement(category);
-//        }
-//        else
-//        {
-//            Debug.Log($"알 수 없는 카테고리가 호출되었습니다: type:{category}");
-//            return false;
-//        }
-//        return true;
 //    }
 
 //    private void UpdatePlayerReinforcement(ReinforcementCategory category)
@@ -137,11 +98,12 @@
 //                _player.FixSPEfficiency(curReinforcableCount[category]);
 //                break;
 //            case ReinforcementCategory.Special:
-//                //_player.SpecialUnlocked = curReinforcableCount[category] == 1;
+//                _player.SpecialUnlocked = curReinforcableCount[category] == 1;
 //                break;
 //            default:
 //                Debug.Log("알 수 없는 타입 입력됨.");
 //                break;
+
 //        }
 //    }
 //}
