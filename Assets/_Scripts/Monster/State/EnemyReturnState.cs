@@ -66,7 +66,7 @@ public class EnemyReturnState : EnemyBaseState
     }
 
 
-    //플레이어를 바라보게 하는 메서드 입니다.
+    //플레이어를 반대로 바라보게 하는 메서드 입니다.
     public override void LookPlayer()
     {
         lookDirection = stateMachine.spawnPosition - stateMachine.Enemy.transform.position;

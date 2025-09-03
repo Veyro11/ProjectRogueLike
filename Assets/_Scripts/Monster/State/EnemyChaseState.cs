@@ -7,9 +7,13 @@ public class EnemyChaseState : EnemyBaseState
     private bool isReady = false;
     public bool is_2M_Attack = false;
     public bool is_4M_Attack = false;
+    public bool is_2M_AttackReady = false;
+    public bool is_4M_AttackReady = false;
     public Vector3 currentPosition;
     public Vector3 Attack2m;
     public Vector3 Attack4m;
+
+    private int random;
 
     public EnemyChaseState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -17,9 +21,14 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void Enter()
     {
+        random = Random.Range(0, 2);
+
         timer = 0.7f;
         is_2M_Attack = false;
         is_4M_Attack = false;
+        is_2M_AttackReady = false;
+        is_4M_AttackReady = false;
+
         StartAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
         currentPosition = stateMachine.attackRenderer.transform.localPosition;
 
@@ -53,7 +62,7 @@ public class EnemyChaseState : EnemyBaseState
         base.Update();
 
         StartChasing();
-        ReadyToAttack();
+        RandomReadyToAttack();
 
         if (!isReady) return;
         timer -= Time.deltaTime;
@@ -73,10 +82,10 @@ public class EnemyChaseState : EnemyBaseState
         if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_2m && !isReady)
         {
             Debug.Log("공격준비");
-           
+
             isReady = true;
             is_2M_Attack = true;
-           
+
             StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
             StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
         }
@@ -84,10 +93,10 @@ public class EnemyChaseState : EnemyBaseState
         else if (Vector3.Distance(stateMachine.targetTransform.position, stateMachine.ownerTransform.position) < attackDIstance_4m && !isReady)
         {
             Debug.Log("공격준비");
-           
+
             isReady = true;
             is_4M_Attack = true;
-           
+
             StopAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
             StartAnimation(stateMachine.Enemy.AnimationData.AttackReadyParameterHash);
         }
@@ -99,28 +108,62 @@ public class EnemyChaseState : EnemyBaseState
     }
 
     // 공격전 모션 실행하는 메서드 입니다.
-    public void ReadyToAttack()
+    public void ReadyToAttack_2M()
     {
         if (!isReady) return;
 
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
-        
 
-        if (is_2M_Attack)
-        {
-            stateMachine.attackRenderer.transform.localScale = new Vector3(2f, 1f, 1f);
-            stateMachine.attackRenderer.transform.localPosition = Attack2m;
-        }
-        else if (is_4M_Attack)
-        {
-            stateMachine.attackRenderer.transform.localScale = new Vector3(4f, 1f, 1f);
-            stateMachine.attackRenderer.transform.localPosition = Attack4m;
-        }
+        stateMachine.attackRenderer.transform.localScale = new Vector3(2f, 1f, 1f);
+        stateMachine.attackRenderer.transform.localPosition = Attack2m;
 
         if (timer > 0) return;
 
         stateMachine.attackRenderer.transform.localPosition = currentPosition;
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);
+        is_2M_AttackReady = true;
         stateMachine.ChangeState(stateMachine.AttackState);
     }
+
+    public void ReadyToAttack_4M()
+    {
+        if (!isReady) return;
+
+        stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
+
+        stateMachine.attackRenderer.transform.localScale = new Vector3(4f, 1f, 1f);
+        stateMachine.attackRenderer.transform.localPosition = Attack4m;
+
+        if (timer > 0) return;
+
+        stateMachine.attackRenderer.transform.localPosition = currentPosition;
+        stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);
+        is_4M_AttackReady = true;
+        stateMachine.ChangeState(stateMachine.AttackState);
+    }
+
+    //미리 2인지 인지 골라서 보내기? 여기서 랜덤으로 뽑고
+    //2m일경우 is_2M_Attack만 트루
+    //4m일 경우 랜덤
+
+    private void RandomReadyToAttack()
+    {
+        if (is_2M_Attack)
+        {
+            switch (random)
+            {
+                case 0:
+                    ReadyToAttack_2M();
+                    break;
+                case 1:
+                    ReadyToAttack_4M();
+                    break;
+            }
+        }
+        else if (is_4M_Attack)
+        {
+            ReadyToAttack_4M();
+        }
+    }
+
 }

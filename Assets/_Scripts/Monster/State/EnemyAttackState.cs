@@ -25,15 +25,7 @@ public class EnemyAttackState : EnemyBaseState
 
         triggerStart = 0.5f;
 
-        // 2M에서 공격 했을 경우 랜덤 공격 4M에서 봤을 경우 4M공격 고정하는 조건문 입니다.
-        if (stateMachine.ChaseState.is_2M_Attack)
-        {
-            ChooseRandomAttack();
-        }
-        else if (stateMachine.ChaseState.is_4M_Attack)
-        {
-            currentAttackPattern = AttackPattern_4M;
-        }
+        ChooseAttack();
 
         Debug.Log(stateMachine.ChaseState.is_2M_Attack.ToString() + stateMachine.ChaseState.is_4M_Attack.ToString());
     }
@@ -77,7 +69,6 @@ public class EnemyAttackState : EnemyBaseState
     private void AttackPattern_2M()
     {
         timer -= Time.deltaTime;
-
 
         if (triggerStart <= 0 && !isTrigger)
         {
@@ -127,20 +118,16 @@ public class EnemyAttackState : EnemyBaseState
     }
 
     //랜덤공격 시 50퍼센트 확률로 공격모션을 골라주는 메서드 입니다.
-    private void ChooseRandomAttack()
+    private void ChooseAttack()
     {
-        int random = Random.Range(0, 2);
- 
-        switch (random)
+        if (stateMachine.ChaseState.is_2M_AttackReady)
         {
-            case 0:
-                currentAttackPattern = AttackPattern_2M;
-                Debug.Log("2M");
-                break;
-            case 1:
-                currentAttackPattern = AttackPattern_4M;
-                Debug.Log("4M");
-                break;
+            currentAttackPattern = AttackPattern_2M ;
+        }
+        else if (stateMachine.ChaseState.is_4M_AttackReady)
+        {
+            currentAttackPattern = AttackPattern_4M;
         }
     }
+    
 }
