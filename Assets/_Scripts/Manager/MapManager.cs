@@ -25,9 +25,9 @@ public class MapManager : MonoBehaviour
     public void TransitionToMap(string mapName, Vector3 playerPosition)
     {
         // 모든 맵 비활성화
-        //villageMap.SetActive(false);
+        villageMap.SetActive(false);
         firstStageMap.SetActive(false);
-
+        secStageMap.SetActive(false);
         // 대상 맵 활성화
         switch (mapName)
         {
@@ -45,5 +45,7 @@ public class MapManager : MonoBehaviour
         // 플레이어 위치 이동
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = playerPosition;
+
+       
     }
 }
