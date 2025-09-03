@@ -75,6 +75,8 @@ public class Player : MonoBehaviour
 
         playerLayer = LayerMask.NameToLayer("Player");
         playerDashLayer = LayerMask.NameToLayer("PlayerDash");
+
+        playerstat = GetComponent<PlayerStatus>();
     }
 
     private void Start()
