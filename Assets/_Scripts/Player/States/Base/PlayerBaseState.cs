@@ -195,27 +195,37 @@ public class PlayerBaseState : IState
     {
         ledgePosition = Vector2.zero;
         Transform playerTransform = stateMachine.Player.transform;
+        LayerMask groundLayer = LayerMask.GetMask("Ground");
 
-        float ledgeSearchDistance = 2f;
-        Vector2 ledgeCheckStart = new Vector2(wallHit.point.x + 0.1f * playerTransform.localScale.x, wallHit.collider.bounds.max.y + 0.1f);
-        Debug.DrawRay(ledgeCheckStart, Vector2.down * ledgeSearchDistance, Color.blue);
-        RaycastHit2D ledgeHit = Physics2D.Raycast(ledgeCheckStart, Vector2.down, ledgeSearchDistance, LayerMask.GetMask("Ground"));
+        float searchStep = 0.1f;
+        float maxSearchHeight = 1f;
 
-        if (ledgeHit.collider != null)
+        float directionX = Mathf.Sign(playerTransform.localScale.x);
+        Vector2 forwardDir = new Vector2(directionX, 0f);
+
+        Vector2 startPos = wallHit.point + forwardDir * 0.1f;
+
+        RaycastHit2D ledgeHit = Physics2D.Raycast(startPos, Vector2.up, maxSearchHeight, groundLayer);
+        Debug.DrawRay(startPos, Vector2.up * maxSearchHeight, Color.green);
+
+        if (ledgeHit.collider == null)
         {
-            float ledgeHeight = ledgeHit.point.y;
-            float playerRefHeight = stateMachine.Player.WallCheck.position.y;
-            float heightDifference = ledgeHeight - playerRefHeight;
+            return false;
+        }
 
-            if (heightDifference > 0 && heightDifference <= stateMachine.Player.WallClimbHeight)
-            {
-                ledgePosition = ledgeHit.point + new Vector2(0, 1f);
-                return true;
-            }
+        float ledgeHeight = ledgeHit.point.y;
+        float playerHeight = stateMachine.Player.WallCheck.position.y;
+        float heightDiff = ledgeHeight - playerHeight;
+
+        if (heightDiff > 0 && heightDiff <= stateMachine.Player.WallClimbHeight)
+        {
+            ledgePosition = ledgeHit.point + Vector2.up * 1f;
+            return true;
         }
 
         return false;
     }
+
 
     public void OntriggerEnter2D(Collider2D collision)  //TODO : 나중에 수정해야함
     {
