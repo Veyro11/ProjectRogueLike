@@ -98,7 +98,7 @@ public class PlayerSO : ScriptableObject
     { AttackPower += 10f + amount*5f; }
 
     public void FixAttackSpeed(int amount)
-    { AttackSpeed += 1 - amount*0.1f; }
+    { AttackSpeed += amount*0.1f; }
 
     public void SetMaxSouls(int amount)
     { MaxSouls = amount; }
