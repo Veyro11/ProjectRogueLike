@@ -31,7 +31,7 @@ public class Potal : MonoBehaviour
 
     void Update()
     {
-        if (canTransport && Input.GetKeyDown(KeyCode.W))
+        if (canTransport && Input.GetKeyDown(KeyCode.E))
         {
             FadeManager.Instance.RequestTeleport(targetMapName, destination.position);
         }
