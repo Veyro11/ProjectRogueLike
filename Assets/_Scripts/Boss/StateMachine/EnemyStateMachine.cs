@@ -7,6 +7,7 @@ public class EnemyStateMachine : StateMachine
 {
     public Enemy Enemy { get; }
 
+    public EnemyGroundChecker enemyGroundChecker;
     public SpriteRenderer attackRenderer;
     public BoxCollider2D attackCollider;
     public Transform targetTransform;
@@ -36,7 +37,9 @@ public class EnemyStateMachine : StateMachine
         attackRenderer = enemy.attackRenderer;
 
         attackCollider = enemy.transform.Find("AttackRange").GetComponent<BoxCollider2D>();
+        enemyGroundChecker = enemy.gameObject.GetComponentInChildren<EnemyGroundChecker>();
     }
+
     public void OnTriggerEnter2D(Collider2D collider)
     {
         currentState?.OntriggerEnter2D(collider);

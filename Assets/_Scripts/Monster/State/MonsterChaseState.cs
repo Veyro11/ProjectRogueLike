@@ -64,7 +64,7 @@ public class MonsterChaseState : MonsterBaseState
     public void StartChasing()
     {
         //기본적인 추적 로직, 공격 준비 중일 땐 추적을 멈추기 위해 bool값을 사용했습니다.
-        if (!isReady && EnemyGroundChecker.Instance.IsGroundChecker())
+        if (!isReady && stateMachine.monsterGroundChecker.IsGroundChecker())
         {
             Vector3 dir = (stateMachine.targetTransform.position - stateMachine.ownerTransform.position).normalized;
 
