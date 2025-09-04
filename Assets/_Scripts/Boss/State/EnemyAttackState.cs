@@ -82,9 +82,11 @@ public class EnemyAttackState : EnemyBaseState
         {
             //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
             //stateMachine.attackCollider.size = new Vector2(1.5f, stateMachine.attackCollider.size.y);
-            
+
             //Debug.Log(stateMachine.attackCollider.size);
+            AudioManager.Instance.PlaySFX("Boss_Attack");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
+            animationStarted = true;
         }
 
         if (timer <= 0f)
@@ -109,9 +111,11 @@ public class EnemyAttackState : EnemyBaseState
         {
             //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
             //stateMachine.attackCollider.size = new Vector2(2.5f, stateMachine.attackCollider.size.y);
-           
+
             //Debug.Log(stateMachine.attackCollider.size);
+            AudioManager.Instance.PlaySFX("Boss_Attack");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
+            animationStarted = true;
         }
 
         if (timer <= 0f)

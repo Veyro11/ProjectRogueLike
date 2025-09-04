@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int Damage)
     {
         StartCoroutine(ChangeColor());
+        AudioManager.Instance.PlaySFX("Boss_Damage");
         stateMachine.Enemy.EnemyData.HP -= Damage;
     }
 

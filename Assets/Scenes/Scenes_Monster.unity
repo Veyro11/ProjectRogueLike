@@ -8546,7 +8546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmClips: []
-  bgmVolume: 1
+  bgmVolume: 0.5
   sfxClips: []
   sfxVolume: 1
   channel: 12
@@ -9089,7 +9089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803916419335333679, guid: 7282ac6dfa6b96f419209371b414a7c8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9112,7 +9112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8710964667104925345
 Transform:
   m_ObjectHideFlags: 0
