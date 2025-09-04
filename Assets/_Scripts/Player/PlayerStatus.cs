@@ -16,6 +16,7 @@ public class PlayerStatus : MonoBehaviour
     public int SPEfficiency { get; private set; }
     public bool SpecialUnlocked { get; private set; }
     public float MoveSpeed { get; private set; }
+    public float InvincibilityTime { get; private set; }
 
 
     private void Start()
@@ -79,8 +80,16 @@ public class PlayerStatus : MonoBehaviour
         MoveSpeed = amount;
     }
 
-    public void Load()
+    public void Load(PlayerSaveData data)
     {
-
+        MaxHealth = data.MaxHealth;
+        Player.Instance.currentHealth = data.CurHealth;
+        AttackPower = data.AttackPower;
+        MaxSouls = data.MaxSouls;
+        MaxPotions = data.MaxPotions;
+        MaxSP = data.MaxSP;
+        CurSP = data.curSP;
+        InvincibilityTime = data.InvincibilityTime;
+        SpecialUnlocked = data.SpecialUnlocked;
     }
 }

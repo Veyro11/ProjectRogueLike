@@ -1,17 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public GameObject Main;
     public GameObject camera;
 
     public Animator titleAnimator;
 
+    public Button loadButton;
 
-    private void Start()
+    public SaveLoadManager saveLoadManager;
+
+    private string savePath;
+
+    private void Awake()
     {
+        saveLoadManager = GetComponentInChildren<SaveLoadManager>();
+
+        savePath = System.IO.Path.Combine(Application.persistentDataPath, "playerdata.json");
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+
+    IEnumerator Start()
+    {
+        AudioManager.Instance.StopBGM();
+
+        if (System.IO.File.Exists(savePath))
+        {
+            loadButton.interactable = true;
+            Debug.Log(Application.persistentDataPath);
+        }
+        else
+        {
+            loadButton.interactable = false;
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
         AudioManager.Instance.PlayBGM("Title");
     }
 
@@ -25,6 +64,14 @@ public class GameManager : MonoBehaviour
     {
         titleAnimator.SetBool("Start", true);
         StartCoroutine(Delay());
+    }
+
+    public void LoadGame()
+    {
+        titleAnimator.SetBool("Start", true);
+        StartCoroutine(Delay());
+
+        saveLoadManager.LoadData();
     }
 
     private IEnumerator Delay()

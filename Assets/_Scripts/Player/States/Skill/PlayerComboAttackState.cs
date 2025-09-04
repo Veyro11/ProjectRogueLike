@@ -109,7 +109,7 @@ public class PlayerComboAttackState : PlayerAttackState
                     Debug.Log(monster.MonsterData.HP);
                 }
 
-                    float randomAngle = Random.Range(0f, 360f);
+                float randomAngle = Random.Range(0f, 360f);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
 
                 ObjectPoolManager.Instance.GetFromPool(Player.Instance.slashPrefab, enemyPosition, randomRotation);

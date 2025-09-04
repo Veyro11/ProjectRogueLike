@@ -42,7 +42,6 @@ public class SaveLoadManager : MonoBehaviour
     private void Start()
     {
         player = Player.Instance;
-
         PlayerStatus playerstat = player.playerstat;
 }
 
@@ -54,8 +53,14 @@ public class SaveLoadManager : MonoBehaviour
         saveData.MaxSP = playerstat.MaxSP;
         saveData.MaxSouls = playerstat.MaxSouls;
         saveData.MaxPotions = playerstat.MaxPotions;
-        saveData.CurHealth = playerstat.CurHealth;
+        saveData.CurHealth = player.currentHealth;
         saveData.SpecialUnlocked = playerstat.SpecialUnlocked;
+
+        saveData.BgmVolume = AudioManager.Instance.bgmVolume;
+        saveData.SFXVolume = AudioManager.Instance.sfxVolume;
+
+        saveData.PlayerX = 51.70639f;
+        saveData.PlayerY = 0.5607741f;
 
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(savePath, json);
@@ -69,6 +74,12 @@ public class SaveLoadManager : MonoBehaviour
             string json = File.ReadAllText(savePath);
             PlayerSaveData loadData = JsonUtility.FromJson<PlayerSaveData>(json);
 
+            playerstat.Load(loadData);
+
+            player.transform.position = new Vector3(loadData.PlayerX, loadData.PlayerY, player.transform.position.z);
+
+            AudioManager.Instance.bgmVolume = loadData.BgmVolume;
+            AudioManager.Instance.sfxVolume = loadData.SFXVolume;
 
             Debug.Log($"불러옴 {savePath}");
         }
