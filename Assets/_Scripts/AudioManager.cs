@@ -21,12 +21,9 @@ public class AudioManager : MonoBehaviour
             audioClips.Add(clip.name, clip);
         }
 
-        int i = 0;
-
         foreach (var item in audioClips)
         {
-            i++;
-            Debug.Log($"파일명: {item.Key}, AudioClip: {item.Value} ,{i}");
+            Debug.Log($"파일- {item.Key}, Clip- {item.Value} ");
         }
     }
 }
