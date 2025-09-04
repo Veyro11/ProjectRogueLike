@@ -9,6 +9,11 @@ public class SPBar : MonoBehaviour
     [SerializeField] RectTransform _Stretcher;
     [SerializeField] PlayerStatus _Player;
     Coroutine _coroutineController;
+
+    private void Start()
+    {
+        _Stretcher.sizeDelta = new Vector2(0, 54f);
+    }
     IEnumerator AdjustHPBar(float currentSP, float targetSP)
     {
         int count = 1;
