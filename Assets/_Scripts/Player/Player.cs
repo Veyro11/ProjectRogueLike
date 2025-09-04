@@ -164,6 +164,7 @@ public class Player : MonoBehaviour
     {
 
         Debug.Log("YOU DIE");
+        UIManager.Instance.SetGameOver();
         // 게임오버 함수 추가
     }
 
