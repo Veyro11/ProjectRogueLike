@@ -14,6 +14,7 @@ public class UIManager : SingletonMono<UIManager>
     ///<numbers>
     private InputAction PauseAction;
     private InputAction ConfigAction;
+    private InputAction ReinforceAction;
 
     void OnEnable()
     {
@@ -21,18 +22,31 @@ public class UIManager : SingletonMono<UIManager>
         PauseAction.performed += ctx => SetPause();
         ConfigAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/backquote");
         ConfigAction.performed += ctx => SetConfig();
+        ReinforceAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/e");
+        ReinforceAction.performed += ctx => SetReinforced();
     }
 
     private void Start()
     {
         PauseAction.Disable();
         ConfigAction.Disable();
+        ReinforceAction.Disable();
     }
 
     public void readyInput()
     {
         PauseAction.Enable();
         ConfigAction.Enable();
+    }
+
+    public void Eenable()
+    {
+        ReinforceAction.Enable();
+    }
+
+    public void Edisable()
+    {
+        ReinforceAction.Disable();
     }
 
     public void SetPause()
@@ -43,13 +57,15 @@ public class UIManager : SingletonMono<UIManager>
     public void SetConfig()
     {
         UIs[1].gameObject.SetActive(true);
-    }    
+    }
 
     public void SetReinforced()
     {
-        UIs[3].gameObject.SetActive(true);
+        UIs[3].gameObject.SetActive(true);         // UI 활성화
+        Time.timeScale = 0f;                // 게임 시간 멈춤
+        Cursor.visible = true;              // 커서 보이기 (필요시)
+        Cursor.lockState = CursorLockMode.None;
     }
-
     public void SetGameOver()
     {
         UIs[2].gameObject.SetActive(true);

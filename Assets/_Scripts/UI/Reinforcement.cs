@@ -24,6 +24,12 @@ public class Reinforcement : MonoBehaviour
     [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
     [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
     ReinforcementTextEditor editor;
+    List<ReinforcementCategory> category = new List<ReinforcementCategory>() {
+        ReinforcementCategory.HP,
+        ReinforcementCategory.Potion,
+        ReinforcementCategory.ATK,
+        ReinforcementCategory.SP,
+        ReinforcementCategory.Special};
     private void Start()
     {
         curSoul = _player.MaxSouls;
@@ -66,6 +72,10 @@ public class Reinforcement : MonoBehaviour
     private void OnEnable()
     {
         Player.Instance.PauseUser(false);
+        foreach(var i in category)
+        {
+            updateUI(i);
+        }
     }
     private void OnDisable()
     {
@@ -153,16 +163,16 @@ public class Reinforcement : MonoBehaviour
         switch (category)
             {
             case ReinforcementCategory.HP:
-                _player.FixMaxHealth(curReinforcableCount[category]);
+                _player.FixMaxHealth(curReinforcableCount[category]*30);
                 break;
             case ReinforcementCategory.Potion:
                 _player.SetMaxPotions(curReinforcableCount[category]);
                 break;
             case ReinforcementCategory.ATK:
-                _player.FixAttackPower(curReinforcableCount[category]);
+                _player.FixAttackPower(curReinforcableCount[category]*2);
                 break;
             case ReinforcementCategory.SP:
-                _player.FixSPEfficiency(curReinforcableCount[category]);
+                _player.FixSPEfficiency(curReinforcableCount[category]*5);
                 break;
             case ReinforcementCategory.Special:
                 _player.SetUnlockTrigger(curReinforcableCount[category] == 1);
