@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class GameOver : MonoBehaviour
 {
@@ -12,17 +13,31 @@ public class GameOver : MonoBehaviour
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        if (Player.Instance == null)
+        {
+            Debug.Log("플레이어 인스턴스 눌리퍼런스 발생");
+            return;
+        }
+        Player.Instance.PauseUser(false);
+        StartCoroutine(fadeInOut(true));
     }
 
-    private void OnEnable()
-    {
-        fadeInOut(true);
-    }
+    //private void OnEnable()
+    //{
+    //    if (Player.Instance == null)
+    //    {
+    //        Debug.Log("플레이어 인스턴스 눌리퍼런스 발생");
+    //        return;
+    //    }
+    //    Player.Instance.PauseUser(true);
+    //    fadeInOut(true);
+    //}
 
     public void Continue()
     {
-        FadeManager.Instance.RequestTeleport("VillageMap", VillageSpawnPoint.GetComponent<Vector3>());
-        fadeInOut(false);
+        FadeManager.Instance.RequestTeleport("VillageMap", VillageSpawnPoint.position);
+        Player.Instance.PauseUser(true);
+        StartCoroutine(fadeInOut(false));
         gameObject.SetActive(false);
     }
 
@@ -30,7 +45,7 @@ public class GameOver : MonoBehaviour
     {
         if (mode)
         {
-            for (int i = 0; i < 100; i++)
+            for (float i = 0; i < 100; i++)
             {
                 canvasGroup.alpha = i / 100f;
                 yield return null;
@@ -38,12 +53,22 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            for (int i = 100; i >= 0; i--)
+            for (float i = 100; i >= 0; i--)
             {
                 canvasGroup.alpha = i / 100f;
                 yield return null;
             }
         }
+    }
+
+    public void QuitGame()
+    {
+        // Save Method Insert
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
 }
