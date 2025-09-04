@@ -63,6 +63,14 @@ public class Reinforcement : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Player.Instance.PauseUser(false);
+    }
+    private void OnDisable()
+    {
+        Player.Instance.PauseUser(true);
+    }
     public void PlusReinforce(int value)
     {
         ReinforcementCategory category = ConvertInttoEnum(value);
