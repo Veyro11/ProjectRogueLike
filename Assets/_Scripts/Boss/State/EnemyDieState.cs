@@ -30,7 +30,7 @@ public class EnemyDieState : EnemyBaseState
 
     public override void Update()
     {
-        
+
     }
 
     public void Dying()
@@ -39,6 +39,24 @@ public class EnemyDieState : EnemyBaseState
         // 아직 아이템이 없어서 나온다면 드랍하도록 적용 해 주면 될 것 같습니다.
         AudioManager.Instance.PlaySFX("Boss_Death");
         Object.Destroy(stateMachine.Enemy.gameObject);
+
+        //Find로 찾을 때 SetActive가 false면 못찾아와서 찾아오게 바꿨습니다 나중에 캐싱 해 둘까요?
+        GameObject secStagePortal = null;
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == "SecStagePotal")
+            {
+                secStagePortal = obj;
+                break;
+            }
+        }
+        Debug.Log(secStagePortal);
+        if (secStagePortal != null)
+        {
+            secStagePortal.SetActive(true);
+        }
+
         Debug.Log("보스사망 전" + Player.Instance.playerstat.MaxSouls);
         Player.Instance.playerstat.SetMaxSouls(3);
 

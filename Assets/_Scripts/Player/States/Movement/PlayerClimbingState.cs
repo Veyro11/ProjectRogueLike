@@ -21,6 +21,8 @@ public class PlayerClimbingState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlaySFX("Landing");
+
         StartAnimation(stateMachine.Player.AnimationData.ClimbingParameterHash);
         StartAnimation(stateMachine.Player.AnimationData.AirParameterHash);
 

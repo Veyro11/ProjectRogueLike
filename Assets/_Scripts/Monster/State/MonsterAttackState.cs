@@ -64,6 +64,7 @@ public class MonsterAttackState : MonsterBaseState
 
         if (triggerStart <= 0 && !isTrigger)
         {
+            AudioManager.Instance.PlaySFX("Monster_Swing1");
             stateMachine.Monster.attackCollider2D.enabled = true;
             isTrigger = true;
         }

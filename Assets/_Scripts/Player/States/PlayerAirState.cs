@@ -29,7 +29,7 @@ public class PlayerAirState : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
-        AudioManager.Instance.PlaySFX("Landing");
+        
         StopAnimation(stateMachine.Player.AnimationData.AirParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.JumpParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.FallParameterHash);
@@ -43,10 +43,12 @@ public class PlayerAirState : PlayerBaseState
         {
             if (stateMachine.MovementInput == Vector2.zero)
             {
+                AudioManager.Instance.PlaySFX("Landing");
                 stateMachine.ChangeState(stateMachine.IdleState);
             }
             else
             {
+                AudioManager.Instance.PlaySFX("Landing");
                 stateMachine.ChangeState(
                     stateMachine.IsRunning
                     ? stateMachine.RunState
