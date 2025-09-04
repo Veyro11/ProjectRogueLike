@@ -39,6 +39,8 @@ public class EnemyDieState : EnemyBaseState
         // 아직 아이템이 없어서 나온다면 드랍하도록 적용 해 주면 될 것 같습니다.
         AudioManager.Instance.PlaySFX("Boss_Death");
         Object.Destroy(stateMachine.Enemy.gameObject);
+        GameObject secStagePortal = GameObject.Find("SecStagePortal");
+        secStagePortal.SetActive(true);
         Debug.Log("보스사망 전" + Player.Instance.playerstat.MaxSouls);
         Player.Instance.playerstat.SetMaxSouls(3);
 
