@@ -24,6 +24,9 @@ public class PlayerBaseState : IState
 
     protected virtual void AddInputActionsCallbacks()
     {
+        if (!Player.Instance.pause)
+            return;
+
         PlayerController input = stateMachine.Player.Input;
         input.playerActions.Movement.canceled += OnMovementCanceled;
 
