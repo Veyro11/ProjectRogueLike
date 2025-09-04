@@ -55,7 +55,8 @@ public class Monster : MonoBehaviour
     {
         StartCoroutine(ChangeColor());
         stateMachine.Monster.MonsterData.HP -= Damage;
-        BarEventManager.Instance.SPBarCall(Player.Instance.Data.curSP, Player.Instance.Data.curSP + 1);
+        Player.Instance.playerstat.AddSP(1);
+        BarEventManager.Instance.SPBarCall(Player.Instance.Data.curSP-1, Player.Instance.Data.curSP);
     }
 
     public IEnumerator ChangeColor()

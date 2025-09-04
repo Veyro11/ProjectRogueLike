@@ -1180,7 +1180,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2733639073039444552}
         m_TargetAssemblyTypeName: Config, Assembly-CSharp
         m_MethodName: SEControll
-        m_Mode: 4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1601,7 +1601,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2733639073039444552}
         m_TargetAssemblyTypeName: Config, Assembly-CSharp
         m_MethodName: BGControll
-        m_Mode: 4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
