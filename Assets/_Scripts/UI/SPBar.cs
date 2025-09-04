@@ -26,10 +26,10 @@ public class SPBar : MonoBehaviour
     }
 
     // SP 회복시/사용시마다 호출
-    public void Change(float target)
+    public void Change(float origin, float target)
     {
         if (_coroutineController != null)
         { StopCoroutine(_coroutineController); }
-        _coroutineController = StartCoroutine(AdjustHPBar(_Player.CurSP, target));
+        _coroutineController = StartCoroutine(AdjustHPBar(origin, target));
     }
 }

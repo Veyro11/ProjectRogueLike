@@ -5,12 +5,15 @@ class BarEventManager : SingletonMono<BarEventManager>
     [SerializeField] BossBar BossBar;
     [SerializeField] HPBar HPBar;
     [SerializeField] SPBar SPBar;
+    [SerializeField] PlayerStatus _player;
 
-    public void BossBarCall(float targetValue)
+
+
+    public void BossBarCall(float originvalue, float targetValue)
     {
         if (BossBar != null)
         {
-            BossBar.Change(targetValue);
+            BossBar.Change(originvalue, targetValue);
         }
         else
         {
@@ -18,26 +21,31 @@ class BarEventManager : SingletonMono<BarEventManager>
         }
     }
 
-    public void HPBarCall(float targetValue)
+    public void HPBarCall(float originvalue, float targetValue)
     {
         if (HPBar != null)
         {
-            HPBar.Change(targetValue);
+            HPBar.Change(originvalue, targetValue);
         }
         else
         {
             Debug.Log("BossBar 오브젝트 미할당");
         }
     }
-    public void SPBarCall(float targetValue)
+    public void SPBarCall(float originvalue, float targetValue)
     {
         if (SPBar != null)
         {
-            SPBar.Change(targetValue);
+            SPBar.Change(originvalue, targetValue);
         }
         else
         {
             Debug.Log("BossBar 오브젝트 미할당");
         }
+    }
+
+    private void Update()
+    {
+        
     }
 }

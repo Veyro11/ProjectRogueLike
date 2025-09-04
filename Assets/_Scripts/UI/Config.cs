@@ -6,14 +6,20 @@ public class Config : MonoBehaviour
 {
     [SerializeField] AudioManager audioManager;
 
-    public void BGControll(float intensity)
+    Slider slider;
+
+    public void BGControll()
     {
-        audioManager.bgmVolume = intensity;
+        slider = transform.GetChild(2).GetChild(2).GetComponent<Slider>();
+        float intensity = slider.value;
+        audioManager.SetBGMVolume(intensity);
     }
 
-    public void SEControll(float intensity)
+    public void SEControll()
     {
-        audioManager.sfxVolume = intensity;
+        slider = transform.GetChild(2).GetChild(3).GetComponent<Slider>();
+        float intensity = slider.value;
+        audioManager.SetSFXVolume(intensity);
     }
 
     public void exit()

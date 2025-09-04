@@ -27,10 +27,10 @@ public class BossBar : MonoBehaviour
     }
 
     // 데미지 받았을 때 마다 호출
-    public void Change(float target)
+    public void Change(float origin, float target)
     {
         if (_coroutineController != null)
         { StopCoroutine(_coroutineController); }
-        _coroutineController = StartCoroutine(AdjustUIBar(_Monster.HP, target));
+        _coroutineController = StartCoroutine(AdjustUIBar(origin, target));
     }
 }

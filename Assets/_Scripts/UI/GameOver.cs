@@ -8,30 +8,20 @@ using UnityEditor;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] Transform VillageSpawnPoint;
+    [SerializeField] SaveLoadManager SaveLoadManager;
     CanvasGroup canvasGroup;
 
-    private void Start()
+
+    private void OnEnable()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
         if (Player.Instance == null)
         {
             Debug.Log("플레이어 인스턴스 눌리퍼런스 발생");
             return;
         }
-        Player.Instance.PauseUser(false);
-        StartCoroutine(fadeInOut(true));
+        Player.Instance.PauseUser(true);
+        fadeInOut(true);
     }
-
-    //private void OnEnable()
-    //{
-    //    if (Player.Instance == null)
-    //    {
-    //        Debug.Log("플레이어 인스턴스 눌리퍼런스 발생");
-    //        return;
-    //    }
-    //    Player.Instance.PauseUser(true);
-    //    fadeInOut(true);
-    //}
 
     public void Continue()
     {
@@ -64,6 +54,8 @@ public class GameOver : MonoBehaviour
     public void QuitGame()
     {
         // Save Method Insert
+        SaveLoadManager.SaveData();
+
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else
