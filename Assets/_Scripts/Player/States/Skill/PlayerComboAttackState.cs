@@ -27,6 +27,8 @@ public class PlayerComboAttackState : PlayerAttackState
         attackInfoData = stateMachine.Player.Data.AttakData.GetAttackInfo(comboIndex);
         stateMachine.Player.Animator.SetInteger("Combo", comboIndex);
 
+        AudioManager.Instance.PlaySFX("Sword" + comboIndex);
+
         HitEnemy = new List<Collider2D>();
     }
 
@@ -117,6 +119,6 @@ public class PlayerComboAttackState : PlayerAttackState
         alreadyApplyForce = true;
 
         Vector2 forceDirection = stateMachine.Player.transform.right * stateMachine.Player.transform.localScale.x;
-        stateMachine.Player.ForceReceiver.AddForce(forceDirection * attackInfoData.Force);
+        stateMachine.Player.ForceReceiver.AddForceAttack(forceDirection * attackInfoData.Force);
     }
 }

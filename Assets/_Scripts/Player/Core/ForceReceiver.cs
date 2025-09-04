@@ -20,6 +20,12 @@ public class ForceReceiver : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
+    public void AddForceAttack(Vector2 force)
+    {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
     public void Reset()
     {
         rb.velocity = Vector2.zero;
