@@ -20,6 +20,8 @@ public class PlayerDashState : PlayerBaseState
     {
         base.Enter();
 
+        AudioManager.Instance.PlaySFX("Dash");
+
         dashStartTime = Time.time;
         stateMachine.Player.Animator.SetBool(stateMachine.Player.AnimationData.DashParameterHash, true);
 
