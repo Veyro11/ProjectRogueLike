@@ -121,8 +121,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: MinusReinforce
         m_Mode: 3
         m_Arguments:
@@ -1791,8 +1791,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: MinusReinforce
         m_Mode: 3
         m_Arguments:
@@ -2134,8 +2134,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: PlusReinforce
         m_Mode: 3
         m_Arguments:
@@ -2765,8 +2765,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: PlusReinforce
         m_Mode: 3
         m_Arguments:
@@ -3108,8 +3108,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: PlusReinforce
         m_Mode: 3
         m_Arguments:
@@ -3527,8 +3527,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: MinusReinforce
         m_Mode: 3
         m_Arguments:
@@ -3553,13 +3553,14 @@ GameObject:
   - component: {fileID: 6600607564347355681}
   - component: {fileID: 2340152530774091377}
   - component: {fileID: 1469061074160907979}
+  - component: {fileID: 3388098750029446875}
   m_Layer: 5
   m_Name: Reinforcements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5982176835647194193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3658,7 +3659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  curSoul: 0
 --- !u!114 &1469061074160907979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3673,6 +3673,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motherTransform: {fileID: 6676175535182663615}
   _player: {fileID: 0}
+--- !u!114 &3388098750029446875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756113317597224392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d235916e0e2f204f85ecc3a89ab517f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reinforcement: {fileID: 2340152530774091377}
+  editor: {fileID: 1469061074160907979}
 --- !u!1 &4871003057803017354
 GameObject:
   m_ObjectHideFlags: 0
@@ -5692,8 +5706,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: MinusReinforce
         m_Mode: 3
         m_Arguments:
@@ -6035,8 +6049,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: PlusReinforce
         m_Mode: 3
         m_Arguments:
@@ -6244,8 +6258,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: PlusReinforce
         m_Mode: 3
         m_Arguments:
@@ -6800,8 +6814,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2340152530774091377}
-        m_TargetAssemblyTypeName: Reinforcement, Assembly-CSharp
+      - m_Target: {fileID: 3388098750029446875}
+        m_TargetAssemblyTypeName: ReinforceManager, Assembly-CSharp
         m_MethodName: MinusReinforce
         m_Mode: 3
         m_Arguments:

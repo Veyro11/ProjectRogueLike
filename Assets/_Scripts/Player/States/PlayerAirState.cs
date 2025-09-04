@@ -29,7 +29,7 @@ public class PlayerAirState : PlayerBaseState
     public override void Exit()
     {
         base.Exit();
-
+        AudioManager.Instance.PlaySFX("Landing");
         StopAnimation(stateMachine.Player.AnimationData.AirParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.JumpParameterHash);
         StopAnimation(stateMachine.Player.AnimationData.FallParameterHash);

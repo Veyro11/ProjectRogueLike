@@ -9,6 +9,7 @@ public class PlayerStatus : MonoBehaviour
     public float AttackPower { get; private set; }
     public float AttackSpeed { get; private set; }
     public int MaxSouls { get; private set; }
+    public int CurSouls { get; private set; }
     public int MaxPotions { get; private set; }
     public int MaxSP { get; private set; }
     public int CurSP { get; private set; }
@@ -39,7 +40,13 @@ public class PlayerStatus : MonoBehaviour
         //MoveSpeed = Data.
     }
 
+    public void AddSP(int amount)
+    {
+        CurSP += amount;
+    }
 
+    public void SetSoul(int amount)
+    { CurSouls += amount; }
     public void FixMaxHealth(int amount)
     { MaxHealth = 100f + amount * 30f; }
 

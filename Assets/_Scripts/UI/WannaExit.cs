@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WannaExit : MonoBehaviour
 {
+    [SerializeField] SaveLoadManager SLmanager;
     CanvasGroup canvasGroup;
     private void Start()
     {
@@ -23,7 +24,9 @@ public class WannaExit : MonoBehaviour
 
     public void quitGame()
     {
-        // Save Method Insert
+        SLmanager.SaveData();
+
+
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else

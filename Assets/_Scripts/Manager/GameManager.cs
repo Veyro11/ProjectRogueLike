@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
         camera.SetActive(false);
     }
 
-
-
     public void StartGame()
     {
         titleAnimator.SetBool("Start", true);
@@ -36,6 +34,8 @@ public class GameManager : MonoBehaviour
         Player.Instance.PauseUser(true);
 
         AudioManager.Instance.PlayBGM("Battle");
+        UIManager.Instance.SetHUD();
+        UIManager.Instance.readyInput();
     }
 
 }

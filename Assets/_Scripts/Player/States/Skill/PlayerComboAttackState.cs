@@ -88,17 +88,23 @@ public class PlayerComboAttackState : PlayerAttackState
             if (!HitEnemy.Contains(enemyCollider))
             {
                 Enemy enemy = enemyCollider.GetComponent<Enemy>();
-                Debug.Log("데미지");
 
                 Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
 
                 if (enemy != null)
                 {
+                    
                     enemy.TakeDamage(damage);
                     Debug.Log(enemy.EnemyData.HP);
                 }
+                else
+                {
+                    Monster monster = enemyCollider.GetComponent<Monster>();
+                    monster.TakeDamage(damage);
+                    Debug.Log(monster.MonsterData.HP);
+                }
 
-                float randomAngle = Random.Range(0f, 360f);
+                    float randomAngle = Random.Range(0f, 360f);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
 
                 ObjectPoolManager.Instance.GetFromPool(Player.Instance.slashPrefab, enemyPosition, randomRotation);

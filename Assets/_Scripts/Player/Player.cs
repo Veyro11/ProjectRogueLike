@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, playerstat.MaxHealth);
 
         Debug.Log($"피해량체크- {damage} 남은체력- {currentHealth}");
-
+        BarEventManager.Instance.HPBarCall(currentHealth+damage, currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -164,6 +164,7 @@ public class Player : MonoBehaviour
     {
 
         Debug.Log("YOU DIE");
+        UIManager.Instance.SetGameOver();
         // 게임오버 함수 추가
     }
 
