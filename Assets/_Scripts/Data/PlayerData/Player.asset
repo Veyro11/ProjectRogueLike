@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983c4a7c67905b8489324e11c77cd8d4, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  CurHealth: 100
+  curSP: 0
+  SpecialUnlocked: 0
   <GroundData>k__BackingField:
     <BaseSpeed>k__BackingField: 6
     <BaseRotationDamping>k__BackingField: 1
     <WalkSpeedModifier>k__BackingField: 0.8
     <RunSpeedModifier>k__BackingField: 1
   <AirData>k__BackingField:
-    <JumpForce>k__BackingField: 7
+    <JumpForce>k__BackingField: 5
   <AttakData>k__BackingField:
     <AttackInfoDatas>k__BackingField:
     - <AttackName>k__BackingField: Attack
