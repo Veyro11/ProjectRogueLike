@@ -6,6 +6,7 @@ public class MonsterStateMachine : StateMachine
 {
     public Monster Monster { get; }
 
+    public EnemyGroundChecker monsterGroundChecker;
     public SpriteRenderer attackRenderer;
     public BoxCollider2D attackCollider;
     public Transform targetTransform;
@@ -35,6 +36,7 @@ public class MonsterStateMachine : StateMachine
         attackRenderer = monster.attackRenderer;
 
         attackCollider = monster.transform.Find("AttackRange").GetComponent<BoxCollider2D>();
+        monsterGroundChecker = monster.gameObject.GetComponentInChildren<EnemyGroundChecker>();
     }
     public void OnTriggerEnter2D(Collider2D collider)
     {

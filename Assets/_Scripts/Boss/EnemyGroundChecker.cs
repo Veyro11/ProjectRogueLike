@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class EnemyGroundChecker : MonoBehaviour
 {
-    public static EnemyGroundChecker Instance;
-   
     public Transform groundCheck;          // 발밑 위치
     public LayerMask groundLayer;          // Ground 레이어
     public float groundCheckDistance = 0.3f; // 레이 길이
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
 
     private void Start()
     {
