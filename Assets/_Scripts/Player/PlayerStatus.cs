@@ -14,6 +14,7 @@ public class PlayerStatus : MonoBehaviour
     public int CurSP { get; private set; }
     public int SPEfficiency { get; private set; }
     public bool SpecialUnlocked { get; private set; }
+    public float MoveSpeed { get; private set; }
 
 
     private void Start()
@@ -35,6 +36,7 @@ public class PlayerStatus : MonoBehaviour
         CurSP = 0;
         SPEfficiency = Data.SPEfficiency;
         SpecialUnlocked = false;
+        //MoveSpeed = Data.
     }
 
 
@@ -60,6 +62,11 @@ public class PlayerStatus : MonoBehaviour
     {
         SpecialUnlocked = trigger;
     }
+    public void SetMoveSpeed(float amount)
+    {
+        MoveSpeed = amount;
+    }
+
     public void Load()
     {
 

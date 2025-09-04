@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
     public PlayerStatus playerstat;
 
+    public bool pause;
+
     private void Awake()
     {
         //초기화

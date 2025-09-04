@@ -42,7 +42,7 @@ public class PlayerStateMachine : StateMachine
         RunState = new PlayerRunState(this);
         JumpState = new PlayerJumpState(this);
 
-        MainCameraTransform = Camera.main.transform;
+        //MainCameraTransform = Camera.main.transform;
 
         MovementSpeed = player.Data.GroundData.BaseSpeed;
         RotationDamping = player.Data.GroundData.BaseRotationDamping;
