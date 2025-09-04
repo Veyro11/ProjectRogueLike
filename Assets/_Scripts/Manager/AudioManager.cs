@@ -26,7 +26,8 @@ public class AudioManager : SingletonMono<AudioManager>
 
     private void Start()
     {
-        //PlayBGM("Title");
+        PlayBGM("Title");
+        PlayBGM("Battle");
     }
 
     private void InIt()
@@ -137,5 +138,26 @@ public class AudioManager : SingletonMono<AudioManager>
     public void StopBGM()
     {
         bgmPlayer.Stop();
+    }
+
+    // BGM 볼륨 조절
+    public void SetBGMVolume(float volume)
+    {
+        bgmVolume = volume;       // 내부 값 갱신
+        if (bgmPlayer != null)
+            bgmPlayer.volume = bgmVolume;
+    }
+
+    // SFX 볼륨 조절
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = volume;       // 내부 값 갱신
+        if (sfxPlayers != null)
+        {
+            foreach (var player in sfxPlayers)
+            {
+                player.volume = sfxVolume;
+            }
+        }
     }
 }
