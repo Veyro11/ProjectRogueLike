@@ -35,7 +35,7 @@ public class MonsterDieState : MonsterBaseState
 
     public void Dying()
     {
-
+        AudioManager.Instance.PlaySFX("Boss_Death");
         Object.Destroy(stateMachine.Monster.gameObject);
     }
 }
