@@ -13,7 +13,7 @@ public class EnemyData
 
     public EnemyData()
     {
-        HP = 10;
+        HP = 300;
         Attack = 30;
         AttackCoolTime = 0.5f;
         MoveSpeed = 0.8f;
