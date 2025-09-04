@@ -49,7 +49,8 @@ public class Player : MonoBehaviour
 
     public PlayerStatus playerstat;
 
-    public bool pause;
+    public bool pause { get; private set; }
+    public bool playerDie { get; private set; }
 
     private void Awake()
     {
@@ -101,6 +102,11 @@ public class Player : MonoBehaviour
         stateMachine.PhysicsUpdate();
 
         DrawGroundCheckRay();
+    }
+
+    public void PauseUser(bool a)
+    {
+        pause = a;
     }
 
 

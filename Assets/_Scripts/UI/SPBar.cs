@@ -5,36 +5,31 @@ using UnityEngine.Timeline;
 
 public class SPBar : MonoBehaviour
 {
-    float _curLength;
+    int _maxLength = 620;
     [SerializeField] RectTransform _Stretcher;
-    [SerializeField] PlayerSO _Player;
-    [SerializeField] float Test;
+    [SerializeField] PlayerStatus _Player;
     Coroutine _coroutineController;
-    IEnumerator AdjustHPBar(float currentHP, float targetHP)
+    IEnumerator AdjustHPBar(float currentSP, float targetSP)
     {
         int count = 1;
-        Debug.Log(_Player.MaxHealth);
-        float lengthCoefficient = 620f / _Player.MaxHealth;
-        while (count <= 2.5f/Time.deltaTime)
+        Debug.Log(_Player.MaxSP);
+        float lengthCoefficient = _maxLength / _Player.MaxSP;
+        while (count <= 2.5f / Time.deltaTime)
         {
-            float length = targetHP*lengthCoefficient + 10f / (0.5f*count+10f) * (currentHP-targetHP)*lengthCoefficient;
-            Debug.Log(length + "," + _Player.CurHealth);
+            float length = targetSP * lengthCoefficient + 10f / (0.5f * count + 10f) * (currentSP - targetSP) * lengthCoefficient;
+            Debug.Log(length + "," + _Player.CurSP);
             _Stretcher.sizeDelta = new Vector2(length, 54f);
-            _curLength = length;
             count++;
             yield return null;
         }
-        _Stretcher.sizeDelta = new Vector2(targetHP*lengthCoefficient, 54f);
-        _coroutineController = null;
+        _Stretcher.sizeDelta = new Vector2(targetSP * lengthCoefficient, 54f);
     }
 
-    public void Change()
+    // SP 회복시/사용시마다 호출
+    public void Change(float target)
     {
-        if (_coroutineController != null) 
-        { 
-            StopCoroutine(_coroutineController);
-            _coroutineController = StartCoroutine(AdjustHPBar(_curLength, Test));
-        }
-        _coroutineController = StartCoroutine(AdjustHPBar(_Player.CurHealth, Test));
+        if (_coroutineController != null)
+        { StopCoroutine(_coroutineController); }
+        _coroutineController = StartCoroutine(AdjustHPBar(_Player.CurSP, target));
     }
 }

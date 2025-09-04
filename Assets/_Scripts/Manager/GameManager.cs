@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public Animator titleAnimator;
 
 
+    private void Start()
+    {
+        AudioManager.Instance.PlayBGM("Title");
+    }
 
     public void EnableMainCamera()
     {
@@ -29,7 +33,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.0f);
 
-        Player.Instance.pause = true;
+        Player.Instance.PauseUser(true);
+
+        AudioManager.Instance.PlayBGM("Battle");
     }
 
 }
