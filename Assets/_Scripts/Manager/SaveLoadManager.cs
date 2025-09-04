@@ -10,16 +10,19 @@ public class PlayerSaveData
     public float MaxHealth;
     public float CurHealth;
     public float AttackPower;
-    public float AttackSpeed;
+
     public int MaxSouls;
     public int MaxPotions;
     public int MaxSP;
     public int curSP;
-    public int SPEfficiency;
+    public int InvincibilityTime;
     public bool SpecialUnlocked;
 
     public float PlayerX;
     public float PlayerY;
+
+    public float BgmVolume;
+    public float SFXVolume;
 }
 
 public class SaveLoadManager : MonoBehaviour
@@ -52,6 +55,8 @@ public class SaveLoadManager : MonoBehaviour
         saveData.MaxSouls = playerstat.MaxSouls;
         saveData.MaxPotions = playerstat.MaxPotions;
         saveData.CurHealth = playerstat.CurHealth;
+        saveData.SpecialUnlocked = playerstat.SpecialUnlocked;
+
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(savePath, json);
         Debug.Log($"저장됨 {savePath}");
