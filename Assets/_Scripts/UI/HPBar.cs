@@ -16,7 +16,7 @@ public class HPBar : MonoBehaviour
         float lengthCoefficient = _maxLength / _Player.MaxHealth;
         while (count <= 2.5f/Time.deltaTime)
         {
-            float length = targetHP*lengthCoefficient + 10f / (0.5f*count+10f) * (currentHP-targetHP)*lengthCoefficient;
+            float length = targetHP*lengthCoefficient + 10f / (0.5f*count+10f) *(currentHP-targetHP)*lengthCoefficient;
             Debug.Log(length + "," + _Player.CurHealth);
             _Stretcher.sizeDelta = new Vector2(length, 60f);
             count++;

@@ -22,7 +22,7 @@ public class UIManager : SingletonMono<UIManager>
         PauseAction.performed += ctx => SetPause();
         ConfigAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/backquote");
         ConfigAction.performed += ctx => SetConfig();
-        ReinforceAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/e");
+        ReinforceAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/f");
         ReinforceAction.performed += ctx => SetReinforced();
     }
 
@@ -39,12 +39,12 @@ public class UIManager : SingletonMono<UIManager>
         ConfigAction.Enable();
     }
 
-    public void Eenable()
+    public void Fenable()
     {
         ReinforceAction.Enable();
     }
 
-    public void Edisable()
+    public void Fdisable()
     {
         ReinforceAction.Disable();
     }

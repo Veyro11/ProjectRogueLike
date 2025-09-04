@@ -57,8 +57,6 @@ public class Enemy : MonoBehaviour
         AudioManager.Instance.PlaySFX("Boss_Damage");
         stateMachine.Enemy.EnemyData.HP -= Damage;
         BarEventManager.Instance.BossBarCall(stateMachine.Enemy.EnemyData.HP+Damage, stateMachine.Enemy.EnemyData.HP);
-        Player.Instance.playerstat.AddSP(1);
-        BarEventManager.Instance.SPBarCall(Player.Instance.Data.curSP - 1, Player.Instance.Data.curSP);
     }
 
     public IEnumerator ChangeColor()

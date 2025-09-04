@@ -14,15 +14,15 @@ public class SPBar : MonoBehaviour
     {
         _Stretcher.sizeDelta = new Vector2(0, 54f);
     }
-    IEnumerator AdjustHPBar(float currentSP, float targetSP)
+    IEnumerator AdjustSPBar(float currentSP, float targetSP)
     {
         int count = 1;
-        Debug.Log(_Player.MaxSP);
+        Debug.Log(currentSP +","+targetSP+" ==??");
         float lengthCoefficient = _maxLength / _Player.MaxSP;
         while (count <= 2.5f / Time.deltaTime)
         {
-            float length = targetSP * lengthCoefficient + 10f / (0.5f * count + 10f) * (currentSP - targetSP) * lengthCoefficient;
-            Debug.Log(length + "," + _Player.CurSP);
+            float length = (targetSP * lengthCoefficient) + 10f / (0.5f * count + 10f) * (currentSP - targetSP) * lengthCoefficient;
+            Debug.Log(length + "length + " + _Player.CurSP);
             _Stretcher.sizeDelta = new Vector2(length, 54f);
             count++;
             yield return null;
@@ -35,6 +35,6 @@ public class SPBar : MonoBehaviour
     {
         if (_coroutineController != null)
         { StopCoroutine(_coroutineController); }
-        _coroutineController = StartCoroutine(AdjustHPBar(origin, target));
+        _coroutineController = StartCoroutine(AdjustSPBar(origin, target));
     }
 }

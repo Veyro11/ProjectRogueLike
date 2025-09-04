@@ -91,9 +91,14 @@ public class PlayerComboAttackState : PlayerAttackState
 
                 Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
 
+                if (Player.Instance.playerstat.CurSP < Player.Instance.playerstat.MaxSP)
+                { 
+                    BarEventManager.Instance.SPBarCall(Player.Instance.playerstat.CurSP, Player.Instance.playerstat.CurSP + 1);
+                    Player.Instance.playerstat.AddSP(1);
+                }
+
                 if (enemy != null)
                 {
-                    
                     enemy.TakeDamage(damage);
                     Debug.Log(enemy.EnemyData.HP);
                 }

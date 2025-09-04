@@ -43,6 +43,11 @@ public class PlayerStatus : MonoBehaviour
     public void AddSP(int amount)
     {
         CurSP += amount;
+        Debug.Log($"SP: {CurSP}");
+        if (CurSP >= MaxSP)
+        {
+            CurSP = MaxSP;
+        }
     }
 
     public void SetSoul(int amount)
