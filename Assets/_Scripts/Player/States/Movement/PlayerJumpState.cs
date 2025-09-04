@@ -15,6 +15,8 @@ public class PlayerJumpState : PlayerAirState
 
         base.Enter();
 
+        AudioManager.Instance.PlaySFX("Jump");
+
         StopAnimation(stateMachine.Player.AnimationData.FallParameterHash);
         StartAnimation(stateMachine.Player.AnimationData.JumpParameterHash);
     }
