@@ -33,9 +33,6 @@ public class PlayerStateMachine : StateMachine
 
     public PlayerStateMachine(Player player)
     {
-        if (Player.Instance.pause)
-            return;
-
         this.Player = player;
 
         AirState = new PlayerAirState(this);

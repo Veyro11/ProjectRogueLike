@@ -16,17 +16,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (Player.Instance.pause)
-            return;
-
         playerInput.Enable();
     }
 
     private void OnDisable()
     {
-        if (Player.Instance.pause)
-            return;
-
         playerInput.Disable();
     }
 }
