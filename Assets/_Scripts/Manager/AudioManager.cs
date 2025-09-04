@@ -144,11 +144,11 @@ public class AudioManager : SingletonMono<AudioManager>
     // BGM 볼륨 조절
     public void SetBGMVolume(float volume)
     {
-        Debug.Log($"값조절 전 {bgmPlayer.volume}");
+        //Debug.Log($"값조절 전 {bgmPlayer.volume}");
         bgmVolume = volume;       // 내부 값 갱신
         if (bgmPlayer != null)
             bgmPlayer.volume = bgmVolume;
-        Debug.Log($"값조절 후 {bgmPlayer.volume}");
+        //Debug.Log($"값조절 후 {bgmPlayer.volume}");
     }
 
     // SFX 볼륨 조절
