@@ -10,9 +10,11 @@ public class Potion : MonoBehaviour
 
     private Player player;
 
-    private void Awake()
+    private void Start()
     {
         player = Player.Instance;
+        if (player == null)
+            Debug.LogError("Player Instance is null!");
     }
 
     private void Update()

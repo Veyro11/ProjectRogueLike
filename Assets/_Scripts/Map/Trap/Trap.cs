@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour
     private bool isPlayerInTrap = false;
     private Coroutine damageCoroutine;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -17,7 +17,7 @@ public class Trap : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -27,11 +27,12 @@ public class Trap : MonoBehaviour
         }
     }
 
-    private IEnumerator GiveDamage(Collider player)
+    private IEnumerator GiveDamage(Collider2D player)
     {
         while (isPlayerInTrap)
         {
-            //player.GetComponent<StatusController>().DecreaseHP(damage); 플레이어 체력가져오기
+            Player.Instance.TakeDamage(damage);
+            Debug.Log($"Player took {damage} damage from trap.");
             yield return new WaitForSeconds(1f);
         }
     }
