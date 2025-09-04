@@ -25,7 +25,7 @@ public class SingletonMono<T> : MonoBehaviour where T : MonoBehaviour
         if (instance == null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject); // 씬 전환에도 유지
+            // DontDestroyOnLoad(gameObject); // 씬 전환에도 유지
         }
         else if (instance != this)
         {

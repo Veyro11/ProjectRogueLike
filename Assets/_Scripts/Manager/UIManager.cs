@@ -65,6 +65,13 @@ public class UIManager : SingletonMono<UIManager>
         Time.timeScale = 0f;                // 게임 시간 멈춤
         Cursor.visible = true;              // 커서 보이기 (필요시)
         Cursor.lockState = CursorLockMode.None;
+        if (ReinforceManager.Instance == null)
+        {
+            Debug.Log("강화매니저 눌참조남");
+            return;
+        }
+
+        ReinforceManager.Instance.Refresh();
     }
     public void SetGameOver()
     {

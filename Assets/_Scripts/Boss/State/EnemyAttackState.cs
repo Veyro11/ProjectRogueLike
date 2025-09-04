@@ -84,7 +84,7 @@ public class EnemyAttackState : EnemyBaseState
             //stateMachine.attackCollider.size = new Vector2(1.5f, stateMachine.attackCollider.size.y);
 
             //Debug.Log(stateMachine.attackCollider.size);
-            AudioManager.Instance.PlaySFX("Boss_Attack");
+            AudioManager.Instance.PlaySFX("Boss_Swing1");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
             animationStarted = true;
         }
@@ -113,7 +113,7 @@ public class EnemyAttackState : EnemyBaseState
             //stateMachine.attackCollider.size = new Vector2(2.5f, stateMachine.attackCollider.size.y);
 
             //Debug.Log(stateMachine.attackCollider.size);
-            AudioManager.Instance.PlaySFX("Boss_Attack");
+            AudioManager.Instance.PlaySFX("Boss_Swing2");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
             animationStarted = true;
         }

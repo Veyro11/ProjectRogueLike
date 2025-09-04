@@ -7,42 +7,38 @@ public class ReinforcementTextEditor : MonoBehaviour
 {
     [SerializeField] Transform motherTransform;
     [SerializeField] PlayerStatus _player;
-    Reinforcement reinforcement;
 
-    private void Start()
-    {
-        reinforcement = GetComponent<Reinforcement>();
-    }
+
     public void ChangeSouls()
     {
-        Text text = motherTransform.GetChild(1).GetChild(0).GetComponent<Text>();
-        text.text = $"{reinforcement.curSoul} / {_player.MaxSouls}";
+        TMP_Text text = motherTransform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+        text.text = $"{Player.Instance.playerstat.CurSouls} / {Player.Instance.playerstat.MaxSouls}";
     }
     public void ChangeNowStatus(ReinforcementCategory category)
     {
         Transform nowstatus = motherTransform.GetChild(4);
-        Text text;
+        TMP_Text text;
         switch (category)
         {
             case ReinforcementCategory.HP:
-                text = nowstatus.GetChild(0).GetChild(0).GetComponent<Text>();
-                text.text = $"+{reinforcement.curReinforcableCount[category] * 30} / {reinforcement.MaxReinforcableCount[category] * 30}";
+                text = nowstatus.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+                text.text = $"+{ReinforceManager.Instance.GetCount(category) * 30} / {ReinforceManager.Instance.GetMax(category) * 30}";
                 break;
             case ReinforcementCategory.Potion:
-                text = nowstatus.GetChild(1).GetChild(0).GetComponent<Text>();
-                text.text = $"+{reinforcement.curReinforcableCount[category]} / {reinforcement.MaxReinforcableCount[category]}";
+                text = nowstatus.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+                text.text = $"+{ReinforceManager.Instance.GetCount(category)} / {ReinforceManager.Instance.GetMax(category)}";
                 break;
             case ReinforcementCategory.ATK:
-                text = nowstatus.GetChild(2).GetChild(0).GetComponent<Text>();
-                text.text = $"+{reinforcement.curReinforcableCount[category] * 10} / {reinforcement.MaxReinforcableCount[category] * 10}";
+                text = nowstatus.GetChild(2).GetChild(0).GetComponent<TMP_Text>();
+                text.text = $"+{ReinforceManager.Instance.GetCount(category) * 2} / {ReinforceManager.Instance.GetMax(category) * 2}";
                 break;
             case ReinforcementCategory.SP:
-                text = nowstatus.GetChild(3).GetChild(0).GetComponent<Text>();
-                text.text = $"+{reinforcement.curReinforcableCount[category] * 10}% / {reinforcement.MaxReinforcableCount[category] * 10}%";
+                text = nowstatus.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+                text.text = $"+{ReinforceManager.Instance.GetCount(category) * 5}% / {ReinforceManager.Instance.GetMax(category) * 5}%";
                 break;
             case ReinforcementCategory.Special:
-                text = nowstatus.GetChild(4).GetChild(0).GetComponent<Text>();
-                text.text = reinforcement.curReinforcableCount[category] == 1 ? "UNLOCKED" : "LOCKED";
+                text = nowstatus.GetChild(4).GetChild(0).GetComponent<TMP_Text>();
+                text.text = ReinforceManager.Instance.GetCount(category) == 1 ? "UNLOCKED" : "LOCKED";
                 break;
             default:
                 Debug.Log("알 수 없는 카테고리 타입");
