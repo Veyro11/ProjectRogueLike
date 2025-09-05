@@ -21,7 +21,7 @@ public class Reinforcement : MonoBehaviour
 
     [SerializeField] public Dictionary<ReinforcementCategory, int> ReinforcementCost { get; set; }
     [SerializeField] public Dictionary<ReinforcementCategory, int> MaxReinforcableCount { get; set; }
-    [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount { get; set; }
+    [HideInInspector] public Dictionary<ReinforcementCategory, int> curReinforcableCount;
 
     private void Awake()
     {
