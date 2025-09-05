@@ -24,6 +24,8 @@ public class PlayerStateMachine : StateMachine
     public float JumpForce { get; set; }
     public bool IsRunning { get; set; }
     public int ComboIndex { get; set; }
+    public float LastDashTime { get; set; }
+    public float DashCooldown { get; private set; } = 2f;
     public PlayerDieState DieState { get; private set; }
 
     public bool WantsToContinueCombo { get; set; }
@@ -50,14 +52,12 @@ public class PlayerStateMachine : StateMachine
         RotationDamping = player.Data.GroundData.BaseRotationDamping;
 
         DashState = new PlayerDashState(this);
-
         ClimbingState = new PlayerClimbingState(this);
-
         ComboAttackState = new PlayerComboAttackState(this);
-
         DieState = new PlayerDieState(this);
-
         SpecialAttackState = new PlayerSpecialAttackState(this);
+
+        LastDashTime = -DashCooldown;
 
     }
 }

@@ -42,6 +42,10 @@ public class Player : MonoBehaviour
 
     public GameObject dashPrefab;
 
+    public GameObject specialAttack;
+
+    public GameObject HitEff;
+
     private int playerLayer;
     private int playerDashLayer;
 
@@ -110,6 +114,8 @@ public class Player : MonoBehaviour
     {
         playerstat.CurHealth -= damage;
         playerstat.CurHealth = Mathf.Clamp(playerstat.CurHealth, 0, playerstat.MaxHealth);
+
+        HitEff.SetActive(true);
 
         Debug.Log($"피해량체크- {damage} 남은체력- {playerstat.CurHealth}");
         BarEventManager.Instance.HPBarCall(playerstat.CurHealth + damage, playerstat.CurHealth);

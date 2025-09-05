@@ -11,6 +11,10 @@ public class PlayerSpecialAttackState : PlayerBaseState
     private float recoveryDuration = 0.5f;
     private float attackHeight = 3f;
 
+    private float lastEffectTime;
+
+    private float effectDelay = 0.02f;
+
     private string wallLayer = "Ground";
     private float wallset = 0.5f;
 
@@ -49,7 +53,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
         Transform playerTransform = stateMachine.Player.transform;
 
         Time.timeScale = slowMotionScale;
-        stateMachine.Player.Animator.Play("Special_Charge");
+        stateMachine.Player.Animator.Play("SA");
         yield return new WaitForSecondsRealtime(chargeDuration);
 
         Time.timeScale = 1.0f;
@@ -65,11 +69,21 @@ public class PlayerSpecialAttackState : PlayerBaseState
             endPosition = hit.point - new Vector2(wallset * direction, 0);
         }
 
-        stateMachine.Player.Animator.Play("Special_Slash");
-
         while (Vector2.Distance(playerTransform.position, endPosition) > 0.01f)
         {
             playerTransform.position = Vector2.MoveTowards(playerTransform.position, endPosition, slashSpeed * Time.deltaTime);
+
+            if (Time.time >= lastEffectTime + effectDelay)
+            {
+                Vector3 effectPosition = stateMachine.Player.transform.position;
+
+                Quaternion effectRotation = stateMachine.Player.transform.localScale.x > 0 ?
+                    Quaternion.identity : Quaternion.Euler(0, 180, 0);
+
+                ObjectPoolManager.Instance.GetFromPool(Player.Instance.dashPrefab, effectPosition, effectRotation);
+
+                lastEffectTime = Time.time;
+            }
             yield return null;
         }
         playerTransform.position = endPosition;
@@ -99,6 +113,13 @@ public class PlayerSpecialAttackState : PlayerBaseState
 
             Boss boss = enemyCollider.GetComponent<Boss>();
             if (boss != null) boss.TakeDamage(specialDamage);
+
+            Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, 0f, 0);
+
+            float randomAngle = Random.Range(0f, 360f);
+            Quaternion randomRotation = Quaternion.Euler(0, 0, randomAngle);
+
+            ObjectPoolManager.Instance.GetFromPool(Player.Instance.specialAttack, enemyPosition, randomRotation);
         }
     }
 }

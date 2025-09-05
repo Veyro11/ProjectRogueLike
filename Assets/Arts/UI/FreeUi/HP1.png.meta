@@ -131,7 +131,7 @@ TextureImporter:
         width: 519
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,6 +139,27 @@ TextureImporter:
       bones: []
       spriteID: 80cc6670f8f522c4a891ca233b32ea72
       internalID: -1266566706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HP1_1
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 343
+        width: 51
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf746f9ae12c5d4f9f2a237d20a0884
+      internalID: -1378845209
       vertices: []
       indices: 
       edges: []

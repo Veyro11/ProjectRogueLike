@@ -20,6 +20,7 @@ public class PlayerDashState : PlayerBaseState
     {
         base.Enter();
 
+        stateMachine.LastDashTime = Time.time;
         AudioManager.Instance.PlaySFX("Dash");
 
         dashStartTime = Time.time;
@@ -42,6 +43,7 @@ public class PlayerDashState : PlayerBaseState
 
         stateMachine.Player.PlayerSpriteRenderer.color = new Color(1, 1, 1, 1);
     }
+
 
     public override void Update()
     {

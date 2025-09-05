@@ -6,7 +6,6 @@ class BarEventManager : SingletonMono<BarEventManager>
     [SerializeField] HPBar HPBar;
     [SerializeField] SPBar SPBar;
     [SerializeField] PlayerStatus _player;
-    bool init = false;
 
     private void Start()
     {

@@ -98,15 +98,16 @@ public class PlayerGroundedState : PlayerBaseState
     protected override void OnSpecialAttackStarted(InputAction.CallbackContext context)
     {
         base.OnSpecialAttackStarted(context);
+
         stateMachine.ChangeState(stateMachine.SpecialAttackState);
 
-        //if (stateMachine.Player.playerstat.CurSP >= stateMachine.Player.playerstat.MaxSP)
-        //{
-        //    stateMachine.ChangeState(stateMachine.SpecialAttackState);
-        //}
-        //else
-        //{
-        //    Debug.Log("SP부족");
-        //}
+        if (stateMachine.Player.playerstat.CurSP >= stateMachine.Player.playerstat.MaxSP)
+        {
+            stateMachine.ChangeState(stateMachine.SpecialAttackState);
+        }
+        else
+        {
+            Debug.Log("SP부족");
+        }
     }
 }

@@ -27,7 +27,6 @@ public class GameOver : MonoBehaviour
 
     public void Continue()
     {
-        FadeManager.Instance.RequestTeleport("VillageMap", VillageSpawnPoint.position);
         //StartCoroutine(fadeInOut(false));
         FadeUI.gameObject.SetActive(true);
         Player.Instance.Revive();

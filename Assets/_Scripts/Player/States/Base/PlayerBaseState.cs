@@ -65,7 +65,10 @@ public class PlayerBaseState : IState
 
     protected virtual void OnDashStarted(InputAction.CallbackContext context)
     {
-        stateMachine.ChangeState(stateMachine.DashState);
+        if (Time.time >= stateMachine.LastDashTime + stateMachine.DashCooldown)
+        {
+            stateMachine.ChangeState(stateMachine.DashState);
+        }
     }
 
     protected virtual void OnDashCanceled(InputAction.CallbackContext context)
@@ -86,6 +89,9 @@ public class PlayerBaseState : IState
 
     public virtual void HandleInput()
     {
+        if (!Player.Instance.pause)
+            return;
+
         ReadMovementInput();
     }
 
