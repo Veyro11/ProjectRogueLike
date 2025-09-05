@@ -13,11 +13,15 @@ class BarEventManager : SingletonMono<BarEventManager>
         SetBossBar(false);
     }
 
-    public void BossBarInitCaller(Boss boss)
+    public void BossBarInitCaller(Boss boss = null)
     {
         BossBar.BossSet(boss);
     }
 
+    public void RefreshBossBar()
+    {
+        BossBar.Reset();
+    }
 
     public void BossBarCall(float originvalue, float targetValue)
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossChaseState : BossBaseState
@@ -22,6 +23,8 @@ public class BossChaseState : BossBaseState
     public override void Enter()
     {
         random = Random.Range(0, 2);
+
+
 
         timer = 0.7f;
         is_2M_Attack = false;
@@ -70,9 +73,11 @@ public class BossChaseState : BossBaseState
 
     public void StartChasing()
     {
+        BarEventManager.Instance.RefreshBossBar();
         //기본적인 추적 로직, 공격 준비 중일 땐 추적을 멈추기 위해 bool값을 사용했습니다.
         if (!isReady && stateMachine.enemyGroundChecker.IsGroundChecker())
         {
+            BarEventManager.Instance.SetBossBar(true);
             Vector3 dir = (stateMachine.targetTransform.position - stateMachine.ownerTransform.position).normalized;
 
             stateMachine.ownerTransform.position += dir * stateMachine.Enemy.EnemyData.MoveSpeed * Time.deltaTime;

@@ -8,7 +8,7 @@ public class ReinforcementTextEditor : MonoBehaviour
     [SerializeField] Transform motherTransform;
     [SerializeField] PlayerStatus _player;
 
-    private void Start()
+    private void Update()
     {
         if (ReinforceManager.Instance!=null && !ReinforceManager.Instance.editorTest())
         {

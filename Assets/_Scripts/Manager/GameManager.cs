@@ -82,6 +82,10 @@ public class GameManager : MonoBehaviour
         Player.Instance.PauseUser(true);
 
         AudioManager.Instance.PlayBGM("Battle");
+        if (UIManager.Instance == null) {
+            Debug.Log("유아이매니저 눌참조남...? 왜?");
+        }
+        UIManager.Instance.DebugUIS();
         UIManager.Instance.SetHUD();
         UIManager.Instance.readyInput();
     }

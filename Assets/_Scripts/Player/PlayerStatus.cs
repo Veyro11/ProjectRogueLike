@@ -46,7 +46,6 @@ public class PlayerStatus : MonoBehaviour
     public void AddSP(int amount)
     {
         CurSP += amount;
-        Debug.Log($"SP: {CurSP}");
         if (CurSP >= MaxSP)
         {
             CurSP = MaxSP;
@@ -58,7 +57,7 @@ public class PlayerStatus : MonoBehaviour
     public void SetSoul(int amount)
     { CurSouls += amount; }
     public void FixMaxHealth(int amount)
-    { MaxHealth = 100f + amount * 30f; }
+    { MaxHealth = 100f + amount; }
 
     public void FixAttackPower(int amount)
     { AttackPower += amount; }
@@ -66,9 +65,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void SetMaxSouls(int amount)
     { 
-        MaxSouls = amount;
+        MaxSouls += amount;
         // update curSouls
-        CurSouls = amount;
+        CurSouls = MaxSouls;
         foreach (var i in ReinforceManager.Instance.category)
         {
             CurSouls -= ReinforceManager.Instance.getCost(i) * ReinforceManager.Instance.GetCount(i);
@@ -76,7 +75,10 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public void SetMaxPotions(int amount)
-    { MaxPotions = amount; }
+    { 
+        MaxPotions = amount;
+        CurPotions = MaxPotions;
+    }
 
     public void FixSPEfficiency(int amount)
     { SPEfficiency = 1 + amount; }

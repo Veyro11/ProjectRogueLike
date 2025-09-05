@@ -40,9 +40,9 @@ public class BossBar : MonoBehaviour
     }
 
 
-    public void Init()
+    public void Reset()
     {
-        _Stretcher.sizeDelta = new Vector2(_boss.EnemyData.HP * lengthCoefficient, 83.3333f);
+        _Stretcher.sizeDelta = new Vector2(_maxLength, 83.3333f);
     }
 
     public void BossSet(Boss boss)
