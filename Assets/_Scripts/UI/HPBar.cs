@@ -17,6 +17,7 @@ public class HPBar : MonoBehaviour
     }
     IEnumerator AdjustHPBar(float currentHP, float targetHP)
     {
+        lengthCoefficient = _maxLength / Player.Instance.playerstat.MaxHealth;
         Debug.Log($"HP: {Player.Instance.playerstat.MaxHealth}");
         int count = 1;
         while (count <= 2.5f/Time.deltaTime)

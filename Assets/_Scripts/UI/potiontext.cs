@@ -13,7 +13,7 @@ public class potiontext : MonoBehaviour
     public void updatePotionText()
     {
         if (text == null)
-        { Debug.Log("텍스트 이즈 눌"); return; }
+        { return; }
         text.text = $"{(Player.Instance.playerstat.CurPotions == 0 ? "<color=#FF0000>"+Player.Instance.playerstat.CurPotions+"</color>" : Player.Instance.playerstat.CurPotions)} / {Player.Instance.playerstat.MaxPotions}";
     }
 

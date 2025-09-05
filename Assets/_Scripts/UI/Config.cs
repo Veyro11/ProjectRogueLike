@@ -13,6 +13,16 @@ public class Config : MonoBehaviour
         slider = transform.GetChild(2).GetChild(2).GetComponent<Slider>();
     }
 
+    private void OnEnable()
+    {
+        Player.Instance.PauseUser(false);
+    }
+
+    private void OnDisable()
+    {
+        Player.Instance.PauseUser(true);
+    }
+
     public void BGControll()
     {
         slider = transform.GetChild(2).GetChild(2).GetComponent<Slider>();
