@@ -99,8 +99,6 @@ public class PlayerGroundedState : PlayerBaseState
     {
         base.OnSpecialAttackStarted(context);
 
-        stateMachine.ChangeState(stateMachine.SpecialAttackState);
-
         if (stateMachine.Player.playerstat.CurSP >= stateMachine.Player.playerstat.MaxSP)
         {
             stateMachine.ChangeState(stateMachine.SpecialAttackState);
