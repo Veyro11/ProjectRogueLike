@@ -12,7 +12,7 @@ public class MonsterData
 
     public MonsterData()
     {
-        HP = 5;
+        HP = 50;
         Attack = 10;
         AttackCoolTime = 0.5f;
         MoveSpeed = 0.8f;
