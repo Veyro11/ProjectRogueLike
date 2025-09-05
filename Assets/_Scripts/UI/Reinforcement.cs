@@ -59,7 +59,7 @@ public class Reinforcement : MonoBehaviour
             };
         }
     }
-    private void Start()
+    private void Update()
     {
         if (ReinforceManager.Instance != null && !ReinforceManager.Instance.reinforcementTest())
         {

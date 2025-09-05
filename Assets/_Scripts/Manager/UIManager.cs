@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class UIManager : SingletonMono<UIManager>
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<Transform> UIs;
     ///</numbers>
@@ -12,19 +14,26 @@ public class UIManager : SingletonMono<UIManager>
     ///3: REINFORCEMENT
     ///4: WANNAEXIT
     ///<numbers>
+
+    public static UIManager Instance;
+
     [SerializeField] private potiontext potion;
     private InputAction PauseAction;
     private InputAction ConfigAction;
     private InputAction ReinforceAction;
-
-    void OnEnable()
+    private CanvasGroup canvas;
+    void Awake()
     {
+        Instance = this;
+        canvas = GetComponent<CanvasGroup>();
+        canvas.alpha = 0;
         PauseAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/escape");
         PauseAction.performed += ctx => SetPause();
         ConfigAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/backquote");
         ConfigAction.performed += ctx => SetConfig();
         ReinforceAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/f");
         ReinforceAction.performed += ctx => SetReinforced();
+        StartCoroutine(DelayedExit());
     }
 
     private void Start()
@@ -33,7 +42,20 @@ public class UIManager : SingletonMono<UIManager>
         ConfigAction.Disable();
         ReinforceAction.Disable();
     }
+    IEnumerator DelayedExit()
+    {
+        yield return null;
+        yield return null;
+        yield return null;
+        yield return null;
+        yield return null;
 
+        foreach (Transform t in UIs)
+        {
+            t.gameObject.SetActive(false);
+        }
+        canvas.alpha = 1;
+    }
     public void readyInput()
     {
         PauseAction.Enable();
@@ -87,5 +109,13 @@ public class UIManager : SingletonMono<UIManager>
     public void UpdatePotion()
     {
         potion.updatePotionText();
+    }
+
+    public void DebugUIS()
+    {
+        foreach (var item in UIs)
+        {
+            Debug.Log(item.name);
+        }
     }
 }

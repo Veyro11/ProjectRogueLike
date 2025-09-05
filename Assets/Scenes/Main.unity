@@ -74822,6 +74822,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34888832feaf4db489a074320fb6c4a7, type: 3}
+--- !u!114 &586336611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6578910621977810845, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
+  m_PrefabInstance: {fileID: 1997614687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af2f42e5df849448a56760fd3c7a16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &599050117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78904,6 +78915,7 @@ GameObject:
   - component: {fileID: 1331864854}
   - component: {fileID: 1331864855}
   - component: {fileID: 1331864856}
+  - component: {fileID: 1331864857}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -78966,7 +78978,19 @@ MonoBehaviour:
   - {fileID: 791767128}
   - {fileID: 1230878048}
   - {fileID: 1453339625}
-  potion: {fileID: 0}
+  potion: {fileID: 586336611}
+--- !u!225 &1331864857
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331864853}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!4 &1331922612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6437132181269569401, guid: 34888832feaf4db489a074320fb6c4a7, type: 3}
@@ -79362,6 +79386,10 @@ PrefabInstance:
     - target: {fileID: 4756113317597224392, guid: a0c2e2a81185705488d73fbc94a7528b, type: 3}
       propertyPath: m_Name
       value: Reinforcements
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756113317597224392, guid: a0c2e2a81185705488d73fbc94a7528b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5982176835647194193, guid: a0c2e2a81185705488d73fbc94a7528b, type: 3}
       propertyPath: m_Pivot.x
@@ -100710,14 +100738,6 @@ PrefabInstance:
       propertyPath: _Player
       value: 
       objectReference: {fileID: 10663021}
-    - target: {fileID: 1273622980339168258, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1273622980339168258, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 3254371765840226812, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -100815,8 +100835,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6034835082291898938, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}

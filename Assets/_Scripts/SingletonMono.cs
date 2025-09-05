@@ -10,12 +10,12 @@ public class SingletonMono<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            // 씬에 없더라도 생성되도록
-            if (instance == null)
-            {
-                var singletonGO = new GameObject($"{typeof(T)}");
-                instance = singletonGO.AddComponent<T>(); // Awake() 실행
-            }
+            //// 씬에 없더라도 생성되도록
+            //if (instance == null)
+            //{
+            //    var singletonGO = new GameObject($"{typeof(T)}");
+            //    instance = singletonGO.AddComponent<T>(); // Awake() 실행
+            //}
             return instance;
         }
     }
