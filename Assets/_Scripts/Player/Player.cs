@@ -159,7 +159,17 @@ public class Player : MonoBehaviour
 
         Debug.Log($"체력회복");
     }
+    public void ResetHealthToMax()
+    {
+        currentHealth = playerstat.MaxHealth; // 체력 최대치로 초기화
+    }
 
+    public void ResetAllStatHealth() // 스탯과 체력 초기화
+    {
+        playerstat.ResetStatsToBase();
+        ResetHealthToMax();
+
+    }
     private void Die()
     {
         if (playerDie) return;
