@@ -35,12 +35,12 @@ public class PlayerStatus : MonoBehaviour
         AttackPower = Data.AttackPower;
         AttackSpeed = Data.AttackSpeed;
         MaxSouls = Data.MaxSouls;
+        CurSouls = Data.CurSouls;
         MaxPotions = Data.MaxPotions;
         MaxSP = Data.MaxSP;
         CurSP = 0;
         SPEfficiency = Data.SPEfficiency;
         SpecialUnlocked = false;
-        //MoveSpeed = Data.
     }
 
     public void AddSP(int amount)
@@ -107,6 +107,7 @@ public class PlayerStatus : MonoBehaviour
         Player.Instance.currentHealth = data.CurHealth;
         AttackPower = data.AttackPower;
         MaxSouls = data.MaxSouls;
+        CurSouls = data.CurSouls;
         MaxPotions = data.MaxPotions;
         MaxSP = data.MaxSP;
         CurSP = data.curSP;

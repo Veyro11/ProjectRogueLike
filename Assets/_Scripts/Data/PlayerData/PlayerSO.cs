@@ -74,7 +74,7 @@ public class PlayerSO : ScriptableObject
     public float AttackSpeed { get; private set; } = 0f;
 
     [HideInInspector] public int MaxSouls { get; private set; }
-
+    [HideInInspector] public int CurSouls { get; private set; }
     [HideInInspector] public int MaxPotions { get; private set; }
 
     [Tooltip("스킬 포인트")]
