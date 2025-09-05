@@ -6,7 +6,12 @@ class BarEventManager : SingletonMono<BarEventManager>
     [SerializeField] HPBar HPBar;
     [SerializeField] SPBar SPBar;
     [SerializeField] PlayerStatus _player;
+    bool init = false;
 
+    public void BossBarInitCaller(Boss boss)
+    {
+        BossBar.BossSet(boss);
+    }
 
 
     public void BossBarCall(float originvalue, float targetValue)
