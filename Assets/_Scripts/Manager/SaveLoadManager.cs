@@ -95,7 +95,7 @@ public class SaveLoadManager : MonoBehaviour
             AudioManager.Instance.bgmVolume = loadData.BgmVolume;
             AudioManager.Instance.sfxVolume = loadData.SFXVolume;
 
-            //ReinforceManager.Instance.LoadReinforcementData(loadData);
+            ReinforceManager.Instance.LoadReinforcementData(loadData);
 
             Debug.Log($"불러옴 {savePath}");
         }
