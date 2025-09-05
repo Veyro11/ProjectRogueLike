@@ -19,11 +19,9 @@ public class HPBar : MonoBehaviour
     IEnumerator AdjustHPBar(float currentHP, float targetHP)
     {
         int count = 1;
-        Debug.Log(_Player.MaxHealth);
         while (count <= 2.5f/Time.deltaTime)
         {
             float length = targetHP*lengthCoefficient + 10f / (0.5f*count+10f) *(currentHP-targetHP)*lengthCoefficient;
-            Debug.Log(length + "," + _Player.CurHealth);
             _Stretcher.sizeDelta = new Vector2(length, 60f);
             count++;
             yield return null;

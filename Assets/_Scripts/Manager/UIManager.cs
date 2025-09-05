@@ -12,6 +12,7 @@ public class UIManager : SingletonMono<UIManager>
     ///3: REINFORCEMENT
     ///4: WANNAEXIT
     ///<numbers>
+    [SerializeField] private potiontext potion;
     private InputAction PauseAction;
     private InputAction ConfigAction;
     private InputAction ReinforceAction;
@@ -81,5 +82,10 @@ public class UIManager : SingletonMono<UIManager>
     public void SetHUD()
     {
         UIs[0].gameObject.SetActive(true);
+    }
+
+    public void UpdatePotion()
+    {
+        potion.updatePotionText();
     }
 }

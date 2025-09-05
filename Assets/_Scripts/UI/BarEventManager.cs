@@ -49,4 +49,9 @@ class BarEventManager : SingletonMono<BarEventManager>
             Debug.Log("SPBar 오브젝트 미할당");
         }
     }
+
+    public void SetBossBar(bool State)
+    {
+        BossBar.gameObject.SetActive(State);
+    }
 }
