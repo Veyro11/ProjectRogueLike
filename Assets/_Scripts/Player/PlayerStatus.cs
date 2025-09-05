@@ -67,7 +67,15 @@ public class PlayerStatus : MonoBehaviour
     { AttackSpeed += amount * 0.1f; }
 
     public void SetMaxSouls(int amount)
-    { MaxSouls = amount; }
+    { 
+        MaxSouls = amount;
+        // update curSouls
+        CurSouls = amount;
+        foreach (var i in ReinforceManager.Instance.category)
+        {
+            CurSouls -= ReinforceManager.Instance.getCost(i) * ReinforceManager.Instance.GetCount(i);
+        }
+    }
 
     public void SetMaxPotions(int amount)
     { MaxPotions = amount; }
@@ -84,6 +92,17 @@ public class PlayerStatus : MonoBehaviour
         MoveSpeed = amount;
     }
 
+    public void UsePotion()
+    {
+        if (CurPotions > 0)
+        {
+            CurPotions--;
+            Player.Instance.Heal(30f);
+            Debug.Log($"포션 {CurPotions}");
+            UIManager.Instance.UpdatePotion();
+        }
+
+    }
     public void Load(PlayerSaveData data)
     {
         MaxHealth = data.MaxHealth;

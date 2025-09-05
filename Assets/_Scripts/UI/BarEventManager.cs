@@ -6,7 +6,12 @@ class BarEventManager : SingletonMono<BarEventManager>
     [SerializeField] HPBar HPBar;
     [SerializeField] SPBar SPBar;
     [SerializeField] PlayerStatus _player;
+    bool init = false;
 
+    public void BossBarInitCaller(Boss boss)
+    {
+        BossBar.BossSet(boss);
+    }
 
 
     public void BossBarCall(float originvalue, float targetValue)
@@ -43,5 +48,10 @@ class BarEventManager : SingletonMono<BarEventManager>
         {
             Debug.Log("SPBar 오브젝트 미할당");
         }
+    }
+
+    public void SetBossBar(bool State)
+    {
+        BossBar.gameObject.SetActive(State);
     }
 }
