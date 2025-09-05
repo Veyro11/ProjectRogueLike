@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossDieState : BossBaseState
 {
+    [SerializeField] private GameObject portalPrefab;
     public BossDieState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -56,6 +57,8 @@ public class BossDieState : BossBaseState
         {
             secStagePortal.SetActive(true);
         }
+        
+
 
         Debug.Log("보스사망 전" + Player.Instance.playerstat.MaxSouls);
         Player.Instance.playerstat.SetMaxSouls(3);
