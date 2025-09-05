@@ -33,16 +33,16 @@ public class PlayerSpecialAttackState : PlayerBaseState
     {
         base.Update();
 
-        float normalizedTime = GetNormalizedTime(stateMachine.Player.Animator, "SpecialAttack");
-        if (normalizedTime > 0.5f && normalizedTime < 0.8f)
-        {
-            DealDamage();
-        }
+        //float normalizedTime = GetNormalizedTime(stateMachine.Player.Animator, "SpecialAttack");
+        //if (normalizedTime > 0.5f && normalizedTime < 0.8f)
+        //{
+        //    DealDamage();
+        //}
 
-        if (Time.time >= startTime + animationDuration)
-        {
-            stateMachine.ChangeState(stateMachine.IdleState);
-        }
+        //if (Time.time >= startTime + animationDuration)
+        //{
+        //    stateMachine.ChangeState(stateMachine.IdleState);
+        //}
     }
 
     public override void PhysicsUpdate()

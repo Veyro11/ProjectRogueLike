@@ -164,6 +164,7 @@ public class Player : MonoBehaviour
     {
         if (playerDie) return;
 
+        Animator.SetBool("Die", true);
         playerDie = true;
         Debug.Log("YOU DIE");
         stateMachine.ChangeState(stateMachine.DieState);
