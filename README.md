@@ -9,14 +9,12 @@
 # 팀원 구성
 
 
-# Development Environment(예시로 아무거나 넣었어요)
+# Development Environment
 Language: C#
 
 Engine: Unity 2022.3.2f1
 
 IDE: Visual Studio 2022
-
-Framework: .NET 6.0
 
 
 ## 게임 흐름
@@ -116,3 +114,26 @@ Game Over 시 반투명 레이어 + 재시작/종료 선택
 Game Over 및 UI 클릭 사운드 포함
 
 ## 주요 기술
+상태 머신(FSM, Finite State Machine)
+플레이어, 몬스터, 보스의 행동을 상태 단위(Idle, Chase, Attack, Die 등)로 관리
+각 상태별 로직을 분리하여 코드 유지보수성과 확장성을 강화
+
+오브젝트 풀링(Object Pooling)
+투사체, 이펙트, 피격 판정 등 빈번히 생성/파괴되는 객체를 풀로 관리
+ObjectPoolManager를 통해 성능 최적화 및 GC(가비지 컬렉션) 최소화
+
+오디오 매니저(Audio Manager)
+BGM과 SFX를 리소스(Resources) 폴더 기반으로 로드하여 관리
+싱글톤 패턴 적용, 채널 분리 및 볼륨 제어 지원
+
+카메라 시스템(Cinemachine)
+플레이어를 따라다니는 부드러운 카메라 추적 구현
+줌인/줌아웃, 화면 흔들림(Shake) 연출 적용
+
+아이템 관리(ScriptableObject 기반)
+무기, 스탯, 포션 등 아이템 데이터를 ScriptableObject로 관리
+확장성과 재사용성 강화, 인스펙터 기반 손쉬운 데이터 수정 가능
+
+UI 프레임워크 기반 관리
+HP바, 강화 UI, 팝업 등 UI 요소를 이벤트 기반 시스템으로 관리
+BarEventManager 등을 활용해 데이터 변화 → UI 자동 반영 구조 구축
