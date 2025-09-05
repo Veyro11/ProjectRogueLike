@@ -7,7 +7,7 @@ public class BossData
 {
     //TODO : 필요한 데이터 생성
     public float HP { get; set; }
-    public int Attack { get; set; }
+    public float Attack { get; set; }
     public float AttackCoolTime { get; set; }
     public float MoveSpeed { get; set; }
 
