@@ -12,6 +12,7 @@ public class PlayerSaveData
     public float AttackPower;
 
     public int MaxSouls;
+    public int CurSouls;
     public int MaxPotions;
     public int MaxSP;
     public int curSP;
@@ -51,6 +52,7 @@ public class SaveLoadManager : MonoBehaviour
         saveData.MaxHealth = playerstat.MaxHealth;
         saveData.AttackPower = playerstat.AttackPower;
         saveData.MaxSP = playerstat.MaxSP;
+        saveData.CurSouls = playerstat.CurSouls;
         saveData.MaxSouls = playerstat.MaxSouls;
         saveData.MaxPotions = playerstat.MaxPotions;
         saveData.CurHealth = player.currentHealth;
