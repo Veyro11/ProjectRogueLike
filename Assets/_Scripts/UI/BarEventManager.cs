@@ -36,16 +36,12 @@ class BarEventManager : SingletonMono<BarEventManager>
     {
         if (SPBar != null)
         {
+            Debug.Log("SP: 에니메이션 시작");
             SPBar.Change(originvalue, targetValue);
         }
         else
         {
-            Debug.Log("BossBar 오브젝트 미할당");
+            Debug.Log("SPBar 오브젝트 미할당");
         }
-    }
-
-    private void Update()
-    {
-        
     }
 }

@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
     public GameObject dashPrefab;
 
-    private float currentHealth;
+    public float currentHealth;
 
     private int playerLayer;
     private int playerDashLayer;

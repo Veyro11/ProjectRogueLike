@@ -56,8 +56,6 @@ public class Monster : MonoBehaviour
         StartCoroutine(ChangeColor());
         AudioManager.Instance.PlaySFX("Boss_Damage");
         stateMachine.Monster.MonsterData.HP -= Damage;
-        Player.Instance.playerstat.AddSP(1);
-        BarEventManager.Instance.SPBarCall(Player.Instance.Data.curSP-1, Player.Instance.Data.curSP);
     }
 
     public IEnumerator ChangeColor()

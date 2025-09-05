@@ -11,7 +11,7 @@ public class Npc : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             Icon.SetActive(true);
-            UIManager.Instance.Eenable();
+            UIManager.Instance.Fenable();
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -19,7 +19,7 @@ public class Npc : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Icon.SetActive(false);
-            UIManager.Instance.Edisable();
+            UIManager.Instance.Fdisable(); 
         }
     }
 }
