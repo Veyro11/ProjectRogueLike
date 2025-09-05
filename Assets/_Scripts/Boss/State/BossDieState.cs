@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossDieState : BossBaseState
 {
+    private BossRoomCheck bossRoomCheck;
     public BossDieState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -40,24 +41,7 @@ public class BossDieState : BossBaseState
         AudioManager.Instance.PlaySFX("Boss_Death");
         Object.Destroy(stateMachine.Enemy.gameObject);
 
-        //Find로 찾을 때 SetActive가 false면 못찾아와서 찾아오게 바꿨습니다 나중에 캐싱 해 둘까요?
-        GameObject secStagePortal = null;
-        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.name == "SecStagePotal")
-            {
-                secStagePortal = obj;
-                break;
-            }
-        }
-        Debug.Log(secStagePortal);
-        if (secStagePortal != null)
-        {
-            secStagePortal.SetActive(true);
-        }
-        
-
+        bossRoomCheck?.OnBossDefeated();
 
         Debug.Log("보스사망 전" + Player.Instance.playerstat.MaxSouls);
         Player.Instance.playerstat.SetMaxSouls(3);
