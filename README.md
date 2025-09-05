@@ -10,8 +10,72 @@
 # 개발 기간
 2025.09.01 (월) - 2023.09.05 (금)
 
-# 팀원 구성
+# 👥 개발팀 소개
 
+<table align="center">
+  <tr>
+    <td align="center" width="200px">
+      <br/>
+      <b>팀장 [김우민]</b>
+      <br/>
+      <sub>맵 디자인/씬 관리/아이템 상호작용</sub>
+      <br/>
+      <a href="https://github.com/woomin0011">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td align="center" width="200px">
+      <br/>
+      <b>팀원 [원정우]</b>
+      <br/>
+      <sub>몬스터 FSM/몬스터&보스 패턴/오디오 매니저/</sub>
+      <br/>
+      <a href="https://github.com/ONEJEUNGWOO">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td align="center" width="200px">
+      <br/>
+      <b>팀원 [최우영]</b>
+      <br/>
+      <sub>플레이어 FSM/전투/타이틀/세이브 로드</sub>
+      <br/>
+      <a href="https://github.com/wooyoung-1">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td align="center" width="200px">
+      <br/>
+      <b>팀원 [정찬혁]</b>
+      <br/>
+      <sub>강화 시스템/UI</sub>
+      <br/>
+      <a href="https://github.com/Veyro11">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td align="center" width="200px">
+      <br/>
+      <b>팀원 [김민]</b>
+      <br/>
+      <sub>기획/QA</sub>
+      <br/>
+      <a href="https://github.com/Min545">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td align="center" width="200px">
+      <br/>
+      <b>팀원 [서승우]</b>
+      <br/>
+      <sub>기획/일정관리</sub>
+      <br/>
+      <a href="https://github.com/polaris2910">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
 # Development Environment
 Language: C#
@@ -143,69 +207,4 @@ HP바, 강화 UI, 팝업 등 UI 요소를 이벤트 기반 시스템으로 관�
 BarEventManager 등을 활용해 데이터 변화 → UI 자동 반영 구조 구축
 
 
-## 👥 개발팀 소개
 
-<table align="center">
-  <tr>
-    <td align="center" width="200px">
-      <br/>
-      <b>팀장 [김우민]</b>
-      <br/>
-      <sub>맵 디자인/씬 관리/아이템 상호작용</sub>
-      <br/>
-      <a href="https://github.com/woomin0011">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center" width="200px">
-      <br/>
-      <b>팀원 [원정우]</b>
-      <br/>
-      <sub>몬스터 FSM/몬스터&보스 패턴/오디오 매니저/</sub>
-      <br/>
-      <a href="https://github.com/ONEJEUNGWOO">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center" width="200px">
-      <br/>
-      <b>팀원 [최우영]</b>
-      <br/>
-      <sub>플레이어 FSM/전투/타이틀/세이브 로드</sub>
-      <br/>
-      <a href="https://github.com/wooyoung-1">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center" width="200px">
-      <br/>
-      <b>팀원 [정찬혁]</b>
-      <br/>
-      <sub>강화 시스템/UI</sub>
-      <br/>
-      <a href="https://github.com/Veyro11">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center" width="200px">
-      <br/>
-      <b>팀원 [김민]</b>
-      <br/>
-      <sub>기획/QA</sub>
-      <br/>
-      <a href="https://github.com/Min545">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
-      </a>
-    </td>
-    <td align="center" width="200px">
-      <br/>
-      <b>팀원 [서승우]</b>
-      <br/>
-      <sub>기획/일정관리</sub>
-      <br/>
-      <a href="https://github.com/polaris2910">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
-      </a>
-    </td>
-  </tr>
-</table>
