@@ -51,26 +51,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
 
     private void DealDamage()
     {
-        Collider2D[] allMonsters = GameObject.FindObjectsOfType<Collider2D>();
-        foreach (Collider2D monsterCol in allMonsters)
-        {
-            if (monsterCol.gameObject.layer == LayerMask.NameToLayer("Monster"))
-            {
-                float specialDamage = stateMachine.Player.playerstat.AttackPower * 5f;
 
-                Monster monster = monsterCol.GetComponent<Monster>();
-                if (monster != null)
-                {
-                    monster.TakeDamage(specialDamage);
-                }
-
-                Boss boss = monsterCol.GetComponent<Boss>();
-                if (boss != null)
-                {
-                    boss.TakeDamage(specialDamage);
-                }
-            }
-        }
 
     }
 }
