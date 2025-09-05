@@ -20,6 +20,10 @@ public class PlayerStatus : MonoBehaviour
     public float MoveSpeed { get; private set; }
     public float InvincibilityTime { get; private set; }
 
+    private float baseMaxHealth;
+    private float baseAttackPower;
+    private int baseMaxPotions;
+
 
     private void Start()
     {
@@ -40,7 +44,10 @@ public class PlayerStatus : MonoBehaviour
         CurSP = 0;
         SPEfficiency = Data.SPEfficiency;
         SpecialUnlocked = false;
-        //MoveSpeed = Data.
+
+        baseMaxHealth = MaxHealth;
+        baseAttackPower = AttackPower;
+        baseMaxPotions = MaxPotions;
     }
 
     public void AddSP(int amount)
@@ -99,8 +106,14 @@ public class PlayerStatus : MonoBehaviour
             Debug.Log($"포션 {CurPotions}");
             UIManager.Instance.UpdatePotion();
         }
-
     }
+        public void ResetStatsToBase()
+    {
+        CurHealth = baseMaxHealth;
+        AttackPower = baseAttackPower;
+        MaxPotions = baseMaxPotions;
+    }
+
     public void Load(PlayerSaveData data)
     {
         MaxHealth = data.MaxHealth;
@@ -113,4 +126,5 @@ public class PlayerStatus : MonoBehaviour
         InvincibilityTime = data.InvincibilityTime;
         SpecialUnlocked = data.SpecialUnlocked;
     }
+
 }
