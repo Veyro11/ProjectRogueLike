@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossDieState : BossBaseState
 {
-    [SerializeField] private GameObject portalPrefab;
     public BossDieState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
