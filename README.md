@@ -123,22 +123,3 @@ Game Over 시 반투명 레이어 + 재시작/종료 선택
 Game Over 및 UI 클릭 사운드 포함
 
 ## 주요 기술
-FSM: 몬스터 및 플레이어 상태 관리
-
-ScriptableObject: 캐릭터/아이템 정보 관리
-
-Singleton: 전역 객체 관리 및 씬 전환 유지
-
-Json Utility: 저장/불러오기 데이터 직렬화
-
-Coroutine Helper: WaitForSeconds 캐싱으로 성능 최적화
-
-Delegate: 팝업 UI 외부 제어
-
-Bézier Curve: 투사체 궤적 구현
-
-Weight System: 캐릭터 뽑기 및 스킬 확률 조절
-
-SPUM: 픽셀 캐릭터 애니메이션 자동화
-
-AI 이미지 생성: 분위기 맞는 이미지 추출 및 리터칭
