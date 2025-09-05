@@ -39,6 +39,7 @@ public class Boss : MonoBehaviour
     {
         attackCollider2D.enabled = false;
         stateMachine.ChangeState(stateMachine.IdleState);
+
     }
 
     private void Update()
