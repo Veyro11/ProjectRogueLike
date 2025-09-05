@@ -73381,6 +73381,7 @@ MonoBehaviour:
   - {fileID: 791767128}
   - {fileID: 1230878048}
   - {fileID: 1453339625}
+  potion: {fileID: 0}
 --- !u!4 &1331922612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6437132181269569401, guid: 34888832feaf4db489a074320fb6c4a7, type: 3}
@@ -95773,13 +95774,21 @@ PrefabInstance:
       propertyPath: _Player
       value: 
       objectReference: {fileID: 10663021}
+    - target: {fileID: 1273622980339168258, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273622980339168258, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 3254371765840226812, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
     - target: {fileID: 3254371765840226812, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3728728129427738739, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
       propertyPath: m_Pivot.x
@@ -95866,7 +95875,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 10663021}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6034835082291898938, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}

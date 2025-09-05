@@ -8,6 +8,11 @@ class BarEventManager : SingletonMono<BarEventManager>
     [SerializeField] PlayerStatus _player;
     bool init = false;
 
+    private void Start()
+    {
+        SetBossBar(false);
+    }
+
     public void BossBarInitCaller(Boss boss)
     {
         BossBar.BossSet(boss);
