@@ -20,6 +20,10 @@ public class PlayerStatus : MonoBehaviour
     public float MoveSpeed { get; private set; }
     public float InvincibilityTime { get; private set; }
 
+    private float baseMaxHealth;
+    private float baseAttackPower;
+    private int baseMaxPotions;
+
 
     private void Start()
     {
@@ -35,12 +39,16 @@ public class PlayerStatus : MonoBehaviour
         AttackPower = Data.AttackPower;
         AttackSpeed = Data.AttackSpeed;
         MaxSouls = Data.MaxSouls;
+        CurSouls = Data.CurSouls;
         MaxPotions = Data.MaxPotions;
         MaxSP = Data.MaxSP;
         CurSP = 0;
         SPEfficiency = Data.SPEfficiency;
         SpecialUnlocked = false;
-        //MoveSpeed = Data.
+
+        baseMaxHealth = MaxHealth;
+        baseAttackPower = AttackPower;
+        baseMaxPotions = MaxPotions;
     }
 
     public void AddSP(int amount)
@@ -61,13 +69,19 @@ public class PlayerStatus : MonoBehaviour
     { MaxHealth = 100f + amount * 30f; }
 
     public void FixAttackPower(int amount)
-    { AttackPower += 10f + amount * 5f; }
+    { AttackPower += amount; }
 
-    public void FixAttackSpeed(int amount)
-    { AttackSpeed += amount * 0.1f; }
 
     public void SetMaxSouls(int amount)
-    { MaxSouls = amount; }
+    { 
+        MaxSouls = amount;
+        // update curSouls
+        CurSouls = amount;
+        foreach (var i in ReinforceManager.Instance.category)
+        {
+            CurSouls -= ReinforceManager.Instance.getCost(i) * ReinforceManager.Instance.GetCount(i);
+        }
+    }
 
     public void SetMaxPotions(int amount)
     { MaxPotions = amount; }
@@ -91,18 +105,28 @@ public class PlayerStatus : MonoBehaviour
             CurPotions--;
             Player.Instance.Heal(30f);
             Debug.Log($"포션 {CurPotions}");
+            UIManager.Instance.UpdatePotion();
         }
     }
+        public void ResetStatsToBase()
+    {
+        CurHealth = baseMaxHealth;
+        AttackPower = baseAttackPower;
+        MaxPotions = baseMaxPotions;
+    }
+
     public void Load(PlayerSaveData data)
     {
         MaxHealth = data.MaxHealth;
         Player.Instance.currentHealth = data.CurHealth;
         AttackPower = data.AttackPower;
         MaxSouls = data.MaxSouls;
+        CurSouls = data.CurSouls;
         MaxPotions = data.MaxPotions;
         MaxSP = data.MaxSP;
         CurSP = data.curSP;
         InvincibilityTime = data.InvincibilityTime;
         SpecialUnlocked = data.SpecialUnlocked;
     }
+
 }

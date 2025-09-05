@@ -6,13 +6,14 @@ using UnityEngine.Timeline;
 public class BossBar : MonoBehaviour
 {
     int _maxLength = 1590;
-    float _bossMaxHealth;
+    [Header("보스 체력")]
+    [SerializeField] float _bossMaxHealth = 200f;
+    [Header("객체")]
     [SerializeField] RectTransform _Stretcher;
     [SerializeField] Boss _boss;
     float lengthCoefficient;
-    private void Start()
-    {
-        _bossMaxHealth = _boss.EnemyData.HP;
+    public void Start()
+    { 
         lengthCoefficient = _maxLength / _bossMaxHealth;
     }
 
@@ -42,5 +43,12 @@ public class BossBar : MonoBehaviour
     public void Init()
     {
         _Stretcher.sizeDelta = new Vector2(_boss.EnemyData.HP * lengthCoefficient, 83.3333f);
+    }
+
+    public void BossSet(Boss boss)
+    {
+        _boss = boss;
+        _bossMaxHealth = boss.EnemyData.HP;
+        lengthCoefficient = _maxLength / _bossMaxHealth;
     }
 }

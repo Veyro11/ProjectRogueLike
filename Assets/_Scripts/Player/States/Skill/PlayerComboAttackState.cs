@@ -80,7 +80,8 @@ public class PlayerComboAttackState : PlayerAttackState
         Transform attackRange = stateMachine.Player.AttackRange;
         Vector2 attackSize = stateMachine.Player.AttackSize;
         LayerMask monsterLayer = stateMachine.Player.MonsterLayer;
-        int damage = 1;
+
+
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(attackRange.position, attackSize, 0f, monsterLayer);
 
         foreach (Collider2D enemyCollider in hitEnemies)
@@ -89,7 +90,7 @@ public class PlayerComboAttackState : PlayerAttackState
             {
                 Boss enemy = enemyCollider.GetComponent<Boss>();
 
-                Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
+                Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, 0f, 0);
 
                 if (Player.Instance.playerstat.CurSP < Player.Instance.playerstat.MaxSP)
                 { 

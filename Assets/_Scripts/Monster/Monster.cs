@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour
     public SpriteRenderer attackRenderer;
     public Collider2D attackCollider2D;
 
+    Coroutine coroutine;
+
     private void Awake()
     {
         target = Player.Instance.transform;
@@ -53,22 +55,28 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-        StartCoroutine(ChangeColor());
         AudioManager.Instance.PlaySFX("Boss_Damage");
         stateMachine.Monster.MonsterData.HP -= Damage;
+        coroutine = StartCoroutine(ChangeColor());
     }
 
     public IEnumerator ChangeColor()
     {
-        monsterRenderer.GetPropertyBlock(block);
-        block.SetColor("_Color", new Color(2, 2, 2, 1));
-        monsterRenderer.SetPropertyBlock(block);
+        if (coroutine == null)
+        {
+            monsterRenderer.GetPropertyBlock(block);
+            block.SetColor("_Color", new Color(2, 2, 2, 1));
+            monsterRenderer.SetPropertyBlock(block);
 
-        yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.3f);
 
-        // 원래 색으로 복구
-        monsterRenderer.GetPropertyBlock(block);
-        block.SetColor("_Color", Color.white);
-        monsterRenderer.SetPropertyBlock(block);
+            // 원래 색으로 복구
+            monsterRenderer.GetPropertyBlock(block);
+            block.SetColor("_Color", Color.white);
+            monsterRenderer.SetPropertyBlock(block);
+
+            coroutine = null;
+        }
+
     }
 }
