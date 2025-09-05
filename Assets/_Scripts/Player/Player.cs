@@ -171,6 +171,16 @@ public class Player : MonoBehaviour
         UIManager.Instance.SetGameOver();
     }
 
+    public void Revive()
+    {
+        PauseUser(true);
+        Animator.SetBool("Die", false);
+        currentHealth = playerstat.MaxHealth;
+        BarEventManager.Instance.HPBarCall(0, currentHealth);
+        playerDie = false;
+        stateMachine.ChangeState(stateMachine.IdleState);
+    }
+
     public bool IsGrounded()
     {
         bool isGroundedLeft = Physics2D.Raycast(groundCheckLeft.position, Vector2.down, groundCheckDistance, groundLayer);
