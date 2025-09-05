@@ -8,11 +8,11 @@ public class BossBar : MonoBehaviour
     int _maxLength = 1590;
     int _bossMaxHealth;
     [SerializeField] RectTransform _Stretcher;
-    [SerializeField] Enemy _enemy;
+    [SerializeField] Boss _boss;
 
     private void Start()
     {
-        _bossMaxHealth = _enemy.EnemyData.HP;
+        _bossMaxHealth = _boss.EnemyData.HP;
     }
 
     Coroutine _coroutineController;
