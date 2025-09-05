@@ -87,6 +87,8 @@ public class BossAttackState : BossBaseState
             AudioManager.Instance.PlaySFX("Boss_Swing1");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
             animationStarted = true;
+
+            stateMachine.Enemy.RangedAttack();
         }
 
         if (timer <= 0f)
@@ -116,6 +118,32 @@ public class BossAttackState : BossBaseState
             AudioManager.Instance.PlaySFX("Boss_Swing2");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
             animationStarted = true;
+
+            stateMachine.Enemy.RangedAttack();
+        }
+
+        if (timer <= 0f)
+        {
+            stateMachine.attackRenderer.transform.localPosition = stateMachine.ChaseState.currentPosition;
+            stateMachine.ChangeState(stateMachine.CoolTimeState);
+        }
+    }
+
+    private void AttackPattern_Ranged()
+    {
+        timer -= Time.deltaTime;
+
+        if (!animationStarted)
+        {
+            //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
+            //stateMachine.attackCollider.size = new Vector2(2.5f, stateMachine.attackCollider.size.y);
+
+            //Debug.Log(stateMachine.attackCollider.size);
+            AudioManager.Instance.PlaySFX("Boss_Swing2");
+            StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
+            animationStarted = true;
+
+            stateMachine.Enemy.RangedAttack();
         }
 
         if (timer <= 0f)
@@ -135,6 +163,10 @@ public class BossAttackState : BossBaseState
         else if (stateMachine.ChaseState.is_4M_AttackReady)
         {
             currentAttackPattern = AttackPattern_4M;
+        }
+        else if (stateMachine.ChaseState.is_is_Ranged_AttackReady)
+        {
+            currentAttackPattern = AttackPattern_Ranged;
         }
     }
     

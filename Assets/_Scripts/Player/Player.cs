@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, playerstat.MaxHealth);
 
         Debug.Log($"피해량체크- {damage} 남은체력- {currentHealth}");
-        BarEventManager.Instance.HPBarCall(currentHealth+damage, currentHealth);
+        BarEventManager.Instance.HPBarCall(currentHealth + damage, currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -159,7 +159,17 @@ public class Player : MonoBehaviour
 
         Debug.Log($"체력회복");
     }
+    public void ResetHealthToMax()
+    {
+        currentHealth = playerstat.MaxHealth; // 체력 최대치로 초기화
+    }
 
+    public void ResetAllStatHealth() // 스탯과 체력 초기화
+    {
+        playerstat.ResetStatsToBase();
+        ResetHealthToMax();
+
+    }
     private void Die()
     {
         if (playerDie) return;
@@ -169,6 +179,16 @@ public class Player : MonoBehaviour
         Debug.Log("YOU DIE");
         stateMachine.ChangeState(stateMachine.DieState);
         UIManager.Instance.SetGameOver();
+    }
+
+    public void Revive()
+    {
+        PauseUser(true);
+        Animator.SetBool("Die", false);
+        currentHealth = playerstat.MaxHealth;
+        BarEventManager.Instance.HPBarCall(0, currentHealth);
+        playerDie = false;
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 
     public bool IsGrounded()

@@ -6,10 +6,13 @@ using UnityEngine;
 public class BossChaseState : BossBaseState
 {
     private bool isReady = false;
+    private bool isPlaying = false;
     public bool is_2M_Attack = false;
     public bool is_4M_Attack = false;
+    public bool is_Ranged_Attack = false;
     public bool is_2M_AttackReady = false;
     public bool is_4M_AttackReady = false;
+    public bool is_is_Ranged_AttackReady = false;
     public Vector3 currentPosition;
     public Vector3 Attack2m;
     public Vector3 Attack4m;
@@ -22,15 +25,18 @@ public class BossChaseState : BossBaseState
 
     public override void Enter()
     {
-        random = Random.Range(0, 2);
+        random = Random.Range(1, 101);
 
 
 
         timer = 0.7f;
+        isPlaying = false;
         is_2M_Attack = false;
         is_4M_Attack = false;
+        is_Ranged_Attack = false;
         is_2M_AttackReady = false;
         is_4M_AttackReady = false;
+        is_is_Ranged_AttackReady = false;
 
         StartAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
         currentPosition = stateMachine.attackRenderer.transform.localPosition;
@@ -133,15 +139,30 @@ public class BossChaseState : BossBaseState
     {
         if (!isReady) return;
 
-        stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
+        if (!isPlaying)
+        {
+            stateMachine.Enemy.RangedAttackReady();
+            Debug.Log("@!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+            isPlaying = true;
+        }
 
-        stateMachine.attackRenderer.transform.localScale = new Vector3(3f, 1f, 1f);
-        stateMachine.attackRenderer.transform.localPosition = Attack4m;
+        //stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
+
+        //stateMachine.attackRenderer.transform.localScale = new Vector3(3f, 1f, 1f);
+        //stateMachine.attackRenderer.transform.localPosition = Attack4m;
 
         if (timer > 0) return;
 
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);
         is_4M_AttackReady = true;
+        stateMachine.ChangeState(stateMachine.AttackState);
+    }
+
+    public void ReadyToAttack_Ranged()
+    {
+        if (timer > 0) return;
+
+        is_is_Ranged_AttackReady = true;
         stateMachine.ChangeState(stateMachine.AttackState);
     }
 
@@ -153,18 +174,24 @@ public class BossChaseState : BossBaseState
     {
         if (is_2M_Attack)
         {
-            switch (random)
+            if (random <= 20)
             {
-                case 0:
-                    ReadyToAttack_2M();
-                    break;
-                case 1:
-                    ReadyToAttack_4M();
-                    break;
+                ReadyToAttack_Ranged();
+                return;
+            }
+            else if (random <= 60)
+            {
+                ReadyToAttack_2M();
+                return;
+            }
+            else if (random <= 100)
+            {
+                ReadyToAttack_4M();
             }
         }
         else if (is_4M_Attack)
         {
+
             ReadyToAttack_4M();
         }
     }
