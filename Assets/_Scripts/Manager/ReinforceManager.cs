@@ -259,5 +259,14 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
             { return false; }
         return true;
     }
-    
+
+    public void LoadReinforcementData(PlayerSaveData data)
+    {
+        reinforcement.curReinforcableCount[ReinforcementCategory.HP] = data.HPReinforcement;
+        reinforcement.curReinforcableCount[ReinforcementCategory.Potion] = data.PotionReinforcement;
+        reinforcement.curReinforcableCount[ReinforcementCategory.ATK] = data.ATKReinforcement;
+        reinforcement.curReinforcableCount[ReinforcementCategory.SP] = data.SPReinforcement;
+        reinforcement.curReinforcableCount[ReinforcementCategory.Special] = data.SpecialReinforcement;
+    }
+
 }
