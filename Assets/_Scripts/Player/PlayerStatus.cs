@@ -10,6 +10,8 @@ public class PlayerStatus : MonoBehaviour
     public float AttackSpeed { get; private set; }
     public int MaxSouls { get; private set; }
     public int CurSouls { get; private set; }
+
+    public int CurPotions { get; private set; }
     public int MaxPotions { get; private set; }
     public int MaxSP { get; private set; }
     public int CurSP { get; private set; }
@@ -51,6 +53,8 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    public void SetPotion(int amount)
+        { CurPotions += amount; }
     public void SetSoul(int amount)
     { CurSouls += amount; }
     public void FixMaxHealth(int amount)
