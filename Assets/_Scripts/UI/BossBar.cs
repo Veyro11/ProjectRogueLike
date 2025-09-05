@@ -6,20 +6,20 @@ using UnityEngine.Timeline;
 public class BossBar : MonoBehaviour
 {
     int _maxLength = 1590;
-    int _bossMaxHealth;
+    float _bossMaxHealth;
     [SerializeField] RectTransform _Stretcher;
     [SerializeField] Boss _boss;
-
+    float lengthCoefficient;
     private void Start()
     {
         _bossMaxHealth = _boss.EnemyData.HP;
+        lengthCoefficient = _maxLength / _bossMaxHealth;
     }
 
     Coroutine _coroutineController;
     IEnumerator AdjustUIBar(float currentHP, float targetHP)
     {
         int count = 1;
-        float lengthCoefficient = _maxLength / (float)_bossMaxHealth;
         while (count <= 2.5f / Time.deltaTime)
         {
             float length = targetHP * lengthCoefficient + 10f / (0.5f * count + 10f) * (currentHP - targetHP) * lengthCoefficient;
@@ -36,5 +36,11 @@ public class BossBar : MonoBehaviour
         if (_coroutineController != null)
         { StopCoroutine(_coroutineController); }
         _coroutineController = StartCoroutine(AdjustUIBar(origin, target));
+    }
+
+
+    public void Init()
+    {
+        _Stretcher.sizeDelta = new Vector2(_boss.EnemyData.HP * lengthCoefficient, 83.3333f);
     }
 }
