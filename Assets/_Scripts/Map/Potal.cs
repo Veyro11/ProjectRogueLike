@@ -43,7 +43,7 @@ public class Potal : MonoBehaviour
             {
                 Player.Instance.ResetAllStatHealth();
                 Debug.Log("플레이어 현재 공격력 "+ Player.Instance.playerstat.AttackPower);
-                Debug.Log("플레이어 현재 체력 " + Player.Instance.currentHealth);
+                Debug.Log("플레이어 현재 체력 " + Player.Instance.playerstat.CurHealth);
             }
             MapManager.Instance.TransitionToMap(targetMapName, destination.position);
         }

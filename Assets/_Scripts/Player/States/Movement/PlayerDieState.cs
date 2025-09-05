@@ -17,6 +17,7 @@ public class PlayerDieState : PlayerBaseState
         stateMachine.Player.Rb.velocity = Vector2.zero;
 
         Debug.Log("죽었습니다");
+        BarEventManager.Instance.SetBossBar(false);
         RemoveInputActionsCallbacks();
     }
 

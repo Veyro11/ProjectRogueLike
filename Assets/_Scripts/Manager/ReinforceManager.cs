@@ -6,6 +6,7 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
     //public static ReinforceManager Instance;
     [SerializeField] private Reinforcement reinforcement;
     [SerializeField] private ReinforcementTextEditor editor;
+    [SerializeField] private potiontext potiontext;
     private PlayerStatus _player;
 
     public List<ReinforcementCategory> category = new List<ReinforcementCategory>() {
@@ -128,6 +129,7 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
                 break;
             case ReinforcementCategory.Potion:
                 _player.SetMaxPotions(reinforcement.curReinforcableCount[category]);
+                potiontext.updatePotionText();
                 break;
             case ReinforcementCategory.ATK:
                 _player.FixAttackPower(reinforcement.curReinforcableCount[category] * 2);

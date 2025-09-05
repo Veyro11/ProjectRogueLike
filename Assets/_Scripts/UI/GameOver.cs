@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
 {
     [SerializeField] Transform VillageSpawnPoint;
     [SerializeField] SaveLoadManager SaveLoadManager;
+    [SerializeField] Transform FadeUI;
     CanvasGroup canvasGroup;
 
 
@@ -20,16 +21,17 @@ public class GameOver : MonoBehaviour
             return;
         }
         Player.Instance.PauseUser(true);
-        fadeInOut(true);
+        canvasGroup = GetComponent<CanvasGroup>();
+        StartCoroutine(fadeInOut(true));
     }
 
     public void Continue()
     {
         FadeManager.Instance.RequestTeleport("VillageMap", VillageSpawnPoint.position);
-        StartCoroutine(fadeInOut(false));
-        gameObject.SetActive(false);
-
+        //StartCoroutine(fadeInOut(false));
+        FadeUI.gameObject.SetActive(true);
         Player.Instance.Revive();
+        gameObject.SetActive(false);
     }
 
     IEnumerator fadeInOut(bool mode)

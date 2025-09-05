@@ -63,4 +63,9 @@ class BarEventManager : SingletonMono<BarEventManager>
     {
         BossBar.gameObject.SetActive(State);
     }
+
+    public void SetHPBarCoeff()
+    {
+        HPBar.RefreshCoefficient();
+    }
 }

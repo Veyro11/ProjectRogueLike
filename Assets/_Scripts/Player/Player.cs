@@ -42,8 +42,6 @@ public class Player : MonoBehaviour
 
     public GameObject dashPrefab;
 
-    public float currentHealth;
-
     private int playerLayer;
     private int playerDashLayer;
 
@@ -85,8 +83,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.IdleState);
-
-        currentHealth = Data.MaxHealth;
         //마우스 커서 숨기기 일단 꺼둠
         //Cursor.lockState = CursorLockMode.Locked;
     }
@@ -112,12 +108,12 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, playerstat.MaxHealth);
+        playerstat.CurHealth -= damage;
+        playerstat.CurHealth = Mathf.Clamp(playerstat.CurHealth, 0, playerstat.MaxHealth);
 
-        Debug.Log($"피해량체크- {damage} 남은체력- {currentHealth}");
-        BarEventManager.Instance.HPBarCall(currentHealth + damage, currentHealth);
-        if (currentHealth <= 0)
+        Debug.Log($"피해량체크- {damage} 남은체력- {playerstat.CurHealth}");
+        BarEventManager.Instance.HPBarCall(playerstat.CurHealth + damage, playerstat.CurHealth);
+        if (playerstat.CurHealth <= 0)
         {
             Die();
         }
@@ -154,14 +150,14 @@ public class Player : MonoBehaviour
 
     public void Heal(float amount)
     {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, Data.MaxHealth);
+        playerstat.CurHealth += amount;
+        playerstat.CurHealth = Mathf.Clamp(playerstat.CurHealth, 0, Data.MaxHealth);
 
         Debug.Log($"체력회복");
     }
     public void ResetHealthToMax()
     {
-        currentHealth = playerstat.MaxHealth; // 체력 최대치로 초기화
+        playerstat.CurHealth = playerstat.MaxHealth; // 체력 최대치로 초기화
     }
 
     public void ResetAllStatHealth() // 스탯과 체력 초기화
@@ -185,8 +181,8 @@ public class Player : MonoBehaviour
     {
         PauseUser(true);
         Animator.SetBool("Die", false);
-        currentHealth = playerstat.MaxHealth;
-        BarEventManager.Instance.HPBarCall(0, currentHealth);
+        playerstat.CurHealth = playerstat.MaxHealth;
+        BarEventManager.Instance.HPBarCall(0, playerstat.CurHealth);
         playerDie = false;
         stateMachine.ChangeState(stateMachine.IdleState);
     }

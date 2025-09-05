@@ -61,7 +61,7 @@ public class SaveLoadManager : MonoBehaviour
         saveData.CurSouls = playerstat.CurSouls;
         saveData.MaxSouls = playerstat.MaxSouls;
         saveData.MaxPotions = playerstat.MaxPotions;
-        saveData.CurHealth = player.currentHealth;
+        saveData.CurHealth = playerstat.CurHealth;
         saveData.SpecialUnlocked = playerstat.SpecialUnlocked;
 
         saveData.BgmVolume = AudioManager.Instance.bgmVolume;

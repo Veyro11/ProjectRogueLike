@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public float MaxHealth { get; private set; }
-    public float CurHealth { get; private set; }
+
+    public float CurHealth;
     public float AttackPower { get; private set; }
     public float AttackSpeed { get; private set; }
     public int MaxSouls { get; private set; }
@@ -65,7 +66,12 @@ public class PlayerStatus : MonoBehaviour
     public void SetSoul(int amount)
     { CurSouls += amount; }
     public void FixMaxHealth(int amount)
-    { MaxHealth = 100f + amount; }
+    {
+        Debug.Log("HEALTH:: 수정됨");
+        MaxHealth = 100f + amount;
+        CurHealth = MaxHealth;
+        BarEventManager.Instance.SetHPBarCoeff();
+    }
 
     public void FixAttackPower(int amount)
     { AttackPower += amount; }
@@ -108,6 +114,7 @@ public class PlayerStatus : MonoBehaviour
             Player.Instance.Heal(30f);
             Debug.Log($"포션 {CurPotions}");
             UIManager.Instance.UpdatePotion();
+            BarEventManager.Instance.HPBarCall(CurHealth - 30f, CurHealth);
         }
     }
         public void ResetStatsToBase()
@@ -120,7 +127,7 @@ public class PlayerStatus : MonoBehaviour
     public void Load(PlayerSaveData data)
     {
         MaxHealth = data.MaxHealth;
-        Player.Instance.currentHealth = data.CurHealth;
+        Player.Instance.playerstat.CurHealth = data.CurHealth;
         AttackPower = data.AttackPower;
         MaxSouls = data.MaxSouls;
         CurSouls = data.CurSouls;

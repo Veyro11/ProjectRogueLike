@@ -8,16 +8,16 @@ public class HPBar : MonoBehaviour
 {
     public int _maxLength = 870;
     [SerializeField] RectTransform _Stretcher;
-    [SerializeField] PlayerStatus _Player;
     Coroutine _coroutineController;
     float lengthCoefficient;
 
     private void Start()
     {
-        lengthCoefficient = _maxLength / _Player.MaxHealth;
+        lengthCoefficient = _maxLength / Player.Instance.playerstat.MaxHealth;
     }
     IEnumerator AdjustHPBar(float currentHP, float targetHP)
     {
+        Debug.Log($"HP: {Player.Instance.playerstat.MaxHealth}");
         int count = 1;
         while (count <= 2.5f/Time.deltaTime)
         {
@@ -37,8 +37,8 @@ public class HPBar : MonoBehaviour
         _coroutineController = StartCoroutine(AdjustHPBar(origin, target));
     }
 
-    public void Init()
+    public void RefreshCoefficient()
     {
-        _Stretcher.sizeDelta = new Vector2(Player.Instance.playerstat.CurHealth*lengthCoefficient, 60f);
+        lengthCoefficient = _maxLength / Player.Instance.playerstat.MaxHealth;
     }
 }
