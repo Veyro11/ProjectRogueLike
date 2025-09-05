@@ -100,13 +100,11 @@ public class PlayerComboAttackState : PlayerAttackState
                 if (enemy != null)
                 {
                     enemy.TakeDamage(Player.Instance.playerstat.AttackPower);
-                    Debug.Log(enemy.EnemyData.HP);
                 }
                 else
                 {
                     Monster monster = enemyCollider.GetComponent<Monster>();
                     monster.TakeDamage(Player.Instance.playerstat.AttackPower);
-                    Debug.Log(monster.MonsterData.HP);
                 }
 
                 float randomAngle = Random.Range(0f, 360f);
