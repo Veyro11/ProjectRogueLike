@@ -13,6 +13,7 @@ public class BossStateMachine : StateMachine
     public Transform targetTransform;
     public Transform ownerTransform;
     public Vector3 spawnPosition;
+    
 
     public BossIdleState IdleState { get; private set; }
     public BossChaseState ChaseState { get; private set; }
@@ -20,6 +21,7 @@ public class BossStateMachine : StateMachine
     public BossCoolTimeState CoolTimeState { get; private set; }
     public BossDieState DieState { get; private set; }
     public BossReturnState ReturnState { get; private set; }
+    
 
     public BossStateMachine(Boss enemy)
     {
@@ -30,7 +32,8 @@ public class BossStateMachine : StateMachine
         CoolTimeState = new BossCoolTimeState(this);
         DieState = new BossDieState(this);
         ReturnState = new BossReturnState(this);
-        
+        DieState = new BossDieState(this);
+
         targetTransform = enemy.target;
         ownerTransform = enemy.transform;
         spawnPosition = ownerTransform.position;
@@ -44,4 +47,5 @@ public class BossStateMachine : StateMachine
     {
         currentState?.OntriggerEnter2D(collider);
     }
+   
 }

@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fe79e047aa9b342a8e79fad5de7e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossRoomCheck: {fileID: 6872506965547996693, guid: 3fca173178f531649805d4995e53cccf, type: 3}
   target: {fileID: 0}
   enemyRenderer: {fileID: 3577538297356735818}
   <AnimationData>k__BackingField:

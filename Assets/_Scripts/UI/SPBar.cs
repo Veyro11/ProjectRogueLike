@@ -23,7 +23,7 @@ public class SPBar : MonoBehaviour
         while (count <= 2.5f / Time.deltaTime)
         {
             float length = (targetSP * lengthCoefficient) + 10f / (0.5f * count + 10f) * (currentSP - targetSP) * lengthCoefficient;
-            Debug.Log(length + "length + " + _Player.CurSP);
+            //Debug.Log(length + "length + " + _Player.CurSP);
             _Stretcher.sizeDelta = new Vector2(length, 54f);
             count++;
             yield return null;

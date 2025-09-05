@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Potal : MonoBehaviour
 {
+    [SerializeField] private GameObject fadeMoveObject;
     public string targetMapName;
     public Transform destination;
     public GameObject upKey;
@@ -32,7 +34,11 @@ public class Potal : MonoBehaviour
     {
         if (canTransport && Input.GetKeyDown(KeyCode.E))
         {
-            FadeManager.Instance.RequestTeleport(targetMapName, destination.position);
+            if (fadeMoveObject != null)
+            {
+                fadeMoveObject.SetActive(true); 
+            }
+            MapManager.Instance.TransitionToMap(targetMapName, destination.position);
         }
     }
 }

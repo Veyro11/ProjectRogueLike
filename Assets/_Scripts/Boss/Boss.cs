@@ -29,10 +29,12 @@ public class Boss : MonoBehaviour
 
         EnemyData = new BossData();
         stateMachine = new BossStateMachine(this);
-
+      
         Animator = GetComponentInChildren<Animator>();
 
         block = new MaterialPropertyBlock();
+
+        
     }
 
     private void Start()
