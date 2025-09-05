@@ -363,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8063903082454943605, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8804862873519220242, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
       propertyPath: m_IsActive
@@ -60226,7 +60226,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -60571,7 +60571,7 @@ CompositeCollider2D:
       - {x: 4.480029, y: -3.8400002}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
-  m_UseDelaunayMesh: 0
+  m_UseDelaunayMesh: 1
   m_CompositeGameObject: {fileID: 545536350}
 --- !u!50 &545536353
 Rigidbody2D:
@@ -69393,7 +69393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1331864854
 Transform:
   m_ObjectHideFlags: 0
@@ -89901,7 +89901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1761909836
 MonoBehaviour:
   m_ObjectHideFlags: 0

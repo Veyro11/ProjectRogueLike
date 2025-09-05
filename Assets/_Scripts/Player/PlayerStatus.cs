@@ -61,10 +61,8 @@ public class PlayerStatus : MonoBehaviour
     { MaxHealth = 100f + amount * 30f; }
 
     public void FixAttackPower(int amount)
-    { AttackPower += 10f + amount * 5f; }
+    { AttackPower += amount; }
 
-    public void FixAttackSpeed(int amount)
-    { AttackSpeed += amount * 0.1f; }
 
     public void SetMaxSouls(int amount)
     { MaxSouls = amount; }
