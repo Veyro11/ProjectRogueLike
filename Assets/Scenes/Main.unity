@@ -259,6 +259,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1418757221}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8063903082454943605, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2003075297}
     - targetCorrespondingSourceObject: {fileID: 8804862873519220242, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2091158526}
@@ -268,7 +271,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4614178279511200927, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
   m_PrefabInstance: {fileID: 10663020}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2003075291}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64101b6a5e1f19c4aa19493d6f20b0b6, type: 3}
@@ -66084,6 +66087,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!483693784 &935887519
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -67674,6 +67680,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!483693784 &1082820364
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -88733,6 +88742,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c0a433bd6e62014d86be508ed939a0d, type: 3}
+--- !u!1 &2003075291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8063903082454943605, guid: 0fd2b09fb005ba64398bc480e9298a52, type: 3}
+  m_PrefabInstance: {fileID: 10663020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003075297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003075291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8299fe6e942734f9558b2a30a62eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPotions: 5
+  currentPotions: 3
+  healAmount: 20
 --- !u!1 &2010937589
 GameObject:
   m_ObjectHideFlags: 0
