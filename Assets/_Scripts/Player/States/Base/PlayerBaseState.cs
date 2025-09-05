@@ -37,6 +37,8 @@ public class PlayerBaseState : IState
         stateMachine.Player.Input.playerActions.Attack.canceled += OnAttackCanceled;
 
         stateMachine.Player.Input.playerActions.Jump.started += OnJumpStarted;
+        stateMachine.Player.Input.playerActions.Heal.started += OnHealStarted;
+        stateMachine.Player.Input.playerActions.SpecialAttack.started += OnSpecialAttackStarted;
     }
     
 
@@ -52,8 +54,9 @@ public class PlayerBaseState : IState
         stateMachine.Player.Input.playerActions.Attack.canceled -= OnAttackCanceled;
 
         stateMachine.Player.Input.playerActions.Jump.started -= OnJumpStarted;
+        stateMachine.Player.Input.playerActions.Heal.started -= OnHealStarted;
+        stateMachine.Player.Input.playerActions.SpecialAttack.started -= OnSpecialAttackStarted;
     }
-    
 
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {
@@ -70,6 +73,14 @@ public class PlayerBaseState : IState
     }
 
     protected virtual void OnJumpStarted(InputAction.CallbackContext context)
+    {
+    }
+
+    protected virtual void OnHealStarted(InputAction.CallbackContext context)
+    {
+    }
+
+    protected virtual void OnSpecialAttackStarted(InputAction.CallbackContext context)
     {
     }
 
@@ -132,8 +143,6 @@ public class PlayerBaseState : IState
             }
         }
     }
-
-
 
     protected virtual void OnAttackPerformed(InputAction.CallbackContext obj)
     {

@@ -162,10 +162,12 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        if (playerDie) return;
 
+        playerDie = true;
         Debug.Log("YOU DIE");
+        stateMachine.ChangeState(stateMachine.DieState);
         UIManager.Instance.SetGameOver();
-        // 게임오버 함수 추가
     }
 
     public bool IsGrounded()
