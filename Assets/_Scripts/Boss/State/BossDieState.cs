@@ -45,9 +45,9 @@ public class BossDieState : BossBaseState
         Object.Destroy(stateMachine.Enemy.gameObject);
         Debug.Log("보스사망 전" + Player.Instance.playerstat.MaxSouls);
         Player.Instance.playerstat.SetMaxSouls(3);
-
-        Debug.Log("보스사망" + Player.Instance.playerstat.MaxSouls);
         GameObject wall = GameObject.Find("BossRoomWall");
         wall.SetActive(false);
+        Debug.Log("보스사망" + Player.Instance.playerstat.MaxSouls);
+       
     }
 }
