@@ -267,6 +267,8 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
         reinforcement.curReinforcableCount[ReinforcementCategory.ATK] = data.ATKReinforcement;
         reinforcement.curReinforcableCount[ReinforcementCategory.SP] = data.SPReinforcement;
         reinforcement.curReinforcableCount[ReinforcementCategory.Special] = data.SpecialReinforcement;
+
+        Refresh();
     }
 
 }
