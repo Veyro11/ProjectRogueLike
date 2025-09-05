@@ -8,6 +8,11 @@ public class Config : MonoBehaviour
 
     Slider slider;
 
+    private void Start()
+    {
+        slider = transform.GetChild(2).GetChild(2).GetComponent<Slider>();
+    }
+
     public void BGControll()
     {
         slider = transform.GetChild(2).GetChild(2).GetComponent<Slider>();
