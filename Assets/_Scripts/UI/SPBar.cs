@@ -19,11 +19,9 @@ public class SPBar : MonoBehaviour
     IEnumerator AdjustSPBar(float currentSP, float targetSP)
     {
         int count = 1;
-        Debug.Log(currentSP +","+targetSP+" ==??");
         while (count <= 2.5f / Time.deltaTime)
         {
             float length = (targetSP * lengthCoefficient) + 10f / (0.5f * count + 10f) * (currentSP - targetSP) * lengthCoefficient;
-            Debug.Log(length + "length + " + _Player.CurSP);
             _Stretcher.sizeDelta = new Vector2(length, 54f);
             count++;
             yield return null;

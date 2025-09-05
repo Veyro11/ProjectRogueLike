@@ -8,7 +8,7 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
     [SerializeField] private ReinforcementTextEditor editor;
     private PlayerStatus _player;
 
-    List<ReinforcementCategory> category = new List<ReinforcementCategory>() {
+    public List<ReinforcementCategory> category = new List<ReinforcementCategory>() {
         ReinforcementCategory.HP,
         ReinforcementCategory.Potion,
         ReinforcementCategory.ATK,
@@ -33,6 +33,15 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
         }
     }
 
+    public void ManualReloadEdit(ReinforcementTextEditor edit)
+    {
+        this.editor = edit;
+    }
+
+    public void ManualReloadReinforcement(Reinforcement reinforce)
+    {
+        this.reinforcement = reinforce;
+    }
     public void PlusReinforce(int value)
     {
         ReinforcementCategory category = ConvertInttoEnum(value);
@@ -234,4 +243,21 @@ public class ReinforceManager : SingletonMono<ReinforceManager>
             ReinforceManager.Instance.updateUI(i);
         }
     }    
+
+    public bool editorTest()
+    {
+        if (editor == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public bool reinforcementTest()
+    {
+        if (reinforcement == null)
+            { return false; }
+        return true;
+    }
+    
 }

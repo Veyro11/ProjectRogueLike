@@ -59,7 +59,13 @@ public class Reinforcement : MonoBehaviour
             };
         }
     }
-
+    private void Start()
+    {
+        if (ReinforceManager.Instance != null && !ReinforceManager.Instance.reinforcementTest())
+        {
+            ReinforceManager.Instance.ManualReloadReinforcement(this);
+        }
+    }
     private void OnEnable()
     {
         Player.Instance.PauseUser(false);
