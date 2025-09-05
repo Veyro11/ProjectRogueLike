@@ -88,7 +88,7 @@ public class Boss : MonoBehaviour
 
     public void RangedAttackReady()
     {
-        StartCoroutine(ReadyToAttack());
+        StartCoroutine(DrawAttackRange());
     }
 
     public IEnumerator ShowEffect()
@@ -97,7 +97,7 @@ public class Boss : MonoBehaviour
         currentEffect = ObjectPoolManager.Instance.GetFromPool
             (
             rangedAttackEffect, transform.position +
-            new Vector3(transform.localScale.x * 2, transform.position.y - 1, transform.position.z),
+            new Vector3(transform.localScale.x * 2, 0f, 0f),
             Quaternion.identity
             );
 
@@ -108,7 +108,7 @@ public class Boss : MonoBehaviour
         currentEffect = ObjectPoolManager.Instance.GetFromPool
              (
              rangedAttackEffect, transform.position +
-             new Vector3(transform.localScale.x * 4, transform.position.y -1, transform.position.z),
+             new Vector3(transform.localScale.x * 4, 0f, 0f),
              Quaternion.identity
              );
 
@@ -120,7 +120,7 @@ public class Boss : MonoBehaviour
         currentEffect = ObjectPoolManager.Instance.GetFromPool
             (
             rangedAttackEffect, transform.position +
-            new Vector3(transform.localScale.x * 6, transform.position.y -1, transform.position.z),
+            new Vector3(transform.localScale.x * 6, 0f, 0f),
             Quaternion.identity
             );
 
@@ -128,27 +128,24 @@ public class Boss : MonoBehaviour
         if (ranged != null) ranged.InitBoss(this);
     }
 
-    public IEnumerator ReadyToAttack()
+    public IEnumerator DrawAttackRange()
     {
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);
         stateMachine.attackRenderer.transform.localScale = new Vector3(2f, 1f, 1f);
 
         // 1번째 위치
         stateMachine.attackRenderer.transform.position =
-            stateMachine.Enemy.transform.position +
-            new Vector3(transform.localScale.x * 2, -1f, 0f);
+            transform.position + new Vector3(transform.localScale.x * 2, -0.5f, 0f);
         yield return new WaitForSeconds(0.2f);
 
         // 2번째 위치
         stateMachine.attackRenderer.transform.position =
-            stateMachine.Enemy.transform.position +
-            new Vector3(transform.localScale.x * 4, -1f, 0f);
+            transform.position + new Vector3(transform.localScale.x * 4, -0.5f, 0f);
         yield return new WaitForSeconds(0.2f);
 
         // 3번째 위치
         stateMachine.attackRenderer.transform.position =
-            stateMachine.Enemy.transform.position +
-            new Vector3(transform.localScale.x * 6, -1f, 0f);
+            transform.position + new Vector3(transform.localScale.x * 6, -0.5f, 0f);
         
         yield return new WaitForSeconds(0.3f);
         stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0f);

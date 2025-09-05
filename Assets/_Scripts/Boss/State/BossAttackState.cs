@@ -80,15 +80,9 @@ public class BossAttackState : BossBaseState
 
         if (!animationStarted)
         {
-            //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
-            //stateMachine.attackCollider.size = new Vector2(1.5f, stateMachine.attackCollider.size.y);
-
-            //Debug.Log(stateMachine.attackCollider.size);
             AudioManager.Instance.PlaySFX("Boss_Swing1");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_1_ParameterHash);
             animationStarted = true;
-
-            stateMachine.Enemy.RangedAttack();
         }
 
         if (timer <= 0f)
@@ -111,15 +105,9 @@ public class BossAttackState : BossBaseState
 
         if (!animationStarted)
         {
-            //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
-            //stateMachine.attackCollider.size = new Vector2(2.5f, stateMachine.attackCollider.size.y);
-
-            //Debug.Log(stateMachine.attackCollider.size);
             AudioManager.Instance.PlaySFX("Boss_Swing2");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
             animationStarted = true;
-
-            stateMachine.Enemy.RangedAttack();
         }
 
         if (timer <= 0f)
@@ -135,10 +123,6 @@ public class BossAttackState : BossBaseState
 
         if (!animationStarted)
         {
-            //공격 범위 콜라이더 사이즈 초기화 해주는 부분 입니다.
-            //stateMachine.attackCollider.size = new Vector2(2.5f, stateMachine.attackCollider.size.y);
-
-            //Debug.Log(stateMachine.attackCollider.size);
             AudioManager.Instance.PlaySFX("Boss_Swing2");
             StartAnimation(stateMachine.Enemy.AnimationData.Attack_2_ParameterHash);
             animationStarted = true;
@@ -153,7 +137,7 @@ public class BossAttackState : BossBaseState
         }
     }
 
-    //랜덤공격 시 50퍼센트 확률로 공격모션을 골라주는 메서드 입니다.
+    //랜덤공격 시 공격모션을 골라주는 메서드 입니다.
     private void ChooseAttack()
     {
         if (stateMachine.ChaseState.is_2M_AttackReady)
