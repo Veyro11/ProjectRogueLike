@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterData 
 {
     //TODO : 필요한 데이터 생성
-    public int HP { get; set; }
+    public float HP { get; set; }
     public int Attack { get; set; }
     public float AttackCoolTime { get; set; }
     public float MoveSpeed { get; set; }

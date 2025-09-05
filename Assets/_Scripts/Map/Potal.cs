@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Potal : MonoBehaviour
 {
+    [SerializeField] private GameObject secStagePortal;
     public string targetMapName;
     public Transform destination;
     public GameObject upKey;
@@ -32,6 +33,7 @@ public class Potal : MonoBehaviour
     {
         if (canTransport && Input.GetKeyDown(KeyCode.E))
         {
+            gameObject.SetActive(false);
             FadeManager.Instance.RequestTeleport(targetMapName, destination.position);
         }
     }
