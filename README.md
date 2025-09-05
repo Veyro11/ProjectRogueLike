@@ -18,15 +18,6 @@ IDE: Visual Studio 2022
 
 Framework: .NET 6.0
 
-# Assets References
-Pixel FX Pack
-
-Pixel Characters
-
-GUI Elements
-
-Skill Icons
-
 
 ## 게임 흐름
 타이틀 화면
