@@ -4,19 +4,19 @@ using System.Drawing;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
-public class Enemy : MonoBehaviour
+public class Boss : MonoBehaviour
 {
-    public EnemyData EnemyData {  get;  set; }
+    public BossData EnemyData {  get;  set; }
 
     public Transform target;
     public SpriteRenderer enemyRenderer;
     private MaterialPropertyBlock block;
 
     [field: Header("Animations")]
-    [field: SerializeField] public EnemyAnimaitionData AnimationData { get; private set; }
+    [field: SerializeField] public BossAnimaitionData AnimationData { get; private set; }
     public Animator Animator { get; private set; }
 
-    public EnemyStateMachine stateMachine;
+    public BossStateMachine stateMachine;
 
     public SpriteRenderer attackRenderer;
     public Collider2D attackCollider2D;
@@ -27,8 +27,8 @@ public class Enemy : MonoBehaviour
 
         AnimationData.Initialize();
 
-        EnemyData = new EnemyData();
-        stateMachine = new EnemyStateMachine(this);
+        EnemyData = new BossData();
+        stateMachine = new BossStateMachine(this);
 
         Animator = GetComponentInChildren<Animator>();
 
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         stateMachine.OnTriggerEnter2D(collision);
     }
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage(float Damage)
     {
         StartCoroutine(ChangeColor());
         AudioManager.Instance.PlaySFX("Boss_Damage");

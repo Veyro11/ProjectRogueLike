@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public class EnemyReturnState : EnemyBaseState
+public class BossReturnState : BossBaseState
 {
     Vector3 lookDirection;
 
-    public EnemyReturnState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public BossReturnState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
 

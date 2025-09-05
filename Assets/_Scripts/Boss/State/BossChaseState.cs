@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChaseState : EnemyBaseState
+public class BossChaseState : BossBaseState
 {
     private bool isReady = false;
     public bool is_2M_Attack = false;
@@ -15,7 +15,7 @@ public class EnemyChaseState : EnemyBaseState
 
     private int random;
 
-    public EnemyChaseState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public BossChaseState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
 

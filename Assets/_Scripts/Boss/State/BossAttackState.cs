@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyAttackState : EnemyBaseState
+public class BossAttackState : BossBaseState
 {
     private Action currentAttackPattern;
     private bool animationStarted = false;
     private float triggerStart;
     private bool isTrigger;
 
-    public EnemyAttackState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public BossAttackState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
 

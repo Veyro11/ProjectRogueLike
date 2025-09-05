@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class EnemyStateMachine : StateMachine
+public class BossStateMachine : StateMachine
 {
-    public Enemy Enemy { get; }
+    public Boss Enemy { get; }
 
     public EnemyGroundChecker enemyGroundChecker;
     public SpriteRenderer attackRenderer;
@@ -14,22 +14,22 @@ public class EnemyStateMachine : StateMachine
     public Transform ownerTransform;
     public Vector3 spawnPosition;
 
-    public EnemyIdleState IdleState { get; private set; }
-    public EnemyChaseState ChaseState { get; private set; }
-    public EnemyAttackState AttackState { get; private set; }
-    public EnemyCoolTimeState CoolTimeState { get; private set; }
-    public EnemyDieState DieState { get; private set; }
-    public EnemyReturnState ReturnState { get; private set; }
+    public BossIdleState IdleState { get; private set; }
+    public BossChaseState ChaseState { get; private set; }
+    public BossAttackState AttackState { get; private set; }
+    public BossCoolTimeState CoolTimeState { get; private set; }
+    public BossDieState DieState { get; private set; }
+    public BossReturnState ReturnState { get; private set; }
 
-    public EnemyStateMachine(Enemy enemy)
+    public BossStateMachine(Boss enemy)
     {
         Enemy = enemy;
-        IdleState = new EnemyIdleState(this);
-        ChaseState = new EnemyChaseState(this);
-        AttackState = new EnemyAttackState(this);
-        CoolTimeState = new EnemyCoolTimeState(this);
-        DieState = new EnemyDieState(this);
-        ReturnState = new EnemyReturnState(this);
+        IdleState = new BossIdleState(this);
+        ChaseState = new BossChaseState(this);
+        AttackState = new BossAttackState(this);
+        CoolTimeState = new BossCoolTimeState(this);
+        DieState = new BossDieState(this);
+        ReturnState = new BossReturnState(this);
         
         targetTransform = enemy.target;
         ownerTransform = enemy.transform;

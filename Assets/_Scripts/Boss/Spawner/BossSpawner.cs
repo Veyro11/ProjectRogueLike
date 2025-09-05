@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class BossSpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     private GameObject currentPrefab;
@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 spawnPos = transform.position + new Vector3(0f, 1.3f, 0f);
         currentPrefab = Instantiate(enemyPrefab, spawnPos, Quaternion.identity); //.GetComponent<Enemy>();
-        currentPrefab.GetComponent<Enemy>();
+        currentPrefab.GetComponent<Boss>();
     }
 
     public void Reset()

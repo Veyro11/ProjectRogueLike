@@ -87,7 +87,7 @@ public class PlayerComboAttackState : PlayerAttackState
         {
             if (!HitEnemy.Contains(enemyCollider))
             {
-                Enemy enemy = enemyCollider.GetComponent<Enemy>();
+                Boss enemy = enemyCollider.GetComponent<Boss>();
 
                 Vector3 enemyPosition = enemyCollider.transform.position + new Vector3(0, -0.5f, 0);
 
@@ -99,13 +99,13 @@ public class PlayerComboAttackState : PlayerAttackState
 
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(Player.Instance.playerstat.AttackPower);
                     Debug.Log(enemy.EnemyData.HP);
                 }
                 else
                 {
                     Monster monster = enemyCollider.GetComponent<Monster>();
-                    monster.TakeDamage(damage);
+                    monster.TakeDamage(Player.Instance.playerstat.AttackPower);
                     Debug.Log(monster.MonsterData.HP);
                 }
 

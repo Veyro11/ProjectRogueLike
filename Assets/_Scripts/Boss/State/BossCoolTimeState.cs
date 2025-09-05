@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCoolTimeState : EnemyBaseState
+public class BossCoolTimeState : BossBaseState
 {
     private int coolTime = 2;
 
-    public EnemyCoolTimeState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public BossCoolTimeState(BossStateMachine stateMachine) : base(stateMachine)
     {
     }
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyBaseState : IState
+public class BossBaseState : IState
 {
-    protected EnemyStateMachine stateMachine;
+    protected BossStateMachine stateMachine;
 
     public float timer;
     public int attackTime = 2;
@@ -15,7 +15,7 @@ public class EnemyBaseState : IState
     public int missingDistance = 8;
     private Vector3 lookDirection;
 
-    public EnemyBaseState(EnemyStateMachine stateMachine)
+    public BossBaseState(BossStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
     }

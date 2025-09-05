@@ -51,7 +51,7 @@ public class Monster : MonoBehaviour
         stateMachine.OnTriggerEnter2D(collision);
     }
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage(float Damage)
     {
         StartCoroutine(ChangeColor());
         AudioManager.Instance.PlaySFX("Boss_Damage");
