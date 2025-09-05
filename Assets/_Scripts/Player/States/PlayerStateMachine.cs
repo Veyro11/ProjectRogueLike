@@ -24,12 +24,14 @@ public class PlayerStateMachine : StateMachine
     public float JumpForce { get; set; }
     public bool IsRunning { get; set; }
     public int ComboIndex { get; set; }
-
+    public PlayerDieState DieState { get; private set; }
 
     public bool WantsToContinueCombo { get; set; }
 
     public Transform MainCameraTransform { get; set; }
     public PlayerComboAttackState ComboAttackState { get; }
+
+    public PlayerSpecialAttackState SpecialAttackState { get; private set; }
 
     public PlayerStateMachine(Player player)
     {
@@ -52,5 +54,10 @@ public class PlayerStateMachine : StateMachine
         ClimbingState = new PlayerClimbingState(this);
 
         ComboAttackState = new PlayerComboAttackState(this);
+
+        DieState = new PlayerDieState(this);
+
+        SpecialAttackState = new PlayerSpecialAttackState(this);
+
     }
 }

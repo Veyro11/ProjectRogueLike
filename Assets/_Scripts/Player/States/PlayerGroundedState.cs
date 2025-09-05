@@ -88,4 +88,23 @@ public class PlayerGroundedState : PlayerBaseState
             stateMachine.ChangeState(stateMachine.JumpState);
         }
     }
+
+    protected override void OnHealStarted(InputAction.CallbackContext context)
+    {
+        base.OnHealStarted(context);
+        stateMachine.Player.playerstat.UsePotion();
+    }
+
+    protected override void OnSpecialAttackStarted(InputAction.CallbackContext context)
+    {
+        base.OnSpecialAttackStarted(context);
+        if (stateMachine.Player.playerstat.CurSP >= stateMachine.Player.playerstat.MaxSP)
+        {
+            stateMachine.ChangeState(stateMachine.SpecialAttackState);
+        }
+        else
+        {
+            Debug.Log("SP부족");
+        }
+    }
 }

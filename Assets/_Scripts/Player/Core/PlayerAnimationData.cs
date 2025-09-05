@@ -19,6 +19,10 @@ public class PlayerAnimationData
     [SerializeField] private string dashParameterName = "Dash";
     [SerializeField] private string climbingParameterName = "Climb";
 
+    [SerializeField] private string dieParameterName = "Die";
+
+    [SerializeField] private string specialAttackParameterName = "SpecialAttack";
+
     public int GroundParameterHash { get; private set; }
     public int IdleParameterHash { get; private set; }
     public int WalkParameterHash { get; private set; }
@@ -31,6 +35,10 @@ public class PlayerAnimationData
 
     public int DashParameterHash { get; private set; }
     public int ClimbingParameterHash { get; private set; }
+
+    public int DieParameterHash { get; private set; }
+
+    public int SpecialAttackParameterHash { get; private set; }
 
     public void Initialize()
     {
@@ -45,5 +53,7 @@ public class PlayerAnimationData
         ComboAttackParameterHash = Animator.StringToHash(comboAttackParameterName);
         DashParameterHash = Animator.StringToHash(dashParameterName);
         ClimbingParameterHash = Animator.StringToHash(climbingParameterName);
+        DieParameterHash = Animator.StringToHash(dieParameterName);
+        SpecialAttackParameterHash = Animator.StringToHash(specialAttackParameterName);
     }
 }

@@ -84,6 +84,15 @@ public class PlayerStatus : MonoBehaviour
         MoveSpeed = amount;
     }
 
+    public void UsePotion()
+    {
+        if (CurPotions > 0)
+        {
+            CurPotions--;
+            Player.Instance.Heal(30f);
+            Debug.Log($"포션 {CurPotions}");
+        }
+    }
     public void Load(PlayerSaveData data)
     {
         MaxHealth = data.MaxHealth;
