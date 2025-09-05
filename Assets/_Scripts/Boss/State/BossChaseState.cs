@@ -41,11 +41,11 @@ public class BossChaseState : BossBaseState
         StartAnimation(stateMachine.Enemy.AnimationData.WalkParameterHash);
         currentPosition = stateMachine.attackRenderer.transform.localPosition;
 
-        Attack2m = new Vector3(stateMachine.attackRenderer.transform.localPosition.x + 0.5f,
+        Attack2m = new Vector3(stateMachine.attackRenderer.transform.localPosition.x + 1.5f,
                                stateMachine.attackRenderer.transform.localPosition.y,
                                stateMachine.attackRenderer.transform.localPosition.z);
 
-        Attack4m = new Vector3(stateMachine.attackRenderer.transform.localPosition.x + 1f,
+        Attack4m = new Vector3(stateMachine.attackRenderer.transform.localPosition.x + 2.5f,
                                stateMachine.attackRenderer.transform.localPosition.y,
                                stateMachine.attackRenderer.transform.localPosition.z);
     }
@@ -137,17 +137,10 @@ public class BossChaseState : BossBaseState
     {
         if (!isReady) return;
 
-        if (!isPlaying)
-        {
-            stateMachine.Enemy.RangedAttackReady();
-            Debug.Log("@!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            isPlaying = true;
-        }
+        stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
 
-        //stateMachine.attackRenderer.color = new Color(1f, 0f, 0f, 0.3f);    //히트박스표시 사이즈 조절 통해서 범위 추가 가능
-
-        //stateMachine.attackRenderer.transform.localScale = new Vector3(3f, 1f, 1f);
-        //stateMachine.attackRenderer.transform.localPosition = Attack4m;
+        stateMachine.attackRenderer.transform.localScale = new Vector3(3f, 1f, 1f);
+        stateMachine.attackRenderer.transform.localPosition = Attack4m;
 
         if (timer > 0) return;
 
@@ -158,18 +151,21 @@ public class BossChaseState : BossBaseState
 
     public void ReadyToAttack_Ranged()
     {
+        if (!isPlaying)
+        {
+            stateMachine.Enemy.RangedAttackReady();
+            isPlaying = true;
+        }
+
         if (timer > 0) return;
 
         is_is_Ranged_AttackReady = true;
         stateMachine.ChangeState(stateMachine.AttackState);
     }
 
-    //미리 2인지 인지 골라서 보내기? 여기서 랜덤으로 뽑고
-    //2m일경우 is_2M_Attack만 트루
-    //4m일 경우 랜덤
-
     private void RandomReadyToAttack()
     {
+        //2M에 플레이어가 들어왔을 경우 20/40/40 확률로 공격준비 모션 시작
         if (is_2M_Attack)
         {
             if (random <= 20)
@@ -187,11 +183,18 @@ public class BossChaseState : BossBaseState
                 ReadyToAttack_4M();
             }
         }
+        //4M에 플레이어가 들어왔을 경우 70/30 확률로 공격준비 모션 시작
         else if (is_4M_Attack)
         {
-
-            ReadyToAttack_4M();
+            if (random <= 70)
+            {
+                ReadyToAttack_4M();
+                return;
+            }
+            else if (random <= 100)
+            {
+                ReadyToAttack_Ranged();
+            }
         }
     }
-
 }
