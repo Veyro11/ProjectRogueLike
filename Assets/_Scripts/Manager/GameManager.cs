@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.StopBGM();
 
+
         if (System.IO.File.Exists(savePath))
         {
             loadButton.interactable = true;
