@@ -9,16 +9,17 @@ public class SPBar : MonoBehaviour
     [SerializeField] RectTransform _Stretcher;
     [SerializeField] PlayerStatus _Player;
     Coroutine _coroutineController;
+    float lengthCoefficient;
 
     private void Start()
     {
         _Stretcher.sizeDelta = new Vector2(0, 54f);
+        lengthCoefficient = _maxLength / _Player.MaxSP;
     }
     IEnumerator AdjustSPBar(float currentSP, float targetSP)
     {
         int count = 1;
         Debug.Log(currentSP +","+targetSP+" ==??");
-        float lengthCoefficient = _maxLength / _Player.MaxSP;
         while (count <= 2.5f / Time.deltaTime)
         {
             float length = (targetSP * lengthCoefficient) + 10f / (0.5f * count + 10f) * (currentSP - targetSP) * lengthCoefficient;
@@ -36,5 +37,10 @@ public class SPBar : MonoBehaviour
         if (_coroutineController != null)
         { StopCoroutine(_coroutineController); }
         _coroutineController = StartCoroutine(AdjustSPBar(origin, target));
+    }
+
+    public void Init()
+    {
+        _Stretcher.sizeDelta = new Vector2(Player.Instance.playerstat.CurSP*lengthCoefficient, 60f);
     }
 }
