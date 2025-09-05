@@ -24,6 +24,12 @@ public class PlayerSaveData
 
     public float BgmVolume;
     public float SFXVolume;
+
+    public int HPReinforcement;
+    public int PotionReinforcement;
+    public int ATKReinforcement;
+    public int SPReinforcement;
+    public int SpecialReinforcement;
 }
 
 public class SaveLoadManager : MonoBehaviour
@@ -64,7 +70,13 @@ public class SaveLoadManager : MonoBehaviour
         saveData.PlayerX = 51.70639f;
         saveData.PlayerY = 0.5607741f;
 
-        string json = JsonUtility.ToJson(saveData, true);
+        saveData.HPReinforcement = ReinforceManager.Instance.GetCount(ReinforcementCategory.HP);
+        saveData.PotionReinforcement = ReinforceManager.Instance.GetCount(ReinforcementCategory.Potion);
+        saveData.ATKReinforcement = ReinforceManager.Instance.GetCount(ReinforcementCategory.ATK);
+        saveData.SPReinforcement = ReinforceManager.Instance.GetCount(ReinforcementCategory.SP);
+        saveData.SpecialReinforcement = ReinforceManager.Instance.GetCount(ReinforcementCategory.Special);
+
+    string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(savePath, json);
         Debug.Log($"저장됨 {savePath}");
     }
@@ -83,7 +95,7 @@ public class SaveLoadManager : MonoBehaviour
             AudioManager.Instance.bgmVolume = loadData.BgmVolume;
             AudioManager.Instance.sfxVolume = loadData.SFXVolume;
 
-
+            ReinforceManager.Instance.LoadReinforcementData(loadData);
 
             Debug.Log($"불러옴 {savePath}");
         }
