@@ -28,7 +28,7 @@
       <br/>
       <b>팀원 [원정우]</b>
       <br/>
-      <sub>몬스터 FSM/몬스터&보스 패턴/오디오 매니저/</sub>
+      <sub>몬스터 FSM/몬스터&보스 패턴/오디오 매니저</sub>
       <br/>
       <a href="https://github.com/ONEJEUNGWOO">
         <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
@@ -38,7 +38,7 @@
       <br/>
       <b>팀원 [최우영]</b>
       <br/>
-      <sub>플레이어 FSM/전투/타이틀/세이브 로드</sub>
+      <sub>플레이어 FSM/타이틀/세이브 매니저</sub>
       <br/>
       <a href="https://github.com/wooyoung-1">
         <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/>
