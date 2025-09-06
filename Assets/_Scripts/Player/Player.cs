@@ -180,6 +180,7 @@ public class Player : MonoBehaviour
         playerDie = true;
         Debug.Log("YOU DIE");
         stateMachine.ChangeState(stateMachine.DieState);
+        playerstat.SetMaxSouls(1);
         UIManager.Instance.SetGameOver();
     }
 

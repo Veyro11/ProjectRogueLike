@@ -15,6 +15,8 @@ public class Config : MonoBehaviour
 
     private void OnEnable()
     {
+        if (Player.Instance == null)
+        { return; }
         Player.Instance.PauseUser(false);
     }
 

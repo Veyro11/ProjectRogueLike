@@ -34,6 +34,7 @@ public class MapManager : MonoBehaviour
             case "VillageMap":
                 villageMap.SetActive(true);
                 BarEventManager.Instance.HPBarCall(Player.Instance.playerstat.CurHealth, Player.Instance.playerstat.MaxHealth);
+                BarEventManager.Instance.SetBossBar(false);
                 Player.Instance.Heal(Player.Instance.playerstat.MaxHealth);
                 break;
             case "FirstStageMap":

@@ -13,6 +13,8 @@ public class WannaExit : MonoBehaviour
     }
     private void OnEnable()
     {
+        if(Player.Instance == null)
+        { return;  }
         fadeInOut(true);
         Player.Instance.PauseUser(false);
     }
