@@ -10,7 +10,7 @@
 # 개발 기간
 2025.09.01 (월) - 2023.09.05 (금)
 
-# 👥 개발팀 소개
+# 개발팀 소개
 
 <table align="center">
   <tr>
@@ -109,6 +109,19 @@ IDE: Visual Studio 2022
 공격 중 점프/대쉬로 모션 캔슬 가능
 
 피격 시 1초간 무적 상태 (깜빡임 처리)
+
+# 게임 플레이
+
+
+![1](https://github.com/user-attachments/assets/47e3e046-21c7-4511-8236-5f24222de5d7)
+
+![2](https://github.com/user-attachments/assets/d0e4f0f3-6b77-463c-b5a3-9bcc382eca9c)
+
+![8](https://github.com/user-attachments/assets/329a69e7-280c-40dd-ab66-a973bd674934)
+
+![10](https://github.com/user-attachments/assets/7b82f61d-c20f-4982-ae22-41fc91e88153)
+
+![11](https://github.com/user-attachments/assets/2589e909-e6bf-4264-b733-0060d039c8a1)
 
 # 주요 기능
 
